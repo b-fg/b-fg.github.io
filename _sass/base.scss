@@ -24,6 +24,7 @@ body {
 
 $background-color: #FFFFFF;
 $text-color: #333333;
+$link-color: "blue";
 $text-light-color: rgba(0,0,0,0.6);
 $text-dark-color: #000000;
 
@@ -48,11 +49,8 @@ body {
 /*- Link -*/
 a {
 	color: $text-color;
-	text-decoration: none;
-	font-weight: 700;
 	&:hover,
-	&:focus {
-		color: darken($text-color, 5%);
+	&:focus {xolor: darken($text-color, 5%);
 	}
 }
 

@@ -2,6 +2,7 @@
  * Monochrome is a simple, responsive blog theme built for Jekyll.
  */
 /*- Base reset -*/
+@import url("http://fonts.googleapis.com/css?family=Droid+Sans");
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -30,11 +31,9 @@ body {
 
 /*- Link -*/
 a {
-  color: #333333;
-  text-decoration: none;
-  font-weight: 700; }
+  color: #333333; }
   a:hover, a:focus {
-    color: #262626; }
+    xolor: #262626; }
 
 /* Common classes */
 .f-right {
@@ -707,3 +706,18 @@ footer {
 
 /* Literal.Number.Integer.Long */
 /*- Custom style -*/
+#nav {
+  min-height: 66px; }
+
+@font-face {
+  font-family: 'vera_sans_mono';
+  src: url("../fonts/veramono-webfont.woff2") format("woff2"), url("../fonts/veramono-webfont.woff") format("woff"), url("../fonts/veramono.ttf") format("truetype");
+  color: "FFFFFF"; }
+a.mail_link:link, a.mail_link:visited, a.mail_link:active {
+  font-family: 'vera_sans_mono', sans-serif;
+  color: #000000;
+  text-decoration: none; }
+
+a.text_link:link, a.text_link:visited, a.text_link:active {
+  font-family: 'Droid Sans', sans-serif;
+  color: #0000FF; }
