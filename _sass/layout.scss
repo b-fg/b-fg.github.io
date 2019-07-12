@@ -15,6 +15,7 @@
     &:hover {
       background-color: lighten($text-light-color, 5%);
     }
+    text-decoration: none
   }
   span {
       font-weight: 200;
@@ -43,10 +44,10 @@
   @media (max-width: 940px) {
     display:none;
   }   
-  a {
+  a{
     padding-left: 10px;
     color: $text-color;
-    font-weight: 300
+    font-weight: 600
   }
 }
 
@@ -58,7 +59,7 @@
   width: 5rem;
   height: 1px;
   margin: 23px auto;
-  background-color: $text-color;
+  background-color: "$text-color";
 }
 
 /* Icon menu */
@@ -258,8 +259,9 @@ code {
 /* Footer */
 
 footer {
-  background-color: $background-color;
+  background-color: "$background-color";
   color: $text-color;
   text-align: center;
   padding: 0.6667em 0;
+  color: #7c8081;
 }

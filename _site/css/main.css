@@ -1,8 +1,6 @@
-/*
- * Monochrome is a simple, responsive blog theme built for Jekyll.
- */
 /*- Base reset -*/
 @import url("http://fonts.googleapis.com/css?family=Droid+Sans");
+@import url("https://fonts.googleapis.com/css?family=Rubik&display=swap");
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -25,9 +23,9 @@ html {
       font-size: 18px; } }
 
 body {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 10px; }
+  width: 100%;
+  margin: 0px 0px;
+  padding: 0px 60px; }
 
 /*- Link -*/
 a {
@@ -87,7 +85,7 @@ a {
 
 /*- Typography -*/
 body {
-  font-family: 'vera_sans_mono', "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-family: 'Rubik', 'vera_sans_mono', "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -188,7 +186,8 @@ blockquote {
   color: #333333;
   padding: 0.33334em 0;
   font-size: 1.5em;
-  font-weight: 400; }
+  font-weight: 400;
+  text-decoration: none; }
   @media (min-width: 940px) {
     #nav a, #nav-left a {
       font-size: 1em; } }
@@ -258,7 +257,7 @@ blockquote {
 #nav-links a {
   padding-left: 10px;
   color: #333333;
-  font-weight: 300; }
+  font-weight: 600; }
 
 /* Separator after menu */
 #nav-list:after {
@@ -267,7 +266,7 @@ blockquote {
   width: 5rem;
   height: 1px;
   margin: 23px auto;
-  background-color: #333333; }
+  background-color: "$text-color"; }
 
 /* Icon menu */
 #nav-menu {
@@ -441,10 +440,11 @@ code {
 
 /* Footer */
 footer {
-  background-color: #FFFFFF;
+  background-color: "$background-color";
   color: #333333;
   text-align: center;
-  padding: 0.6667em 0; }
+  padding: 0.6667em 0;
+  color: #7c8081; }
 
 /*
  * A Github stylesheet to highlight code snippet
@@ -721,3 +721,9 @@ a.mail_link:link, a.mail_link:visited, a.mail_link:active {
 a.text_link:link, a.text_link:visited, a.text_link:active {
   color: #0000FF;
   text-decoration: none; }
+
+a.social_links:link, a.social_links:visited, a.social_links:active {
+  color: #7c8081;
+  text-decoration: none;
+  font-size: 20px;
+  padding: 10px; }

@@ -3,12 +3,14 @@ layout: default
 title: 
 description: This page describes monochrome.
 ---
- <figure style="float: right">
+<!--  <figure style="float: right">
 <img src="/img/profile.svg">
   <figcaption>
 	<a href="mailto:b.fontgarcia@soton.ac.uk" class="mail_link">b.fontgarcia@soton.ac.uk</a>
 </figcaption>
-</figure>
+</figure> -->
+
+<img style="width:200px; min-width:200px; max-width:240px; padding-right:30px; padding-top:0px; padding-bottom:0px; " src="img/profile.png" align="left">
 
 <p style="text-align: justify"> 
 <b>Welcome!</b> This is my personal webpage where you can find a summary of my research and interests. I am currently a PhD Candidate of the <a href="https://www.southampton.ac.uk/engineering/research/groups/afm.page" class="text_link">Aerodynamics and Flight Mechanics group</a> at the University of Southampton (UK) aiming to graduate in 2020.</p>

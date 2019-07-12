@@ -1,6 +1,6 @@
 # Site settings
-title: "Bernat Font Garcia personal webpage"
-description: "Bernat Font Garcia persona webpage"
+title: "B.  Font Garcia personal webpage"
+description: "B. Font Garcia persona webpage"
 url: "https://www.b-fg.github.io"
 author:
   name: "Bernat Font Garcia"
@@ -34,6 +34,6 @@ gems:
 version: "1.0.0"
 
 # Options
-custom_header: True
-custom_nav_footer: False
+custom_header: true
+custom_nav_footer: false
 reverse: false
