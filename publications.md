@@ -15,7 +15,7 @@ FONT GARCIA, B., WEYMOUTH, G. D., TUTTY, O. R. A two-dimensional model for three
 
 ### Conference Proceedings
 <p style="text-align: justify"> 
-FONT GARCIA, B., WEYMOUTH, G. D., TUTTY, O. R. Analysis of two-dimensional and three-dimensional wakes of long circular cylinders. OCEANS 2017, Aberdeen, UK. <a href="https://doi.org/10.1109/OCEANSE.2017.8084904" class="text_link">doi: 10.1109/OCEANSE.2017.8084904</a>
+FONT GARCIA, B., WEYMOUTH, G. D., TUTTY, O. R. Analysis of two-dimensional and three-dimensional wakes of long circular cylinders. OCEANS 2017, Aberdeen, UK. <a href="https://doi.org/10.1109/OCEANSE.2017.8084904" class="text_link">10.1109/OCEANSE.2017.8084904</a>
 </p>
 
 ### MSc Thesis

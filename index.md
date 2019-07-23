@@ -13,7 +13,7 @@ description: This page describes monochrome.
 <img style="width:200px; min-width:200px; max-width:240px; padding-right:30px; padding-top:0px; padding-bottom:0px; " src="img/profile.png" align="left">
 
 <p style="text-align: justify"> 
-<b>Welcome!</b> This is my personal webpage where you can find a summary of my research and interests. I am currently a PhD Candidate of the <a href="https://www.southampton.ac.uk/engineering/research/groups/afm.page" class="text_link">Aerodynamics and Flight Mechanics group</a> at the University of Southampton (UK) aiming to graduate in 2020.</p>
+<b>Welcome!</b> I am Bernat Font Garcia, currently a PhD Candidate of the <a href="https://www.southampton.ac.uk/engineering/research/groups/afm.page" class="text_link">Aerodynamics and Flight Mechanics group</a> at the University of Southampton (UK) aiming to graduate in 2020. In this personal webpage you will find a summary of my research and interests.</p>
 
 <p style="text-align: justify"> 
 I research computational fluid dynamics (CFD) and I am mostly focused on turbulence modelling of bluff bodies wakes. Of course, we are currently exploring the possibilities of Machine Learning data-driven models into this field. <a href="/research" class="text_link">And results look promising so far!</a></p>
