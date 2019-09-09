@@ -13,9 +13,7 @@
     color: "FFFFFF"
 }
 
-@import url('http://fonts.googleapis.com/css?family=Droid+Sans');
-
-@import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Assistant|Cantarell|Gafata|Alegreya+Sans|Source+Code+Pro|Rubik|Droid+Sans&display=swap');
 
 a.mail_link:link, a.mail_link:visited, a.mail_link:active 
 {
@@ -30,6 +28,12 @@ a.text_link:link, a.text_link:visited, a.text_link:active
     text-decoration: none
 }
 
+a.mono_link:link, a.mono_link:visited, a.mono_link:active 
+{
+    font-family: 'Source Code Pro';
+    color: #0000FF;
+    text-decoration: none;
+}
 
 a.social_links:link, a.social_links:visited, a.social_links:active 
 {

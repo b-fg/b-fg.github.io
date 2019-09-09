@@ -1,6 +1,5 @@
 /*- Base reset -*/
-@import url("http://fonts.googleapis.com/css?family=Droid+Sans");
-@import url("https://fonts.googleapis.com/css?family=Rubik&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Assistant|Cantarell|Gafata|Alegreya+Sans|Source+Code+Pro|Rubik|Droid+Sans&display=swap");
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -85,10 +84,10 @@ a {
 
 /*- Typography -*/
 body {
-  font-family: 'Rubik', 'vera_sans_mono', "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-family: 'Cantarell','Arial', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 15px;
   color: #333; }
 
 /*- Typography for medium and small screen, based on 16px font-size -*/
@@ -348,7 +347,7 @@ blockquote {
   #header div {
     margin: 0 auto; }
   #header h1 {
-    font-size: 2em;
+    font-size: 1.7em;
     padding-bottom: 0; }
     #header h1 span {
       color: rgba(0, 0, 0, 0.6);
@@ -719,6 +718,11 @@ a.mail_link:link, a.mail_link:visited, a.mail_link:active {
   text-decoration: none; }
 
 a.text_link:link, a.text_link:visited, a.text_link:active {
+  color: #0000FF;
+  text-decoration: none; }
+
+a.mono_link:link, a.mono_link:visited, a.mono_link:active {
+  font-family: 'Source Code Pro';
   color: #0000FF;
   text-decoration: none; }
 

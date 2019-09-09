@@ -63,11 +63,15 @@
 <loc>http://localhost:4000/research/page3/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/cv/cv.pdf</loc>
-<lastmod>2019-07-18T00:53:03+02:00</lastmod>
+<loc>http://localhost:4000/cv/Font_Garcia%20CV.pdf</loc>
+<lastmod>2019-09-09T18:17:18+02:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/fonts/veramono-demo.html</loc>
 <lastmod>2019-07-05T08:57:54+02:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/thesis/Font_Garcia%202015%20-%20High-order%20Shock-capturing%20Schemes%20for%20Micro%20Shock%20Tubes.pdf</loc>
+<lastmod>2015-08-26T22:16:17+02:00</lastmod>
 </url>
 </urlset>
