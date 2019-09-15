@@ -34,6 +34,6 @@ gems:
 version: "1.0.0"
 
 # Options
-custom_header: true
+custom_header: false
 custom_nav_footer: false
 reverse: false

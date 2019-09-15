@@ -14,7 +14,7 @@
 <loc>http://localhost:4000/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/publications</loc>
+<loc>http://localhost:4000/pages/publications</loc>
 </url>
 <url>
 <loc>http://localhost:4000/cv/CV%20Bernat%20Font%20Garcia.pdf</loc>

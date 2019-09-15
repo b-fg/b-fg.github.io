@@ -2,6 +2,7 @@
 layout: default
 title: 
 description: This page describes monochrome.
+mathjax: true
 ---
 <img style="width:200px; min-width:200px; max-width:240px; padding-right:30px; padding-top:0px; padding-bottom:0px; " src="img/profile.png" align="left">
 
