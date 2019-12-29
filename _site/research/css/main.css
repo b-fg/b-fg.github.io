@@ -84,7 +84,7 @@ a {
 
 /*- Typography -*/
 body {
-  font-family: 'Cantarell','Arial', sans-serif;
+  font-family: 'Cantarell', cmunrm, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
@@ -711,6 +711,10 @@ footer {
 @font-face {
   font-family: 'vera_sans_mono';
   src: url("../fonts/veramono-webfont.woff2") format("woff2"), url("../fonts/veramono-webfont.woff") format("woff"), url("../fonts/veramono.ttf") format("truetype");
+  color: "FFFFFF"; }
+@font-face {
+  font-family: 'cmunrm';
+  src: url("../fonts/cmunrm.woff") format("woff"), url("../fonts/cmunrm.ttf") format("truetype");
   color: "FFFFFF"; }
 a.mail_link:link, a.mail_link:visited, a.mail_link:active {
   font-family: 'vera_sans_mono', sans-serif;
