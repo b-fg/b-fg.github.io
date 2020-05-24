@@ -4,7 +4,7 @@
  <title>B. Font Garcia personal webpage</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2019-12-29T21:51:39+08:00</updated>
+ <updated>2020-05-25T01:08:07+02:00</updated>
  <author>
    <name>Bernat Font Garcia</name>
    <uri>https://www.b-fg.github.io</uri>
@@ -17,8 +17,8 @@
    <title>From 3-D to 2-D turbulence transition</title>
    <link href="http://localhost:4000/3D_to_2D"/>
    <id>http://localhost:4000/3D_to_2D</id>
-   <updated>2019-09-15T00:00:00+08:00</updated>
-   <content type="html">&lt;p&gt;&lt;em&gt;In this post we review the physical mechanism responsible for the transition from three-dimensional (3-D) to two-dimensional (2-D) turbulence in flow past a circular cylinder at a high Reynolds $(Re)$ regime as the cylinder span is constricted.&lt;/em&gt;&lt;/p&gt; &lt;p style=&quot;text-align:justify; margin-left:20px&quot;&gt; The physics governing 3-D and 2-D turbulence have been extensively...</content>
+   <updated>2019-09-15T00:00:00+02:00</updated>
+   <content type="html">&lt;p&gt;&lt;em&gt;[POST STILL UNDER CONSTRUCTION] In this post we review the physical mechanism responsible for the transition from three-dimensional (3-D) to two-dimensional (2-D) turbulence in flow past a circular cylinder at a high Reynolds $(Re)$ regime as the cylinder span is constricted.&lt;/em&gt;&lt;/p&gt; &lt;p style=&quot;text-align:justify; margin-left:20px&quot;&gt; The physics governing 3-D and 2-D...</content>
  </entry>
 
  

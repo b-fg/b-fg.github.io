@@ -1,0 +1,19 @@
+I":	<p><em>[POST STILL UNDER CONSTRUCTION] In this post we review the physical mechanism responsible for the transition from three-dimensional (3-D) to two-dimensional (2-D) turbulence in flow past a circular cylinder at a high Reynolds $(Re)$ regime as the cylinder span is constricted.</em></p>
+
+<p style="text-align:justify; margin-left:20px"> 
+The physics governing 3-D and 2-D turbulence have been extensively investigated in the past. In summary, a direct energy cascade from large-scale to small-scale structures is found in 3-D turbulence. On the other hand, 2-D turbulence is characterised by an inverse cascade, where the energy flows from small-scale to large-scale structures of the flow. Effectively, 3-D turbulence results in very small and chaotic eddies generated through vortex-stretching whereas 2-D turbulence displays large, coherent and energetic vortices as a result of vortex-merging and vortex-thinning events (noting that vortex-stretching is not present in 2-D). </p>
+
+<p style="text-align:justify; margin-left:20px"> 
+This intrinsical difference can have practical implications when simulating 2-D or 3-D flow past an object at high $Re$. Simulations of 2-D bodies such as circular cylinders which ignore its spanwise thickness tend to overpredict the forces induced to the body. This is the result of 2-D turbulence dynamics generating coherent and intense vortices at on the close wake region of the cylinder.</p>
+
+<p style="text-align:justify; margin-left:20px"> 
+To investigate these different wake dynamics, we have conducted a series of simulations of incompressible flow past a circular cylinder at $Re=10^4$ with different span lengths, ranging from $L_z=\pi$ (span length non-dimensionalised with the cylinder diameter $D$) to pure 2-D simulations. In the figure below, the instantaneous wake is visualised using the spanwise vorticity as the span of the cylinder is reduced.</p>
+
+<p style="text-align:center; margin-left:20px"> 
+<object align="top" width="600" height="400" data="img/posts/2019-09-15-3D_to_2D/vorticity.svg" type="image/svg+xml">
+</object></p>
+
+<p style="text-align:center; margin-left:20px; font-size:10px">
+Instantaneous vorticity $\omega_z$ (red is positive, blue is negative) at the $z=L_z/2$ plane for: $(a)$ $L_z=0$, $(b)$ $L_z=0.1$, $(c)$ $L_z=0.25$, $(d)$ $L_z=0.5$, $(e)$ $L_z=1$, $(f)$ $L_z=\pi$.
+</p>
+:ET
