@@ -75,7 +75,7 @@ blockquote p, blockquote ul, blockquote ol { padding: 1.5em 0; /* 24px/18px */ }
 
 @media (min-width: 940px) { #nav a, #nav-left a { font-size: 1em; } }
 
-#nav a:hover, #nav-left a:hover { background-color: rgba(13, 13, 13, 0.6); }
+#nav a:hover, #nav-left a:hover { color: #0000FF; }
 
 #nav span, #nav-left span { font-weight: 200; }
 
