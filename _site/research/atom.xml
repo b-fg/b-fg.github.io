@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
- <title>B. Font Garcia personal webpage</title>
+ <title>Bernat Font</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <id>http://localhost:4000</id>
- <updated>2020-05-25T01:26:42+02:00</updated>
+ <updated>2020-08-25T19:03:05+02:00</updated>
  <author>
-   <name>Bernat Font Garcia</name>
+   <name>Bernat Font</name>
    <uri>https://www.b-fg.github.io</uri>
    <email>b.fontgarcia@soton.ac.uk</email>
  </author>

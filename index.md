@@ -4,7 +4,7 @@ title:
 description: This page describes monochrome.
 mathjax: true
 ---
-<img style="width:200px; min-width:200px; max-width:240px; padding-right:30px; padding-top:0px; padding-bottom:0px; " src="img/profile.png" align="left">
+<img style="width:200px; min-width:200px; max-width:240px; padding-right:30px; padding-top:0px; padding-bottom:0px; " src="img/profile.svg" align="left">
 
 <p style="text-align: justify"> 
 <b>Welcome!</b> I am Bernat Font, currently a PhD Candidate of the <a href="https://www.southampton.ac.uk/engineering/research/groups/afm.page" class="text_link">Aerodynamics and Flight Mechanics group</a> at the University of Southampton (UK) aiming to graduate in August 2020. My PhD is in Computational Fluid Dynamics (CFD) and in this personal webpage (still under construction) you will find a summary of my research and interests.</p>
