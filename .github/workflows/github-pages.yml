@@ -3,10 +3,9 @@ name: Build and deploy Jekyll site to GitHub Pages
 on:
   push:
     branches:
-      - main # or master before October 2020
-# on:
-#   schedule:
-#     - cron: "0 0 * * *"
+      - main
+    schedule:
+      - cron: "0 0 * * *"
 
 jobs:
   github-pages:
