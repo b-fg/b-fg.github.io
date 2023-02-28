@@ -1,0 +1,16 @@
+---
+layout: article
+titles:
+  # @start locale config
+  en      : &EN       News
+  en-GB   : *EN
+  en-US   : *EN
+  en-CA   : *EN
+  en-AU   : *EN
+  # @end locale config
+show_title: false
+---
+
+{%- include news.html news_limit=9999 -%}
+
+{{ content }}

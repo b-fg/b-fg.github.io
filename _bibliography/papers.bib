@@ -1,0 +1,352 @@
+# Journal Articles
+@article{Varela2022,
+  author = {P. Varela and P. Suárez and F. Alcántara-Ávila and A. Mir\'{o} and J. Rabault and B. Font and L.M. García-Cuevas and O. Lehmkuhl and R. Vinuesa},
+  year = {2022},
+  title = {Deep reinforcement learning for flow control exploits different physics for increasing Reynolds number regimes},
+  journal = {Actuators},
+  volume = {11},
+  number = {12},
+  article-number = {359},
+  doi = {10.3390/act11120359},
+  abstract =
+  {
+    The increase in emissions associated with aviation requires deeper research into novel sensing and flow-control strategies to obtain improved aerodynamic performances.
+    In this context, data-driven methods are suitable for exploring new approaches to control the flow and develop more efficient strategies.
+    Deep artificial neural networks (ANNs) used together with reinforcement learning, i.e., deep reinforcement learning (DRL), are receiving more attention due to their capabilities of controlling complex problems in multiple areas.
+    In particular, these techniques have been recently used to solve problems related to flow control.
+    In this work, an ANN trained through a DRL agent, coupled with the numerical solver Alya, is used to perform active flow control.
+    The Tensorforce library was used to apply DRL to the simulated flow.
+    Two-dimensional simulations of the flow around a cylinder were conducted and an active control based on two jets located on the walls of the cylinder was considered.
+    By gathering information from the flow surrounding the cylinder, the ANN agent is able to learn through proximal policy optimization (PPO) effective control strategies for the jets, leading to a significant drag reduction.
+    Furthermore, the agent needs to account for the coupled effects of the friction- and pressure-drag components, as well as the interaction between the two boundary layers on both sides of the cylinder and the wake.
+    In the present work, a Reynolds number range beyond those previously considered was studied and compared with results obtained using classical flow-control methods.
+    Significantly different forms of nature in the control strategies were identified by the DRL as the Reynolds number Re increased.
+    On the one hand, for Re<1000, the classical control strategy based on an opposition control relative to the wake oscillation was obtained.
+    On the other hand, for Re=2000, the new strategy consisted of energization of the boundary layers and the separation area, which modulated the flow separation and reduced the drag in a fashion similar to that of the drag crisis, through a high-frequency actuation.
+    A cross-application of agents was performed for a flow at Re=2000, obtaining similar results in terms of the drag reduction with the agents trained at Re=1000 and 2000.
+    The fact that two different strategies yielded the same performance made us question whether this Reynolds number regime (Re=2000) belongs to a transition towards a nature-different flow, which would only admits a high-frequency actuation strategy to obtain the drag reduction.
+    At the same time, this finding allows for the application of ANNs trained at lower Reynolds numbers, but are comparable in nature, saving computational resources.
+  }
+}
+
+@article{Font2021,
+  author = {B. Font and G.D. Weymouth and V.-T. Nguyen and O.R. Tutty},
+  year = {2021},
+  title = {Deep learning of the spanwise-averaged {N}avier--{S}tokes equations},
+  journal = {Journal of Computational Physics},
+  volume = {434},
+  pages = {110199},
+  issn = {0021-9991},
+  doi = {10.1016/j.jcp.2021.110199},
+  eprint={2008.07528},
+  archivePrefix={arXiv},
+  abstract =
+  {
+    Simulations of turbulent fluid flow around long cylindrical structures are computationally expensive because of the vast range of length scales, requiring simplifications such as dimensional reduction.
+    Current dimensionality reduction techniques such as strip-theory and depth-averaged methods do not take into account the natural flow dissipation mechanism inherent in the small-scale three-dimensional (3-D) vortical structures.
+    We propose a novel flow decomposition based on a local spanwise average of the flow, yielding the spanwise-averaged Navier--Stokes (SANS) equations.
+    The SANS equations include closure terms accounting for the 3-D effects otherwise not considered in 2-D formulations.
+    A supervised machine-learning (ML) model based on a deep convolutional neural network  provides closure to the SANS system.
+    A-priori results show up to 92\% correlation between target and predicted closure terms; more than an order of magnitude better than the eddy viscosity model correlation.
+    The trained ML model is also assessed for different Reynolds regimes and body shapes to the training case where, despite some discrepancies in the shear-layer region, high correlation values are still observed.
+    The new SANS equations and ML closure model are also used for a-posteriori prediction.
+    While we find evidence of known stability issues with long time ML predictions for dynamical systems, the closed SANS simulations are still capable of predicting wake metrics and induced forces with errors from 1-10\%.
+    This results in approximately an order of magnitude improvement over standard 2-D simulations while reducing the computational cost of 3-D simulations by 99.5\%.
+  }
+}
+
+@article{Font2019,
+  doi = {10.1017/jfm.2019.637},
+  url = {https://doi.org/10.1017/jfm.2019.637},
+  year = {2019},
+  publisher = {Cambridge University Press ({CUP})},
+  volume = {878},
+  pages = {306--323},
+  author = {B. Font and G.D. Weymouth and V.-T. Nguyen and O.R. Tutty},
+  title = {Span effect on the turbulence nature of flow past a circular cylinder},
+  journal = {Journal of Fluid Mechanics},
+  eprint={2008.08933},
+  archivePrefix={arXiv},
+  abstract =
+  {
+    Turbulent flow evolution and energy cascades are significantly different in two-dimensional (2D) and three-dimensional (3D) flows.
+    Studies have investigated these differences in obstacle-free turbulent flows, but solid boundaries have an important impact on the cross-over between 3D to 2D turbulence dynamics.
+    In this work, we investigate the span effect on the turbulence nature of flow past a circular cylinder at $Re=10^4$.
+    It is found that even for highly anisotropic geometries, 3D small-scale structures detach from the walls.
+    Additionally, the natural large-scale rotation of the K\'{a}rm\'{a}n vortices rapidly two-dimensionalises those structures if the span is 50\% of the diameter or less.
+    We show this is linked to the span being shorter than the Mode B instability wavelength.
+    The conflicting 3D small-scale structures and 2D K\'{a}rm\'{a}n vortices result in 2D and 3D turbulence dynamics which can coexist at certain locations of the wake depending on the domain geometric anisotropy.
+  }
+}
+
+# Peer-Reviewed Symposium Proceedings
+@inproceedings{Radhakrishnan2021,
+  author = {S. Radhakrishnan and L.A. Gyamfi and A. Mir\'{o} and B. Font J. Calafell and O. Lehmkuhl},
+  year = {2021},
+  title = {A data-driven wall-shear stress model for LES using gradient boosted decision trees},
+  booktitle = {High Performance Computing},
+  publisher = {Springer International Publishing},
+  pages = {105--121},
+  isbn = {978-3-030-90539-2},
+  doi = {10.1007/978-3-030-90539-2_7},
+  eprint = {https://upcommons.upc.edu/bitstream/handle/2117/358666/Manuscript_isc2021.pdf?sequence=3},
+  abstract =
+  {
+    With the recent advances in machine learning, data-driven strategies could augment wall modeling in large eddy simulation (LES).
+    In this work, a wall model based on gradient boosted decision trees is presented.
+    The model is trained to learn the boundary layer of a turbulent channel flow so that it can be used to make predictions for significantly different flows where the equilibrium assumptions are valid.
+    The methodology of building the model is presented in detail.
+    The experiment conducted to choose the data for training is described.
+    The trained model is tested a posteriori on a turbulent channel flow and the flow over a wall-mounted hump.
+    The results from the tests are compared with that of an algebraic equilibrium wall model, and the performance is evaluated.
+    The results show that the model has succeeded in learning the boundary layer, proving the effectiveness of our methodology of data-driven model development, which is extendable to complex flows.
+  }
+}
+
+@inproceedings{Font2020a,
+  year = {2020},
+  author = {B. Font and G.D. Weymouth and V.-T. Nguyen and O.R. Tutty},
+  title = {Turbulent wake predictions using deep convolutional neural networks},
+  booktitle = {33rd Symposium on Naval Hydrodynamics},
+  organization = {Office of Naval Research, US},
+  url = {http://eprints.soton.ac.uk/id/eprint/444591},
+  abstract =
+  {
+    A machine-learning based closure is explored for the prediction of the turbulent wake of flow past a circular cylinder at a high Reynolds number.
+    We show that classic turbulence closures based on the turbulent-viscosity hypothesis are not capable of modelling the non-linear relationship between the mean quantities and the target turbulent fields.
+    Instead, different multiple-input multiple-output auto-encoder convolutional neural networks are explored in this work to develop a data-driven closure.
+    A detailed hyper-parameter study is completed including network architecture, loss functions and input sets, among others.
+    A-priori results show 80\% to 90\% correlation coefficients between target and predicted turbulent fields of previously unseen data.
+    High correlation coefficients are rapidly achieved by networks with a large number of trainable parameters, whereas smaller networks require more training epochs.
+    The integration of the model in live simulations is theoretically discussed from its stability standpoint as well as preliminary physics-based constraints ideas to provide more stable data-driven closures.
+  }
+}
+
+# Conference Proceedings
+@proceedings{Font2017,
+  doi = {10.1109/oceanse.2017.8084904},
+  url = {https://doi.org/10.1109/oceanse.2017.8084904},
+  year = {2017},
+  publisher = {{IEEE}},
+  author = {B. Font and G.D. Weymouth and O.R. Tutty},
+  title = {Analysis of two-dimensional and three-dimensional wakes of long circular cylinders},
+  booktitle = {{OCEANS} 2017 - Aberdeen},
+  eprint = {https://eprints.soton.ac.uk/411819/1/Font_Garcia_et_al_2017_Analysis_of_two_dimensional_and_three_dimensional_wakes_of_long_circular_cylinders.pdf},
+  abstract =
+  {
+    The wake behind a bluff body constitutes an intrinsically three-dimensional flow and it is known that two-dimensional simulations yield to an unphysical prediction of the body forces because of the nature of the two-dimensional Navier-Stokes equations.
+    However, three-dimensional simulations are too computationally expensive for cases such as marine risers, which have very large aspect ratios and are exposed to a high Reynolds number flow.
+    A quantitative and qualitative study has been performed to investigate the fundamental differences on the wake of two-dimensional and three-dimensional fixed spanwise periodic cylinders for a Reynolds number of 10^4.
+    A very fine unifrom grid (503M points) has been used for the near and mid wake range, and it is shown that the wake presents very different vortical structures when the spanwise dimensionality is omitted.
+    In this case, forces such as lift and drag are overpredicted.
+    The kinetic energy spectra of the flow is also investigated to further discuss the physics inherent of each case together and it is found that the contribution of the spanwise velocity on the large wavenumbers is significantly smaller than the other velocity components.
+  }
+}
+
+# Published Abstracts
+@conference{APS2019,
+  author = {B. Font and G.D. Weymouth and V.-T. Nguyen and O.R. Tutty},
+  title = {Deep learning the spanwise-averaged wake of a circular cylinder},
+  year = {2019},
+  booktitle = {72nd APS Division of Fluid Dynamics Meeting Abstracts, Seattle (US)},
+  url = {https://meetings.aps.org/Meeting/DFD19/Session/L17.5},
+  pages={L17--005},
+  abstract =
+  {
+    Numerical simulations of long and flexible cylindrical structures become prohibitive at high Reynolds regimes because of the wide range of spatial and temporal scales that need to be resolved.
+    We propose a new flow decomposition based on the spanwise average of the local three-dimensional (3D) strip which provides a two-dimensional formulation with additional statistical terms accounting for the 3D fluctuations.
+    The latter unclosed terms are modelled through a convolutional neural network (CNN) trained on a high-fidelity dataset.
+    The CNN is designed as a multiple-input multiple-output autoencoder inspired on image recognition architectures.
+    The convolution operation ensures translational invariance and different inputs are tested aiming to provide a Galilean invariant model.
+    A-priori results display 90\% correlation of the predicted turbulent fields and current work involves the a-posteriori analysis of the model plus the investigation of the model generalisation for different geometries and flow regimes.
+  }
+}
+
+@conference{ETC2019,
+  author = {B. Font and G.D. Weymouth and V.-T. Nguyen and O.R. Tutty},
+  title = {Turbulence dynamics transition of flow past a circular cylinder and the prediction of vortex-induced forces},
+  year = {2019},
+  booktitle = {17th European Turbulence Conference, Torino (Italy)},
+  file = {/assets/pdf/Font_et_al_2019_-_Turbulence_dynamics_transition_of_flow_past_a_circular_cylinder_and_the_prediction_of_vortex-induced_forces.},
+  abstract =
+  {
+    We investigate the transition of three-dimensional (3D) to two-dimensional (2D) turbulence of incompressible viscous
+flow past a circular cylinder as the span is constricted.
+    The inclusion of a bluff body provides novel information with respect to previous work on free turbulent flow [1, 2, 3]. The coexistance of both turbulence dynamics can be found at the mid wake region for highly anisotropic geometries as shown in figure 1 (left). Both 3D and 2D turbulence (-5/3 decay rate and -3 decay rate respectively) are captured on the inertial subrange for the Lz = 0.5 case, where Lz is the cylinder span relative to its diameter.
+    Small-scale 3D structures detach from the wall even on very constricted domains.
+    These structures are rapidly two-dimensionalised by the large-scale rotation of the K\'{a}rm\'{a}n vortices when the span is 50% of the diameter or less. The large-scale rotation as a mechanism of two-dimensionalisation is in agreement with other studies such as [3, 4].
+    On the other hand, the constriction of the span induces larger forces on the cylinder as displayed in figure 1 (right).
+    There is a quasi-linear relation between the r.m.s value of the lift coefficient CL and the turbulence kinetic energy (TKE).
+    Higher values are found on both parameters as the span is reduced because of the emerging energised 2D vortical structures.
+    Evidencing the strong relation of the forces induced to the cylinder and the turbulence statistics, a regression model is included to provide an a priori analysis given a sufficiently large data set.
+  }
+}
+
+@conference{UKFLUIDS2016,
+  author = {B. Font and G.D. Weymouth and O.R. Tutty},
+  title = {A two-dimensional model for three-dimensional symmetric flows},
+  year = {2016},
+  url = {https://www.imperial.ac.uk/media/imperial-college/faculty-of-engineering/aeronautics/UK-Fluids-Conference-2016-booklet.pdf},
+  booktitle = {UK Fluids Conference, London (UK)},
+  file = {/assets/pdf/Font_et_al_2016_-_A_two-dimensional_model_for_three-dimensional_symmetric_flows.pdf},
+  abstract =
+  {
+    A two-dimensional model for three-dimensional symmetric laminar flows is described.
+    This model is derived from the incompressible Navier-Stokes equations using the velocity-pressure formulation.
+    By locating the origin of the three-dimensional structures on the symmetry plane and applying an appropriate treatment of the three-dimensional term remaining in the derived equations an accurate solution of the three-dimensional flow at the symmetry plane can be achieved.
+    The backward-facing step numerical test case is used to test the performance and accuracy of the derived model.
+    Above $Re = 400$, three-dimensional structures arise leading to different primary reattachment lengths for the two-dimensional and the three-dimensional cases.
+    These structures are located close to the separation point.
+    We show that using a two-dimensional transport equation for the responsible three-dimensional term would result into a reattachment length close to the three-dimensional solution.
+    The direct benefit of this work is a significant reduction of the computational time required to achieve the three-dimensional solution of symmetric laminar flows.
+    As a future work, a two-dimensional model of three-dimensional terms will be explored in the field of turbulence for spatially periodic flows.
+  }
+}
+
+# Talks
+@booklet{talk8,
+  howpublished = {PPPL Computer Science Department’s Machine Learning seminar, Princeton University, US},
+  year = {2021},
+  month = {sep},
+}
+
+@booklet{talk7,
+  howpublished = {Engineering Mind Podcast},
+  year = {2021},
+  month = {jun},
+  url = {https://youtu.be/d1O3dFgvAP4},
+}
+
+@booklet{talk6,
+  howpublished = {Applied Mathematics in Aerospace Engineering seminar, Universidad Politecnica de Madrid, Spain},
+  year = {2021},
+  month = {apr},
+}
+
+@booklet{talk5,
+  howpublished = {Applied Math Colloquium, University North Carolina, US},
+  year = {2021},
+  month = {mar},
+}
+
+@booklet{talk4,
+  howpublished = {Ocean Engineering, University Rhode Island, US},
+  year = {2021},
+  month = {feb},
+}
+
+@booklet{talk3,
+  howpublished = {Fluid Dynamics Group at the Institute of High Performance Computing (A*STAR), Singapore},
+  year = {2020},
+  month = {nov},
+}
+
+@booklet{talk2,
+  howpublished = {Fluid Structure Interactions Group Seminar series, University of Southampton, UK},
+  year = {2020},
+  month = {jul},
+}
+
+@booklet{talk1,
+  howpublished = {Fluid Structure Interactions Group Seminar series, University of Southampton, UK},
+  year = {2017},
+  month = {may},
+}
+
+# Theses
+@thesis{Font2015Msc,
+  author = {B. Font},
+  title = {High-Order Shock-Capturing Schemes for Micro Shock Tubes},
+  year = {2015},
+  school = {Cranfield University},
+  publisher = {Cranfield University},
+  file = {/assets/pdf/Font_2015_MSc_-_High-order_Shock-capturing_Schemes_for_Micro_Shock_Tubes.pdf},
+  abstract = {
+    Microfluidics has recently become a popular fluid dynamics branch (Whitesides, 2006).
+    Technology advances have facilitated the manufacturing of micro-scale devices and, because of this, a parallel interest from the fluid dynamics modelling standpoint has risen.
+    The present thesis investigates the shock tube test case for the millimetre and micrometre scales.
+    At these length scales, non-continuum effects and wall effects dominate the flow physics associated to the shock wave propagation phenomena.
+    The Minitube2D FORTRAN in-house code has been further developed to solve the fully compressible Navier-Stokes (N-S) equations in different coordinate systems.
+    The advective fluxes are computed using (very) high-order shock wave-capturing schemes together with approximate Riemann solvers under the Godunov-type methods umbrella with a cell-centred FVM approach.
+    The viscous fluxes are computed using a forwards-backwards FDM discretisation.
+    Different high-order Runge-Kutta (RK) time integration methods are considered as well.
+    The Maxwell’s slip and the temperature jump boundary conditions have been implemented to account for the rarefaction effects present in small-
+    scale problems.
+    The performance of the MUSCL2 scheme and the WENO5, MPWENO7, MPWENO9 and MPWENO11 schemes is investigated for the Sod shock tube (inviscid)
+    test case.
+    It is found that WENO schemes present a tiny oscillatory behaviour as the order increases even though they fulfil the TVD properties.
+    However, the use of TVD RK methods together with very high-order WENO schemes provided very accurate profiles as well as a reduction of the oscillatory behaviour close to discontinuities.
+    Experimental results from Muntz et al. (1969) are used to validate the 1D N-S equations.
+    A correct propagation and dissipation of the shock wave can be observed.
+    The 2D N-S equations for the Cartesian and axisymmetric coordinate system are validated with numerical data from Zeitoun et al. (2009) and Kumar et al. (2013) respectively.
+    For Zeitoun’s case, a very accurate agreement of different profiles is shown.
+    The use of the slip and the temperature jump boundary conditions proves the applicability of continuum approaches (N-S) for slip flows.
+    Some flows features are also correctly captured in the transitional regime using kinetic models as reference data. Besides, a decoupled temperature transport equation is solved showing a good agreement with the temperature field provided by the energy and the state equations.
+    Thus, the correct implementation of a scalar transport equation introduced to the equations system is validated.
+    For Kumar’s case, a similar temperature profile is obtained along the symmetry axis, even though an offset is appreciated.
+    The turbulence model used by Kumar might introduce additional numerical dissipation resulting into a more attenuated distribution.
+    Finally, scale effects are investigated using Zeitoun’s set-up as the baseline case.
+    The influence of the Knudsen number is studied by reducing the initial pressures of the shock tube and the height of the channel.
+    It is found that both actions yield to a severe attenuation of shock wave propagation distance.
+    This decay is more severe under the no-slip boundary condition with respect to the Maxwell’s slip one.
+    The influence of the initial pressure ratio is studied as well. As expected, high pressure ratios generate faster shock waves.
+    Hence, the shock propagation attenuation (eventually becoming a compression wave) is more important for low pressure ratios.
+  },
+  type = {Master's thesis}
+}
+
+@thesis{Font2020PhD,
+  author = {B. Font},
+  title = {Modelling of Flow Past Long Cylindrical Structures},
+  year = {2020},
+  school = {University of Southampton},
+  publisher = {University of Southampton},
+  file={/assets/pdf/Font_2020_PhD_-_Modelling_of_Flow_Past_Long_Cylindrical_Structures.pdf},
+  abstract=
+  {
+    Turbulent flows are fundamental in engineering and the environment, but their chaotic and three-dimensional (3-D) nature makes them computationally expensive to simulate.
+    In this work, a dimensionality reduction technique is investigated to exploit flows presenting an homogeneous direction, such as wake flows of extruded two-dimensional (2-D) geometries.
+    First, we examine the effect of the homogeneous direction span on the wake turbulence dynamics of incompressible flow past a circular cylinder at $Re=10^4$.
+    It is found that the presence of a solid wall induces 3-D structures even in highly constricted domains.
+    The 3-D structures are rapidly two-dimensionalised by the large-scale K\'{a}rm\'{a}n vortices if the cylinder span is 50\% of the diameter or less, as a result of the span being shorter than the natural wake Mode B instability wavelength.
+    It is also observed that 2-D and 3-D turbulence dynamics can coexist at certain points in the wake depending on the domain geometric anisotropy.
+    With this physical understanding, a 2-D data-driven model that incorporates 3-D effects, as found in the 3-D wake flow, is presented.
+    The 2-D model is derived from a novel flow decomposition based on a local spanwise average of the flow, yielding the spanwise-averaged Navier--Stokes (SANS) equations.
+    The 3-D effects included in the SANS equations are in the form of spanwise-stress residual (SSR) terms.
+    The inclusion of the SSR terms in 2-D systems modifies the flow dynamics from standard 2-D Navier--Stokes to spanwise-averaged dynamics.
+    A machine-learning (ML) model is employed to provide closure to the SANS equations.
+    In the a-priori framework, the ML model yields accurate predictions of the SSR terms, in contrast to a standard eddy-viscosity model which completely fails to capture the closure term structures.
+    The trained ML model is also assessed for different Reynolds regimes and body shapes to the training case where, despite some discrepancies in the shear-layer region, high correlation values are still observed.
+    In the a-posteriori analysis, while we find evidence of known stability issues with long-time ML predictions for dynamical systems, the closed SANS equations are still capable of predicting wake metrics and induced forces with errors from 1-10\%.
+    This results in approximately an order of magnitude improvement over standard 2-D simulations while reducing the computational cost of 3-D simulations by 99.5\%.
+  },
+  type = {PhD thesis}
+}
+
+# Software
+@misc{Font2018-postproc,
+  author = {B. Font},
+  title = {Post{P}roc: A post-processing package for my {P}h{D} {CFD} simulations},
+  year = {2018},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  url = {https://github.com/b-fg/postproc}
+}
+
+@misc{Font2019-f2py,
+  author = {B. Font},
+  title = {F2{P}y-{S}ockets: {A} minimal working example on how to use sockets to transfer data from {F}ortran to {P}ython and viceversa},
+  year = {2019},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  url = {https://github.com/b-fg/f2py-sockets},
+}
+
+@misc{Font2020-sanspy,
+  author = {B. Font},
+  title = {{SANS}py: {A} machine-learning model for the spanwise-averaged {N}avier--{S}tokes equations},
+  year = {2020},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  url = {https://github.com/b-fg/sanspy}
+}

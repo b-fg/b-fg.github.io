@@ -1,0 +1,51 @@
+---
+---
+<!-- {{reference | replace_first: 'Font, B.', '<b>Font, B.</b>' | replace_first: 'Font*, B.', '<b>Font*, B.</b>' | }} -->
+
+{{ reference }}
+
+{% if entry.abstract %}
+<button class="btn btnId btnPub--abstract" id="b_{{key}}-abstract" style="outline:none;">Abstract</button>
+{% endif %}
+
+<button class="btn btnId btnPub--BibTex" id="b_{{key}}-bibtex" style="outline:none;">BibTeX</button>
+
+{% if link %}
+<a href="{{ link }}"><button class="btn btnId btnPub--download" style="outline:none; position:relative;white-space: normal;">PDF</button></a>
+{% endif %}
+
+{% if links['sup.pdf'] %}
+<a href="{{ links['sup.pdf'] }}"><button class="btn btnId btnPub--supplement" style="outline:none; position:relative;white-space: normal;">Supplement</button></a>
+{% endif %}
+
+{% if entry.file %}
+    <a href="{{ entry.file }}"><button class="btn btnId btnPub--download" style="outline:none;">PDF</button></a>
+{% endif %}
+
+{% if entry.doi %}
+    <a href="https://dx.doi.org/{{ entry.doi }}" target="_blank"><button class="btn btnId btnPub--doi" style="outline:none;">DOI</button></a>
+{% elsif entry.url %}
+    <a href="{{ entry.url }}" target="_blank"><button class="btn btnId btnPub--doi" style="outline:none;">Link</button></a>
+{% elsif entry.website %}
+    <a href="{{ entry.website }}" target="_blank"><button class="btn btnId btnPub--doi" style="outline:none; position:relative; white-space:normal;">Link</button></a>
+{% endif %}
+
+{% if entry.eprint %}
+    {% if entry.archiveprefix == "arXiv" %}
+        <a href="https://arxiv.org/pdf/{{ entry.eprint }}"><button class="btn btnId btnPub--download" style="outline:none; position:relative;white-space: normal;">ePrint</button></a>
+    {% else %}
+        <a href="{{ entry.eprint }}" target="_blank"><button class="btn btnId btnPub--download" style="outline:none; position:relative;white-space: normal;">ePrint</button></a>
+    {% endif %}
+{% endif %}
+
+{% if entry.repo %}
+    <a href="{{ entry.repo }}" target="_blank">Repo</a>
+{% endif %}
+
+<div class="dropDownAbstract" id="{{ key }}-abstract">
+{{entry.abstract}}
+</div>
+<div class="dropDownBibtex" id="{{ key }}-bibtex">
+<pre><code>{{ entry.bibtex }}</code></pre>
+</div>
+

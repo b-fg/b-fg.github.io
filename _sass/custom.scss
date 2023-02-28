@@ -1,0 +1,201 @@
+/* start custom scss snippet */
+
+$scholar-color:    #000;
+$orcid-color:      #a6ce39;
+
+/* ==========================================================================
+   Amir's
+   ========================================================================== */
+
+$abstract-color                : #009628 !default;
+$BibTex-color                  : #b201a6 !default;
+$download-color                : #b51b00 !default;
+$doi-color                     : #f79400 !default;   #f2f3f3
+
+.center-image
+{
+    margin: 0 auto;
+    display: block;
+}
+
+.btnId{
+	display: inline-block;
+}
+
+@mixin btnPub($btnPub-color) {
+	border: 3px solid mix(#252a34, $btnPub-color, 10%);
+}
+
+.btnPub--abstract{
+	@include btnPub($abstract-color);
+}
+
+.btnPub--BibTex{
+	@include btnPub($BibTex-color);
+}
+
+.btnPub--download{
+	@include btnPub($download-color);
+}
+
+.btnPub--doi{
+	@include btnPub($doi-color);
+}
+
+.dropDownAbstract{
+  font-size: $type-size-5;
+  text-align: justify;
+  display: none;
+  position: relative;
+  padding-left: 10px;
+  margin-top: 10px;
+  border-left: 1px solid $abstract-color;
+}
+
+.dropDownBibtex{
+  font-size: $type-size-5;
+  text-align: justify;
+  display: none;
+  position: relative;
+  padding-left: 10px;
+  margin-top: -10px;
+//   border-left: 1px solid $BibTex-color;
+}
+
+.katex { font-size: 1em !important; }
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+
+/*
+   Default button
+   ========================================================================== */
+
+.btn {
+  /* default */
+  display: inline-block;
+  margin-bottom: 0.1em;
+  padding: 0.1em 0.5em;
+  font-size: $type-size-7;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border-width: 2px;
+  border-radius: 6px;
+  cursor: pointer;
+
+  .icon {
+    margin-right: 0.5em;
+  }
+
+  .icon + .hidden {
+    margin-left: -0.5em; /* override for hidden text*/
+  }
+}
+/* ==========================================================================
+   For publication page.
+   ========================================================================== */
+
+.pubyear{
+	color: $text-color-d;
+	border-bottom: 1px solid $text-color-l;
+}
+
+
+.publications {
+    h2 {
+        color: black;
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+        font-size: 32px;
+        margin-bottom: 30px;
+        padding: 20px 0;
+        text-align: center;
+    }
+}
+.year {
+    border-top: 1px solid black;
+    /*color: $light-gray;*/
+    margin: 0 -3em -2.5ex -2em;
+    padding-top: 1ex;
+    text-align: right;
+}
+.bibliography {
+    margin-bottom: 50px;
+    margin-top: 20px;
+
+    li {
+        margin: 10px 0;
+        position: relative;
+
+        span { display: block; }
+        .title { font-weight: bolder; }
+        .author {
+            a {
+                border-bottom: 1px dashed black;
+                &:hover {
+                    border-bottom-style: solid;
+                    text-decoration: none;
+                }
+            }
+            > em {
+                border-bottom: 1px solid;
+                font-style: normal;
+            }
+        }
+        a.abstract, a.bibtex { cursor: pointer; }
+        .hidden {
+            font-size: 10px;
+            max-height: 0px;
+            overflow: hidden;
+            text-align: justify;
+            -webkit-transition: 0.15s ease;
+            -moz-transition: 0.15s ease;
+            -ms-transition: 0.15s ease;
+            -o-transition: 0.15s ease;
+            transition: all 0.15s ease;
+
+            p {
+                line-height: 1.4em;
+                margin: 10px;
+            }
+            pre {
+                font-size: 1em;
+                line-height: 1.4em;
+                padding: 10px;
+            }
+        }
+        .hidden.open {
+            text-align: justify;
+            max-height: 100em;
+            -webkit-transition: 0.15s ease;
+            -moz-transition: 0.15s ease;
+            -ms-transition: 0.15s ease;
+            -o-transition: 0.15s ease;
+            transition: all 0.15s ease;
+        }
+        span.abstract.hidden {
+            border: dashed 1px $background-color;
+        }
+        span.abstract.hidden.open {
+            border-color: black;
+        }
+    }
+    abbr {
+        position: absolute;
+            left: -7em;
+    }
+ }
+.star {
+    color: black;
+    font-style: normal;
+}
+
+ol.bibliography{list-style-type:decimal; padding-left:15px; margin-left:15px;}
+
+.page__content {
+    text-align: justify;
+}
+
+/* end custom scss snippet */
