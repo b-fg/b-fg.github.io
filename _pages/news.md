@@ -5,7 +5,7 @@ titles:
   en: News
 key: page-news
 show_title: false
-aside:
-  toc: true
+# aside:
+#   toc: true
 ---
 
