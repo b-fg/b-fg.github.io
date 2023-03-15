@@ -144,6 +144,40 @@
 }
 
 # Published Abstracts
+@conference{Alcantara-Avila2023,
+  author = {F. Alcántara-Ávila and M. Sanchis and L. Gasparino and J. Muela and B. Font and J. Rabault and O. Lehmkuhl and R. Vinuesa},
+  title = {Separation control in adverse-pressure-gradient turbulent boundary layers},
+  year = {2023},
+  booktitle = {European Turbulence Conference 18th},
+  abstract =
+  {
+    The need to save energy is becoming crucial with the global energy crisis of the past years. The use of flow-control techniques has been prevalent in addressing aeronautical problems. These techniques are employed to decrease energy consumption by means of reducing drag forces or optimizing the geometry. In parallel, over the past few decades, the rise in computational power has facilitated the utilization of numerical simulation as a way to investigate wall-bounded turbulence. Additionally, as a result of the increased availability of computational resources, there has been an increasing number of investigations in the field of fluid mechanics that involve the implementation of machine-learning techniques over the past decade. By combining these two approaches, we apply active flow control (AFC) to a turbulent boundary layer (TBL) subjected to an adverse pressure gradient (APG) strong enough to produce flow separation. Our approach uses the numerical code Sod, which was developed at the Barcelona Super Computing Center for scale-resolving simulations of compressible fluid flows in aeronautical applications. Sod is based on the spectral-element method (SEM) and offers high performance on general-purpose graphical-processing units (GPUs) and high accuracy by the SEM scheme.
+
+    To perform the AFC, we use several actuators or jets strategically placed in the domain, which will perform blowing or suction. We connect a neural network to the jets and use the deep-reinforcement-learning (DRL) to obtain an effective control strategy. With DRL techniques, the DRL algorithm learns non-linear control strategies through direct trial-and-error. After a sufficient number of episodes, the algorithm can optimize a desired reward function, such as delaying separation in our APG TBL.
+
+    As part of this study, a parametric analysis of the Clauser–Rotta pressure-gradient parameter ($\beta$) is performed, where $\beta$ is defined as $\beta = \delta*/\tau (dp/dx)$. Here $\delta*$ is the displacement thickness, $\tau$ is the wall-shear stress and $dp/dx$ is the streamwise pressure gradient. Different simulations are performed for each $\beta$, which has an almost constant value throughout the entire boundary layer. Moderate to high Reynolds numbers are computed, reaching up to approximately $Re_\theta = 6000$, where $Re_\theta$ is the Reynolds number based on momentum thickness. A comparison of the different separation-control strategies for values of $\beta$ over $\gtrsim 7$ leading to separation is also presented. The physics of the obtained control strategies are thoroughly detailed.
+  }
+}
+
+@conference{Suarez2023,
+  author = {P. Suárez and F. Alcántara-Ávila and A. Mir\'{o} and J. Rabault and B. Font and O. Lehmkuhl and R. Vinuesa},
+  title = {Active flow control on three-dimensional cylinders through deep reinforcement learning},
+  year = {2023},
+  booktitle = {First International Conference Math 2 Product},
+  abstract =
+  {
+    Deep neural networks (DNNs) used with reinforcement learning (RL), also called deep reinforcement learning (DRL), are used to explore and manage complex systems in a wide range of areas [2].
+    In this work, a NN trained through a DRL agent, coupled with the numerical solver Alya, is used to perform active flow control (AFC) in a cylinder.
+    Alya, developed in the Barcelona Super Computing Center (BSC), is a parallel solver for partial differential equations using the finite-element method. It is designed to be used in supercomputers for scale-resolving simulations (both LES and DNS). The Tensorforce library, built on top of Tensorflow, is used to apply DRL to the simulation. DRL techniques consist of a trial-and-error sequence, where these sequences are known as episodes. This agent is trained from multiple flow-domain observations and receives a reward function. After a certain number of independent episodes (finite trajectories), the policy is updated based on the reward, so we benefit from this system of batches with the multi-environment approach [4].
+    The AFC is performed by several actuators or jets, strategically placed on the cylinder surface, which perform either blowing or suction, thus modifying the flow around the cylinder. The agent sends the signal to change actuator mass flow rate throughout many sequenced actions in time.
+    The goal of this work is to apply our knowledge to three-dimensional cylinders, with AFC placed in the top and bottom of its surface, reproducing the state of the art at low Reynolds number for two-dimensional (2D) cases [3, 4, 5]. As the laminar regime is present in a very low-Reynolds-number range between 50 and 150, the flow
+    physics and DRL-based control are very similar to those reported for the widely-studied case at Re = 100, with a drag reduction of 8%. The novelty comes as the Reynolds number gradually increases, and thus the structures in the spanwise direction develop. These have an effect on the aerodynamic performance and therefore active flow control has the opportunity to explore and exploit new capabilities. This is where we observe discrepancies with
+    respect to the behavior in 2D. As opposed to what has been previously reported in the literature, in this case we will not consider walls on the top and bottom boundaries of the domain. There is the opportunity to implement new jet configurations, having multiple independent jets along the cylinder.
+    This means having more variables to control, a fact that adds to the challenge of optimising the DRL framework with new tools such as multi-agent reinforcement learning (MARL) [1].
+    We have already reported promising results at a Reynolds number of Re = 2000 in a 2D cylinder, see figure 1, extending previous work [3, 4, 5, 7]. The impact of the control on the wake has been reported, increasing the recirculation bubble and reducing the drag by 8\% at Re = 100 and approximately 17\% for Re = 2000. At higher Reynolds numbers, the agent attempts to delay the detachment point in the cylinder surface using a high-frequency signal in the actuation of the jets, similar to what can be observed in the drag-crisis phenomenon, see figure 2. This strategy contrasts with the one obtained at a lower Reynolds number, where the agent acts at a lower frequency to perform opposition control. The final conference contribution will include the results in three-dimensional cylinders.
+  }
+}
+
 @conference{APS2019,
   author = {B. Font and G.D. Weymouth and V.-T. Nguyen and O.R. Tutty},
   title = {Deep learning the spanwise-averaged wake of a circular cylinder},
