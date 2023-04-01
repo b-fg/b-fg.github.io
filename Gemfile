@@ -10,8 +10,8 @@ end
 
 # for google scholar metrics. See: https://jonathanchang.org/blog/easily-showcase-your-google-scholar-metrics-in-jekyll/
 gem "nokogiri"
-#gem "open-uri"
-gem "uri", "0.10.0"
+# gem "open-uri"
+# gem "uri", "0.10.0"
 gem "kramdown-parser-gfm"
 
 gemspec
