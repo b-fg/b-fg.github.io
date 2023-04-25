@@ -84,7 +84,7 @@
   author = {S. Radhakrishnan and L.A. Gyamfi and A. Mir\'{o} and B. Font J. Calafell and O. Lehmkuhl},
   year = {2021},
   title = {A data-driven wall-shear stress model for LES using gradient boosted decision trees},
-  booktitle = {High Performance Computing},
+  booktitle = {ISC High Performance Computing Conference},
   publisher = {Springer International Publishing},
   pages = {105--121},
   isbn = {978-3-030-90539-2},
@@ -144,6 +144,49 @@
 }
 
 # Published Abstracts
+@conference{ParCFD2023,
+  author = {G.D. Weymouth and B. Font},
+  title = {WaterLily.jl: A differentiable fluid simulator in Julia with fast heterogeneous execution},
+  year = {2023},
+  booktitle = {ParCFD 2023},
+  eprint={2304.08159},
+  archivePrefix={arXiv},
+  abstract =
+  {
+    Integrating computational fluid dynamics (CFD) software into optimization and machine-learning frameworks is hampered by the rigidity of classic computational languages and the slow performance of more flexible high-level languages.
+    WaterLily.jl is an open-source incompressible viscous flow solver written in the Julia language.
+    The small code base is multi-dimensional, multi-platform and backend-agnostic (serial CPU, multi-threaded, \& GPU execution).
+    The simulator is differentiable and uses automatic-differentiation internally to immerse solid geometries and optimize the pressure solver.
+    The computational time per time step scales linearly with the number of degrees of freedom on CPUs, and we see up to a 182x speed-up using CUDA kernels.
+    This leads to comparable performance with Fortran solvers on many research-scale problems opening up exciting possible future applications on the cutting edge of machine-learning research.
+  }
+}
+
+@conference{SFMC2023,
+  author = {B. Font and A. Mir\'{o} and O. Lehmkuhl},
+  title = {On the entropy-viscosity method for flux reconstruction},
+  year = {2023},
+  booktitle = {2nd Spanish Fluid Mechanics Conference},
+  file = {/assets/pdf/Font_et_al 2023_-_On_the_entropy_viscosity_method_for_flux_reconstruction.pdf},
+  abstract =
+  {
+    Recent advances in modern computer architectures for high-performance computing (HPC) are paving the path towards a wider adoption of high-order (HO) methods within the computational fluid dynamics (CFD) community.
+    Compared to traditional low-order methods, HO methods promise to achieve an arbitrary level of accuracy at a reduced computational cost, making high-fidelity scale-resolving simulations for high-speed flows a reality.
+    Under the high-order methods umbrella, the flux reconstruction (FR) method originally proposed by has been gaining attention due to its simple formulation and unifying framework.
+    It has been shown that FR can recover both nodal DG and SD schemes for linear and spatially-varying fluxes, hence the unifying character.
+    During the last decade, research on HO methods for CFD has been focused on achieving a similar level of maturity as traditional low-order methods.
+    With this purpose, we investigate the entropy-viscosity shock-capturing scheme by Guermond (2011) for the FR method.
+    The entropy-viscosity method forces an entropy-based numerical dissipation via effective viscosity near physical discontinuities while vanishing on smooth regions.
+    This helps stabilising the naturally arising oscillations that spectral (HO) methods trigger near discontinuities because of the Gibbs phenomenon.
+    A 1-D flux reconstruction solver has been implemented using Julia.
+    The 1-D Burgers equation is used with different initial conditions.
+    Gauss-Legendre and Gauss-Lobbatto-Legendre solution points are considered.
+    In contrast to other works, the implementation of the entropy-viscosity scheme is performed element-wise, ie. a single elemental viscosity is used taken as the maximum absolute norm of the values computed at the element solution points.
+    This has proven to be more stable than the point-wise counterpart.
+  }
+}
+
+
 @conference{Alcantara-Avila2023,
   author = {F. Alcántara-Ávila and M. Sanchis and L. Gasparino and J. Muela and B. Font and J. Rabault and O. Lehmkuhl and R. Vinuesa},
   title = {Separation control in adverse-pressure-gradient turbulent boundary layers},
@@ -152,9 +195,7 @@
   abstract =
   {
     The need to save energy is becoming crucial with the global energy crisis of the past years. The use of flow-control techniques has been prevalent in addressing aeronautical problems. These techniques are employed to decrease energy consumption by means of reducing drag forces or optimizing the geometry. In parallel, over the past few decades, the rise in computational power has facilitated the utilization of numerical simulation as a way to investigate wall-bounded turbulence. Additionally, as a result of the increased availability of computational resources, there has been an increasing number of investigations in the field of fluid mechanics that involve the implementation of machine-learning techniques over the past decade. By combining these two approaches, we apply active flow control (AFC) to a turbulent boundary layer (TBL) subjected to an adverse pressure gradient (APG) strong enough to produce flow separation. Our approach uses the numerical code Sod, which was developed at the Barcelona Super Computing Center for scale-resolving simulations of compressible fluid flows in aeronautical applications. Sod is based on the spectral-element method (SEM) and offers high performance on general-purpose graphical-processing units (GPUs) and high accuracy by the SEM scheme.
-
     To perform the AFC, we use several actuators or jets strategically placed in the domain, which will perform blowing or suction. We connect a neural network to the jets and use the deep-reinforcement-learning (DRL) to obtain an effective control strategy. With DRL techniques, the DRL algorithm learns non-linear control strategies through direct trial-and-error. After a sufficient number of episodes, the algorithm can optimize a desired reward function, such as delaying separation in our APG TBL.
-
     As part of this study, a parametric analysis of the Clauser–Rotta pressure-gradient parameter ($\beta$) is performed, where $\beta$ is defined as $\beta = \delta*/\tau (dp/dx)$. Here $\delta*$ is the displacement thickness, $\tau$ is the wall-shear stress and $dp/dx$ is the streamwise pressure gradient. Different simulations are performed for each $\beta$, which has an almost constant value throughout the entire boundary layer. Moderate to high Reynolds numbers are computed, reaching up to approximately $Re_\theta = 6000$, where $Re_\theta$ is the Reynolds number based on momentum thickness. A comparison of the different separation-control strategies for values of $\beta$ over $\gtrsim 7$ leading to separation is also presented. The physics of the obtained control strategies are thoroughly detailed.
   }
 }
