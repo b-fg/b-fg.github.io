@@ -25,8 +25,7 @@ In the finite-volume method (FVM) and using a Cartesian (uniform) grid with unit
 
 $$
 \begin{align}
-\sigma=\unicode{x2230}(\nabla\cdot\vec{u})\,\mathrm{d}V = \unicode{x222F}\vec{u}\cdot\hat{n}\,\mathrm{d}S\approx
-(u_{i+1} - u_i) + (v_{j+1} - v_j),
+\sigma=\unicode{x2230}(\nabla\cdot\vec{u})\,\mathrm{d}V = \unicode{x222F}\vec{u}\cdot\hat{n}\,\mathrm{d}S\rightarrow \sigma_{i,j} = (u_{i+1,j} - u_{i,j}) + (v_{i,j+1} - v_{i,j}),
 \end{align}
 $$
 
@@ -118,8 +117,19 @@ end
 which generates the `I ∈ inside(σ)` loop automatically.
 
 Even though this could be seen as small improvement (if any), the nice thing about writing loops using this approach is that the computationally-demanding part of the code can be abstracted out of the main workflow.
-For example, it is easy to add performance macros such as `@inbounds` and/or `@fastmath` to each loop by changing the quote block in the `@loop` macro to `@inbounds for @fastmath $I ∈ $R $ex end`.
-
+For example, it is easy to add performance macros such as `@inbounds` and/or `@fastmath` to each loop by changing the quote block in the `@loop` macro
+```julia
+macro loop(args...)
+    ex,_,itr = args
+    op,I,R = itr.args
+    @assert op ∈ (:(∈),:(in))
+    return quote
+        @inbounds for $I ∈ $R
+            @fastmath $ex
+        end
+    end |> esc
+end
+```
 And, even nicer, we can also use this approach to automatically generate KA kernels for every loop in the code!
 To do so, we modify `@loop` to generate the KA kernel using `@kernel` and the wrapper function that sets the backend and the workgroup size
 ```julia
@@ -367,7 +377,7 @@ This demonstrates that the compiler can do performant tricks when the informatio
 Often we use functions such as the `norm2` from LinearAlgebra.jl to compute the norm of an array.
 A surprise is that some of these do not work inside a kernel since the GPU compiler may not be equipped to do so. Hence, these need to be manually written in a suitable form.
 In this case, we use `norm2(x) = √sum(abs2,x)`.
-Another example is a `sum` using generator syntax such as
+Another example is the `sum` function using generator syntax such as
 ```julia
 @kernel function _divergence(σ, u)
     I = @index(Global, Cartesian)
@@ -382,7 +392,24 @@ Here a solution can be to use a different form of `sum`
     σ[I] = sum(j -> u[I+δ(j),j]-u[I,j], 1:ndims(σ), init=zero(eltype(σ)))
 end
 ```
-See more information on [this issue](https://discourse.julialang.org/t/gpu-sum-closure-throwing-an-error/96658).
+even though we have observed reduced performance in the latter version.
+See more information in [this issue](https://discourse.julialang.org/t/gpu-sum-closure-throwing-an-error/96658).
+
+#### Limitations of the automatic kernel generation on loops
+While the `@loop` macro that generates KA kernels is fairly general, it also has some limitations.
+For example, it may have been noticed that we have not nested the loop over the dimensions `d ∈ 1:ndims(σ)` in the kernel.
+The reason behind this is that even if turning
+```julia
+for d ∈ 1:ndims(σ)
+    @loop σ[I] += ∂(d, I, u) over I ∈ inside(σ)
+end
+```
+into
+```julia
+@loop σ[I] = sum(d->∂(d, I, u), 1:ndims(σ)) over I ∈ inside(σ)
+```
+would reduce the number of kernel evaluations, the limitation of the `sum` function mentioned before makes this approach not as performant as writing a kernel for each dimension.
+Also related to this issue is the fact that passing more than one expression per kernel would reduce the overall number of kernel evaluations, but gluing expressions together can be not straight-forward with the current implementation of `@loop`.
 
 #### Care for race conditions!
 When moving from serial to parallel computations, race conditions are a recurring issue.
