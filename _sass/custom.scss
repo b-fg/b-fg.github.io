@@ -198,4 +198,14 @@ ol.bibliography{list-style-type:decimal; padding-left:15px; margin-left:15px;}
     text-align: justify;
 }
 
+img.centered {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+img[src*='#center'] {
+    display: block;
+    margin: auto;
+}
+
 /* end custom scss snippet */

@@ -104,19 +104,19 @@
           {%- if include.show_info -%}
             <span class="item__meta">{{ _article.date | date: __return }}</span>
           {%- endif -%}
-          <a itemprop="headline" class="item__header" href="{{ _article_url }}">{{ _article.title }}</a></div>
+          <a itemprop="headline" class="item__header" href="{{ _article_url }}"; style="text-align:left">{{ _article.title }}</a></div>
       </li>
 
     {%- elsif include.type == 'grid' -%}
       {%- if include.size == 'sm' -%}
         <div class="cell cell--12 cell--md-4 cell--lg-3">
-          <div class="card card--flat">
+          <div class="card card--flat"; style="background-color: #ffffff00">
             {%- if _article.cover -%}
               <div class="card__image">
                 <img class="image" src="{{ _article_cover }}" />
                 <div class="overlay overlay--bottom">
                   <header>
-                    <a href="{{ _article_url }}"><h2 class="card__header">{{ _article.title }}</h2></a>
+                    <a href="{{ _article_url }}"><h2 class="card__header"; style="text-align:left">{{ _article.title }}</h2></a>
                   </header>
                 </div>
               </div>
@@ -126,13 +126,14 @@
       {%- else -%}
 
         <div class="cell cell--12 cell--md-6 cell--lg-4">
-          <div class="card card--flat">
+          <div class="card card--flat"; style="background-color: #ffffff00">
+            <!-- <div class="card card--flat"> -->
             {%- if _article.cover -%}
               <div class="card__image"><img src="{{ _article_cover }}" /></div>
             {%- endif -%}
               <div class="card__content">
                 <header>
-                  <a href="{{ _article_url }}"><h2 class="card__header">{{ _article.title }}</h2></a>
+                  <a href="{{ _article_url }}"><h2 class="card__header"; style="text-align:center">{{ _article.title }}</h2></a>
                 </header>
               </div>
           </div>
