@@ -348,15 +348,15 @@ As a final note on this section, see that `synchronize` is used when running the
 ### Challenges
 
 Porting the whole solver to GPU has been mostly a learning exercise.
-With no previous experience on software development for GPUs, KA smoothens the learning curve so it is a great way to get started.
-Of course, a lot of stuff does not just work out of the box and we have faced some challenges while doing the port. Here are some of them.
+With no previous experience on software development for GPUs, KA smoothens the learning curve, so it is a great way to get started.
+Of course, a lot of stuff does not just work out of the box, and we have faced some challenges while doing the port. Here are some of them.
 
 #### Offset indices in KA kernels
 Offset indices are important for boundary-value problems where arrays may contain both the solution and the boundary conditions of a problem.
 In the stencil-based finite-volume and finite-difference methods, the boundary elements are only accessed to compute the stencil, but not directly modified when looping through the solution elements of an array.
 It is in this scenario where offset indices are important, for example.
 KA `@index` macro only provides natural indices in Julia (starting at 1), and this minor missing feature initially derailed us into using [OffsetArrays.jl](https://github.com/JuliaArrays/OffsetArrays.jl).
-Of course this added complexity to the code and we even observed degraded performance in some kernels.
+Of course this added complexity to the code, and we even observed degraded performance in some kernels.
 Some time after this (more than we would like to admit), the idea of manually passing the offset index into the KA kernel took shape and quickly yield a much cleaner solution.
 Thankfully, this feature will be natively supported in KA in the future (see [KA issue #384](https://github.com/JuliaGPU/KernelAbstractions.jl/issues/384)).
 
@@ -368,7 +368,7 @@ For example, the `δ` function was originally implemented with multiple dispatch
 @inline δ(i,N::Int) = CartesianIndex(ntuple(j -> j==i ? 1 : 0, N))
 δ(d,I::CartesianIndex{N}) where {N} = δ(d, N)
 ```
-The main problem here is that this implementation is type-unstable, and without `@inline` the GPU kernel was complying about a dynamic function (see [KA issue #392](https://github.com/JuliaGPU/KernelAbstractions.jl/issues/392)).
+The main problem here is that this implementation is type-unstable, and without `@inline` the GPU kernel was complaining about a dynamic function (see [KA issue #392](https://github.com/JuliaGPU/KernelAbstractions.jl/issues/392)).
 Another inline-related problem can be observed with the derivative function `∂`.
 When removing the `@inline` macro from its definition, the GPU performance decays significantly, and the GPU benchmark gets even with the CPU one.
 This demonstrates that the compiler can do performant tricks when the information on the required instructions is not nested on external functions to the kernel.
@@ -414,10 +414,10 @@ Also related to this issue is the fact that passing more than one expression per
 #### Care for race conditions!
 When moving from serial to parallel computations, race conditions are a recurring issue.
 For WaterLily, this issue popped up for the linear solver used in the pressure Poisson equation.
-Previously to the port, WaterLily relied on Successive Over Relaxation (SOR) method (a Gauss-Seidel-type solver) which uses (ordered) backsubstitution, hence not suitable for parallel executions.
+Prior to the port, WaterLily relied on Successive Over Relaxation (SOR) method (a Gauss-Seidel-type solver) which uses (ordered) backsubstitution, hence not suitable for parallel executions.
 The solution here was just to switch to a better suited solver such as the Conjugate-Gradient method.
 
 
 ### Acknowledgements
 
-Special thanks to [Valentin Churavy](https://vchuravy.dev/) for creating [KernelAbstractions.jl](https://github.com/JuliaGPU/KernelAbstractions.jl) and revising this article. And, of coarse, [Gabriel D. Weymouth](https://weymouth.github.io/) for creating [WaterLily.jl](https://github.com/weymouth/WaterLily.jl) and for helping in the revising of this article too! :)
+Special thanks to [Valentin Churavy](https://vchuravy.dev/) for creating [KernelAbstractions.jl](https://github.com/JuliaGPU/KernelAbstractions.jl) and revising this article. And, of course, [Gabriel D. Weymouth](https://weymouth.github.io/) for creating [WaterLily.jl](https://github.com/weymouth/WaterLily.jl) and for helping in the revising of this article too! :)
