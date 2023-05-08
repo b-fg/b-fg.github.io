@@ -244,7 +244,7 @@ This exact approach is what has allowed WaterLily to have the same LOC as before
 ### Benchmarking
 
 Now that we have all the items in place, we can benchmark the speedup achieved by KA compared to the serial execution using [BenchmarkTools.jl](https://github.com/JuliaCI/BenchmarkTools.jl).
-Let's now gather all the code we have used and create a small benchmarking MWE (see below or [download it here]({{ site.url }}/assets/codes/WaterLily_on_GPU.zip))
+Let's now gather all the code we have used and create a small benchmarking MWE (see below or [download it here]({{ site.url }}/assets/codes/WaterLily_on_GPU.zip)).
 In this code showcase, we will refer to the serial CPU execution as "serial", the multi-threaded CPU execution as "CPU", and the GPU execution as "GPU":
 ```julia
 using KernelAbstractions: get_backend, synchronize, @index, @kernel, @groupsize
@@ -358,7 +358,7 @@ It is in this scenario where offset indices are important, for example.
 KA `@index` macro only provides natural indices in Julia (starting at 1), and this minor missing feature initially derailed us into using [OffsetArrays.jl](https://github.com/JuliaArrays/OffsetArrays.jl).
 Of course this added complexity to the code and we even observed degraded performance in some kernels.
 Some time after this (more than we would like to admit), the idea of manually passing the offset index into the KA kernel took shape and quickly yield a much cleaner solution.
-Thankfully, this feature will be natively supported in KA in the future (see [issue #384](https://github.com/JuliaGPU/KernelAbstractions.jl/issues/384)).
+Thankfully, this feature will be natively supported in KA in the future (see [KA issue #384](https://github.com/JuliaGPU/KernelAbstractions.jl/issues/384)).
 
 #### To inline functions can be important in GPU kernels
 In KA, GPU kernels are of course more sensitive than CPU kernels when it comes to functions that may be called within.
@@ -368,7 +368,7 @@ For example, the `δ` function was originally implemented with multiple dispatch
 @inline δ(i,N::Int) = CartesianIndex(ntuple(j -> j==i ? 1 : 0, N))
 δ(d,I::CartesianIndex{N}) where {N} = δ(d, N)
 ```
-The main problem here is that this implementation is type-unstable, and without `@inline` the GPU kernel was complying about a dynamic function (see [issue](https://github.com/JuliaGPU/KernelAbstractions.jl/issues/392)).
+The main problem here is that this implementation is type-unstable, and without `@inline` the GPU kernel was complying about a dynamic function (see [KA issue #392](https://github.com/JuliaGPU/KernelAbstractions.jl/issues/392)).
 Another inline-related problem can be observed with the derivative function `∂`.
 When removing the `@inline` macro from its definition, the GPU performance decays significantly, and the GPU benchmark gets even with the CPU one.
 This demonstrates that the compiler can do performant tricks when the information on the required instructions is not nested on external functions to the kernel.
@@ -392,8 +392,8 @@ Here a solution can be to use a different form of `sum`
     σ[I] = sum(j -> u[I+δ(j),j]-u[I,j], 1:ndims(σ), init=zero(eltype(σ)))
 end
 ```
-even though we have observed reduced performance in the latter version.
-See more information in [this issue](https://discourse.julialang.org/t/gpu-sum-closure-throwing-an-error/96658).
+even though we have observed reduced performance in the latter version (more information in [Discourse post #96658](https://discourse.julialang.org/t/gpu-sum-closure-throwing-an-error/96658)).
+There are efforts in KA directed towards providing a reduction interface for kernels (see [KA issue #234](https://github.com/JuliaGPU/KernelAbstractions.jl/issues/234)).
 
 #### Limitations of the automatic kernel generation on loops
 While the `@loop` macro that generates KA kernels is fairly general, it also has some limitations.
