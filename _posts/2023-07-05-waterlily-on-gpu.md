@@ -13,6 +13,7 @@ The pressure Poisson equation is solved with a [geometric multigrid](https://en.
 Solid boundaries are modelled using the [Boundary Data Immersion Method](https://eprints.soton.ac.uk/369635/).
 
 [v1.0](https://github.com/weymouth/WaterLily.jl/releases/tag/v1.0.0) has ported the solver from a serial CPU execution to a backend-agnostic execution including multi-threaded CPU and GPU from different vendors (NVIDIA and AMD) thanks to [KernelAbstractions.jl](https://github.com/JuliaGPU/KernelAbstractions.jl) (KA).
+We have also recently published an extended abstract preprint with benchmarking details regarding this port (see [arXiv](https://arxiv.org/abs/2304.08159)).
 In this post, we will review our approach to port the code together with the challenges we have faced.
 
 ### Introducing KernelAbstractions.jl
