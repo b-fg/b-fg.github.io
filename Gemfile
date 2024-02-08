@@ -2,9 +2,9 @@ source "https://rubygems.org"
 gem "webrick"
 
 group :jekyll_plugins do
-    gem "bibtex-ruby", "6.0.0"
-    gem "jekyll-scholar", "7.0.0"
-#    gem "github-pages"
+    gem "github-pages", "~> 228"
+    gem "bibtex-ruby", "4.0.13"
+    gem "jekyll-scholar", "5.16.0"
     gem "jekyll-twitter-plugin"
 end
 
