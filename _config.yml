@@ -127,7 +127,7 @@ scholar:
     reversed: "reversed" # This reverses the numbering of publications in the sorted group.
 
   source: ./_bibliography
-  bibliography: papers.bib
+  bibliography: main.bib
   bibliography_template: bibtemplate
 
   bibtex_filters:

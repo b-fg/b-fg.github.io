@@ -7,22 +7,22 @@ show_title: false
 <div class="mt-3"></div>
 
 <h4 id="articles" class="pubyear">Journal Articles</h4>
-{% bibliography -f papers -q @article %}
+{% bibliography -f main -q @article %}
 
 <h4 id="inproceedings" class="pubyear">Peer-reviewed Symposium Proceedings</h4>
-{% bibliography -f papers -q @inproceedings %}
+{% bibliography -f main -q @inproceedings %}
 
 <h4 id="conference" class="pubyear">Conference Proceedings</h4>
-{% bibliography -f papers -q @proceedings %}
+{% bibliography -f main -q @proceedings %}
 
 <h4 id="abstracts" class="pubyear">Conference Abstracts</h4>
-{% bibliography -f papers -q @conference %}
+{% bibliography -f main -q @conference %}
 
 <h4 id="theses" class="pubyear">Theses</h4>
-{% bibliography -f papers -q @thesis %}
+{% bibliography -f main -q @thesis %}
 
 <h4 id="talks" class="pubyear">Invited Talks</h4>
-{% bibliography -f papers -T {{reference}} -q @booklet%}
+{% bibliography -f main -T {{reference}} -q @booklet%}
 
 <p style="margin-top:1cm;"></p>
 
