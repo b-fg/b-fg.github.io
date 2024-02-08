@@ -82,7 +82,7 @@ collections:
       layout: article
     output: true
     permalink: /news/:path/
-news_limit: 8
+news_limit: 9
 
 ## => Post
 ##############################
