@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          submodules: 'true'
+          submodules: 'true' # Allows to clone CV.tex  as submodule and use its main.bib file
 
       # Use GitHub Actions' cache to cache dependencies on servers
       - uses: actions/cache@v3
