@@ -31,11 +31,7 @@
 {% endif %}
 
 {% if entry.eprint %}
-    {% if entry.archiveprefix == "arXiv" %}
-        <a href="https://arxiv.org/pdf/{{ entry.eprint }}"><button class="btn btnId btnPub--download" style="outline:none; position:relative;white-space: normal;">ePrint</button></a>
-    {% else %}
-        <a href="{{ entry.eprint }}" target="_blank"><button class="btn btnId btnPub--download" style="outline:none; position:relative;white-space: normal;">ePrint</button></a>
-    {% endif %}
+    <a href="{{ entry.eprint }}" target="_blank"><button class="btn btnId btnPub--download" style="outline:none; position:relative;white-space: normal;">ePrint</button></a>
 {% endif %}
 
 {% if entry.repo %}
