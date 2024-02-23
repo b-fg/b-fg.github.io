@@ -662,7 +662,7 @@
         <!-- If a bill has no number or container-title, assume it is a hearing; italic -->
         <choose>
           <if variable="number container-title" match="none">
-            <text variable="title" form="short" font-style="italic" text-case="title"/>
+            <text variable="title" form="short" text-case="title"/>
           </if>
           <else-if variable="title">
             <text variable="title" form="short" text-case="title"/>
@@ -1640,7 +1640,7 @@
             <choose>
               <if variable="number container-title" match="none">
                 <!-- If no number or container-title, then assume it is a hearing -->
-                <text variable="title" font-style="italic"/>
+                <text variable="title"/>
               </if>
               <else>
                 <text variable="title"/>

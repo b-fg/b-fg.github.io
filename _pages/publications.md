@@ -22,7 +22,7 @@ show_title: false
 {% bibliography -f main -q @thesis %}
 
 <h4 id="talks" class="pubyear">Invited Talks</h4>
-{% bibliography -f main -T {{reference}} -q @booklet%}
+{% bibliography -f main -T {{reference}} -q @bill%}
 
 <p style="margin-top:1cm;"></p>
 
