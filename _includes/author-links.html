@@ -56,7 +56,7 @@
 
     {%- if _author.scholar -%}
       <li title="{{ _locale_string_check | replace: '[NAME]', 'scholar' }}">
-        <a class="button button--circle scholar-button" itemprop="sameAs" href="https://scholar.google.co.uk/citations?hl=en&user={{ _author.orcid }}" target="_blank">
+        <a class="button button--circle scholar-button" itemprop="sameAs" href="https://scholar.google.com/citations?hl=en&user={{ _author.scholar }}" target="_blank">
           <div class="icon">{%- include svg/icon/social/scholar.svg -%}</div>
         </a>
       </li>
