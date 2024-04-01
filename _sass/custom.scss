@@ -10,7 +10,8 @@ $orcid-color:      #a6ce39;
 $abstract-color                : #009628 !default;
 $BibTex-color                  : #b201a6 !default;
 $download-color                : #b51b00 !default;
-$doi-color                     : #f79400 !default;   #f2f3f3
+$doi-color                     : #f79400 !default;
+$link-color                    : #0084f7 !default;
 
 .center-image
 {
@@ -40,6 +41,10 @@ $doi-color                     : #f79400 !default;   #f2f3f3
 
 .btnPub--doi{
 	@include btnPub($doi-color);
+}
+
+.btnPub--link{
+	@include btnPub($link-color);
 }
 
 .dropDownAbstract{
