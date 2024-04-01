@@ -1547,7 +1547,9 @@
     </group>
   </macro>
   <macro name="access">
-<!--     <choose>
+  </macro>
+  <macro name="access2">
+    <choose>
       <if variable="DOI" match="any">
         <text variable="DOI" prefix="https://doi.org/"/>
       </if>
@@ -1565,7 +1567,7 @@
           <text variable="URL"/>
         </group>
       </else-if>
-    </choose> -->
+    </choose>
   </macro>
   <macro name="event">
     <choose>
@@ -1663,7 +1665,7 @@
             </group>
             <text variable="references"/>
           </group>
-          <text macro="access"/>
+          <text macro="access2"/>
         </group>
       </else-if>
       <else-if type="legislation">
