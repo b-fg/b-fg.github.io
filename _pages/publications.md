@@ -25,8 +25,8 @@ i10-index = **{{ site.data.scholar.i10_index }}**
 <h4 id="conference" class="pubyear">Conference Proceedings</h4>
 {% bibliography -f main -q @proceedings %}
 
-<h4 id="abstracts" class="pubyear">Conference Abstracts</h4>
-{% bibliography -f main -q @conference %}
+<!-- <h4 id="abstracts" class="pubyear">Conference Abstracts</h4>
+{% bibliography -f main -q @conference %} -->
 
 <h4 id="theses" class="pubyear">Theses</h4>
 {% bibliography -f main -q @thesis %}
