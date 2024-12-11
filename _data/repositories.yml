@@ -1,0 +1,12 @@
+github_users:
+  - b-fg
+
+repo_description_lines_max: 1
+
+github_repos:
+  - WaterLily-jl/WaterLily.jl
+  - b-fg/SmartSOD2D
+  - b-fg/SANSpy
+  - b-fg/f2py-sockets
+  - b-fg/Flower1D.jl
+  - b-fg/nuatsbot

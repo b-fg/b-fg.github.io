@@ -60,8 +60,8 @@ author:
 
 ## => GitHub Repository (if the site is hosted by GitHub)
 ##############################
-repository: b-fg/b-fg.github.io
-repository_tree: main
+# repository: b-fg/b-fg.github.io
+# repository_tree: main
 
 
 ## => Paths
@@ -251,6 +251,15 @@ analytics:
   google:
     tracking_id : # Google Analytics id for the site
     anonymize_ip: false # Anonymize IP tracking for Analytics
+
+
+## => GitHub Stats
+##############################
+repo_theme: dark # user 'default' or 'dark' https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md
+repo_trophies:
+  enabled: false
+  theme_light: flat # https://github.com/ryo-ma/github-profile-trophy
+  theme_dark: gitdimmed # https://github.com/ryo-ma/github-profile-trophy
 
 
 ## => Build
