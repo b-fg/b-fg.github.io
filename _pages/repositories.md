@@ -5,6 +5,9 @@ title: Repositories
 show_title: false
 ---
 <!-- Bootstrap & MDB -->
+
+
+<div class="mt-3"></div>
 <link rel="stylesheet" href="{{ '/assets/css/bootstrap.min.css' | relative_url | bust_file_cache }}">
 <link
   rel="stylesheet"
@@ -12,8 +15,6 @@ show_title: false
   integrity="{{ site.third_party_libraries.mdb.integrity.css }}"
   crossorigin="anonymous"
 >
-
-<div class="mt-3"></div>
 
 {% if site.data.repositories.github_users %}
 
