@@ -25,7 +25,8 @@
     {%- if _author.email -%}
       <li title="{{ _locale_string_email }}">
       <a class="button button--circle mail-button" itemprop="email" href="mailto:{{ _author.email }}" target="_blank">
-        <i class="fas fa-envelope"></i>
+        <!-- <i class="fas fa-envelope"></i> -->
+        <div class="icon">{%- include svg/icon/social/mail.svg -%}</div>
       </a>
     {%- endif -%}
 
@@ -44,6 +45,14 @@
           <div class="icon">{%- include svg/icon/social/twitter.svg -%}</div>
         </a>
       </li>
+    {%- endif -%}
+
+    {%- if _author.bluesky -%}
+    <li title="{{ _locale_string_follow | replace: '[NAME]', 'BlueSky' }}">
+      <a class="button button--circle bluesky-button" itemprop="sameAs" href="https://bsky.app/profile/{{ _author.bluesky }}.bsky.social" target="_blank">
+        <div class="icon">{%- include svg/icon/social/bluesky.svg -%}</div>
+      </a>
+    </li>
     {%- endif -%}
 
     {%- if _author.orcid -%}

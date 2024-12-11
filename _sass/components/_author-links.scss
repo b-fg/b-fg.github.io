@@ -11,6 +11,9 @@
       .twitter-button {
         @include clickable($text-color-1, $twitter-color);
       }
+      .bluesky-button {
+        @include clickable($text-color-1, $bluesky-color);
+      }
       .orcid-button {
         @include clickable($text-color-1, $orcid-color);
       }

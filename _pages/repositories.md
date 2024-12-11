@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: article
 permalink: /repositories/
 title: Repositories
 show_title: false
