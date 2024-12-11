@@ -23,13 +23,12 @@ baseurl : # does not include hostname
 title   : Bernat Font
 surname : Font
 description: > # this means to ignore newlines until "Language & timezone"
-  Dr. Bernat Font's homepage
-
+  Bernat Font
 
 ## => Language and Timezone
 ##############################
 lang: en
-timezone: Europe/Madrid
+timezone: Europe/Amsterdam
 
 
 ## => Author and Social
