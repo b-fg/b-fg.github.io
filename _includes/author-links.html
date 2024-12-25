@@ -17,16 +17,13 @@
       {%- assign _locale_string_email = __return -%}
       {%- include snippets/get-locale-string.html key='FOLLOW_ME' -%}
       {%- assign _locale_string_follow = __return -%}
-      {%- include snippets/get-locale-string.html key='CHECK_MY' -%}
-      {%- assign _locale_string_check = __return -%}
     {%- endif -%}
 
     {%- include snippets/get-locale-string.html key='EMAIL_ME' -%}
     {%- if _author.email -%}
       <li title="{{ _locale_string_email }}">
       <a class="button button--circle mail-button" itemprop="email" href="mailto:{{ _author.email }}" target="_blank">
-        <!-- <i class="fas fa-envelope"></i> -->
-        <div class="icon">{%- include svg/icon/social/mail.svg -%}</div>
+        <i class="fas fa-envelope"></i>
       </a>
     {%- endif -%}
 
@@ -53,22 +50,6 @@
         <div class="icon">{%- include svg/icon/social/bluesky.svg -%}</div>
       </a>
     </li>
-    {%- endif -%}
-
-    {%- if _author.orcid -%}
-      <li title="{{ _locale_string_check | replace: '[NAME]', 'ORCID' }}">
-        <a class="button button--circle orcid-button" itemprop="sameAs" href="https://orcid.org/{{ _author.orcid }}" target="_blank">
-          <div class="icon">{%- include svg/icon/social/orcid.svg -%}</div>
-        </a>
-      </li>
-    {%- endif -%}
-
-    {%- if _author.scholar -%}
-      <li title="{{ _locale_string_check | replace: '[NAME]', 'scholar' }}">
-        <a class="button button--circle scholar-button" itemprop="sameAs" href="https://scholar.google.com/citations?hl=en&user={{ _author.scholar }}" target="_blank">
-          <div class="icon">{%- include svg/icon/social/scholar.svg -%}</div>
-        </a>
-      </li>
     {%- endif -%}
 
     {%- if _author.weibo -%}
@@ -105,8 +86,8 @@
 
     {%- if _author.zhihu -%}
       <li title="{{ _locale_string_follow | replace: '[NAME]', 'Zhihu' }}">
-        <a class="button button--circle zhihu-button" itemprop="sameAs" href="https://www.zhihu.com/people/{{ _author.zhihu }}" target="_blank">
-          <div class="icon">{%- include svg/icon/social/zhihu.svg -%}</div>
+        <a class="button button--circle zhihu-button" itemprop="sameAs" href="https://www.researchgate.net/profile/{{ _author.zhihu }}" target="_blank">
+          <div class="icon">{%- include svg/icon/social/researchgate.svg -%}</div>
         </a>
       </li>
     {%- endif -%}
@@ -127,6 +108,22 @@
       </li>
     {%- endif -%}
 
+    {%- if _author.orcid -%}
+      <li title="{{ _locale_string_check | replace: '[NAME]', 'ORCID' }}">
+        <a class="button button--circle orcid-button" itemprop="sameAs" href="https://orcid.org/{{ _author.orcid }}" target="_blank">
+          <div class="icon">{%- include svg/icon/social/orcid.svg -%}</div>
+        </a>
+      </li>
+    {%- endif -%}
+
+    {%- if _author.googlescholar-%}
+      <li title="{{ _locale_string_follow | replace: '[NAME]', 'googlescholar' }}">
+        <a class="button button--circle googlescholar-button" itemprop="sameAs" href="https://scholar.google.com/citations?hl=en&user={{ _author.googlescholar }}" target="_blank">
+          <div class="icon">{%- include svg/icon/social/googlescholar.svg -%}</div>
+        </a>
+      </li>
+    {%- endif -%}
+
     {%- if _author.github -%}
       <li title="{{ _locale_string_follow | replace: '[NAME]', 'Github' }}">
         <a class="button button--circle github-button" itemprop="sameAs" href="https://github.com/{{ _author.github }}" target="_blank">
@@ -142,6 +139,15 @@
         </a>
       </li>
     {%- endif -%}
+
+    {%- if _author.researchgate-%}
+      <li title="{{ _locale_string_follow | replace: '[NAME]', 'researchgate' }}">
+        <a class="button button--circle rg-button" itemprop="sameAs" href="https://www.researchgate.net/profile/{{ _author.researchgate }}" target="_blank">
+          <div class="icon">{%- include svg/icon/social/rg.svg -%}</div>
+        </a>
+      </li>
+    {%- endif -%}
+
 
   </ul>
 </div>

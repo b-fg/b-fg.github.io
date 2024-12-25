@@ -1,6 +1,3 @@
----
----
-<!-- {{reference | replace_first: 'Font, B.', '<b>Font, B.</b>' | replace_first: 'Font*, B.', '<b>Font*, B.</b>' | }} -->
 
 {{ reference }}
 
@@ -38,10 +35,10 @@
     <a href="{{ entry.repo }}" target="_blank">Repo</a>
 {% endif %}
 
-<div class="dropDownAbstract" id="{{ key }}-abstract">
-{{entry.abstract}}
-</div>
-<div class="dropDownBibtex" id="{{ key }}-bibtex">
-<pre><code>{{ entry.bibtex }}</code></pre>
-</div>
 
+<div class="dropDownAbstract" id="{{key}}-abstract">
+    {{entry.abstract}}
+</div>
+<div class="dropDownBibtex" id="{{key}}-bibtex">
+    <pre>{{entry.bibtex}}</pre>
+</div>

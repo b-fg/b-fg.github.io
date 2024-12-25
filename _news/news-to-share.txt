@@ -1,9 +1,0 @@
-- Julia GPU talk at Stuttgart
-- Position at TU Delft
-- Presentation at EuroHPC NextSim
-- WaterLily for GPU porting + asbtract + blog post + ParCFD
-- Jimenez summer workshop
-- Seminar Series started (1st edition + 2nd edition)
-- SFMC + paper
-- APS abstratcts I participated 
-

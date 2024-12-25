@@ -1,23 +1,25 @@
 header:
-  - titles:
-      en:       Research
-    url:        /research/index.html
 
   - titles:
-      en:       Repositories
-    url:        /repositories
-
-  - titles:
-      en:       Publications
-    url:        /publications
-
-  # About page
-  # - titles:
-  #     en      : &EN       About
-  #   url: /about
+      # @start locale config
+      en      : &EN       Research
+      # @end locale config
+    url: /_pages/research.html
 
   # - titles:
   #     # @start locale config
-  #     en      : &EN       Archive
+  #     en      : &EN       Lab
   #     # @end locale config
-  #   url: /archive.html
+  #   url: /_pages/lab.html
+
+  - titles:
+      # @start locale config
+      en      : &EN       Repositories
+      # @end locale config
+    url: /_pages/repositories.html
+
+  - titles:
+      # @start locale config
+      en      : &EN       Publications
+      # @end locale config
+    url: /_pages/publications.html

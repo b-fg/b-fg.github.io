@@ -39,6 +39,7 @@ $base: (
   font-size-h5-sm:        1rem,
   font-size-h6-sm:        1rem,
 
+
   font-size-h1-xs:        1.05rem,
   font-size-h2-xs:        1rem,
   font-size-h3-xs:        .95rem,
@@ -114,16 +115,16 @@ $button-height-sm:        1.5rem;
 $button-height-xs:        1.2rem;
 
 $button: (
-  padding-y-xl:           calc(($button-height-xl - map-get($base, font-size-xl)) / 2),
-  padding-x-xl:           calc($button-height-xl / 3),
-  padding-y-lg:           calc(($button-height-lg - map-get($base, font-size-lg)) / 2),
-  padding-x-lg:           calc($button-height-lg / 3),
-  padding-y:              calc(($button-height - map-get($base, font-size)) / 2),
-  padding-x:              calc($button-height / 3),
-  padding-y-sm:           calc(($button-height-sm - map-get($base, font-size-sm)) / 2),
-  padding-x-sm:           calc($button-height-sm / 3),
-  padding-y-xs:           calc(($button-height-xs - map-get($base, font-size-xs)) / 2),
-  padding-x-xs:           calc($button-height-xs / 3),
+  padding-y-xl:           math.div(($button-height-xl - map-get($base, font-size-xl)), 2),
+  padding-x-xl:           math.div($button-height-xl, 3),
+  padding-y-lg:           math.div(($button-height-lg - map-get($base, font-size-lg)), 2),
+  padding-x-lg:           math.div($button-height-lg, 3),
+  padding-y:              math.div(($button-height - map-get($base, font-size)), 2),
+  padding-x:              math.div($button-height, 3),
+  padding-y-sm:           math.div(($button-height-sm - map-get($base, font-size-sm)), 2),
+  padding-x-sm:           math.div($button-height-sm, 3),
+  padding-y-xs:           math.div(($button-height-xs - map-get($base, font-size-xs)), 2),
+  padding-x-xs:           math.div($button-height-xs, 3),
 
   pill-radius:            6rem,
 
@@ -148,15 +149,3 @@ $menu: (
   horizontal-spacer: 1,
   horizontal-item-vertical-spacer: 1
 );
-
-
-/* type scale */
-$type-size-1                  : 2.3em !default;  // ~39.056px
-$type-size-2                  : 1.7em !default;  // ~31.248px
-$type-size-3                  : 1.3em !default;  // ~25.008px
-$type-size-4                  : 1.10em !default;   // ~18px
-$type-size-5                  : .8em !default;      // ~16px
-$type-size-6                  : 0.7em !default;   // ~12px
-$type-size-7                  : 0.65em !default; // ~11px
-$type-size-8                  : 0.6em !default;  // ~10px
-$type-size-9                  : 0.5em !default;  // ~10px

@@ -34,12 +34,12 @@ layout: page
 {%- if _articles -%}
 
   <div class="layout--articles">
-
     {%- if _type == 'grid' -%}
+      <!--<p style='font-size: 17.5px; text-align: center;'>Click on the titles to read the full posts!</p><br><br>-->
       {%- if page.articles.size == 'sm' -%}
-        {%- include article-list.html articles=_articles type='grid' size='sm' -%}
+        {%- include article-list.html articles=_articles type='grid' reverse=true size='sm' -%}
       {%- else -%}
-        {%- include article-list.html articles=_articles type='grid' -%}
+        {%- include article-list.html articles=_articles type='grid' reverse=true -%}
       {%- endif -%}
 
     {%- elsif _type == 'brief' -%}
@@ -78,7 +78,7 @@ layout: page
       {%- include article-list.html articles=_articles type='item'
         article_type=_article_type
         show_cover=_show_cover cover_size=_cover_size
-        show_excerpt=_show_excerpt excerpt_type=_excerpt_type
+        show_excerpt=_show_excerpt excerpt_type=_excerpt_type reverse=true
         show_readmore=_show_readmore show_info=_show_info -%}
 
     {%- endif -%}

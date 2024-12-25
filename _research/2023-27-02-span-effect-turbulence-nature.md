@@ -4,8 +4,8 @@ title: From 3D to 2D turbulence in the wake of a circular cylinder
 date: 2023-02-27 14:0:00+0100
 tags: turbulence cylinder jfm
 cover: /assets/images/2023-27-02-span-effect-turbulence-nature/vorticity_cover.svg
-# aside:
-#   toc: true
+aside:
+  toc: false
 ---
 
 

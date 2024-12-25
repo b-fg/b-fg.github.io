@@ -16,46 +16,49 @@
 
 ## => Site Settings
 ##############################
-text_skin: dark # "default" (default), "dark", "forest", "ocean", "chocolate", "orange"
-highlight_theme: tomorrow-night-eighties # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
-url     : # the base hostname & protocol for your site e.g. https://www.someone.com
+text_skin: default # "default" (default), "dark", "forest", "ocean", "chocolate", "orange"
+highlight_theme: default # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
+url     : https://b-fg.github.io # the base hostname & protocol for your site e.g. https://www.someone.com
 baseurl : # does not include hostname
 title   : Bernat Font
 surname : Font
 description: > # this means to ignore newlines until "Language & timezone"
   Bernat Font
 
+
 ## => Language and Timezone
 ##############################
-lang: en
-timezone: Europe/Amsterdam
+lang: # the language of your site, default as "en"
+timezone: Europe/Amsterdam # see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for the available values
 
 
 ## => Author and Social
 ##############################
 author:
-  type      : # "person" (default), "organization"
+  type      : "person" # "person" (default), "organization"
   name      : Bernat Font
   forename  : Bernat
   surename  : Font
   url       :
   avatar    : # path or url of avatar image (square)
-  bio       : # I am an amazing person.
-  email     : bernatfontgarcia@gmail.com
+  bio       : #
+  email     : b.font@tudelft.nl
   facebook  : # "user_name" the last part of your profile url, e.g. https://www.facebook.com/user_name
-  twitter   : # bernat_font
-  bluesky   : fontb
-  orcid     : 0000-0002-2136-3068
+  twitter   : # "bernat_font" # "user_name" the last part of your profile url, e.g. https://twitter.com/user_name
   weibo     : # "user_id"   the last part of your profile url, e.g. https://www.weibo.com/user_id/profile?...
   googleplus: # "user_id"   the last part of your profile url, e.g. https://plus.google.com/u/0/user_id
   telegram  : # "user_name" the last part of your profile url, e.g. https://t.me/user_name
   medium    : # "user_name" the last part of your profile url, e.g. https://medium.com/user_name
   zhihu     : # "user_name" the last part of your profile url, e.g. https://www.zhihu.com/people/user_name
   douban    : # "user_name" the last part of your profile url, e.g. https://www.douban.com/people/user_name
-  linkedin  : # bernatfontgarcia
-  github    : b-fg
-  scholar   : FSwTh_gAAAAJ
+  linkedin  : # "user_name" the last part of your profile url, e.g. https://www.linkedin.com/in/user_name
+  github    : "b-fg" # "user_name" the last part of your profile url, e.g. https://github.com/user_name
+  bluesky   : "fontb"
+  orcid     : "0000-0002-2136-3068"
   npm       : # "user_name" the last part of your profile url, e.g. https://www.npmjs.com/~user_name
+  researchgate: "Bernat-Font-2"
+  googlescholar: "FSwTh_gAAAAJ"
+  scholar: "FSwTh_gAAAAJ"
 
 
 ## => GitHub Repository (if the site is hosted by GitHub)
@@ -71,18 +74,7 @@ paths:
   home    : # home layout url, "/" (default)
   archive : # "/archive.html" (default)
   rss     : # "/feed.xml" (default)
-  paginate_path: /research
 
-# -----------------------------------------------------------------------------
-# Collections
-# -----------------------------------------------------------------------------
-collections:
-  news:
-    defaults:
-      layout: article
-    output: true
-    permalink: /news/:path/
-news_limit: 9
 
 ## => Post
 ##############################
@@ -100,7 +92,7 @@ toc:
 ## => Markdown Enhancements
 ##############################
 ## Mathjax
-mathjax: true
+mathjax: true # false (default), true
 mathjax_autoNumber: # false (default), true
 
 ## Mermaid
@@ -112,8 +104,9 @@ chart: # false (default), true
 
 ## => Paginate
 ##############################
-paginate: 999 # no paginate
-paginate_path: "/research/page:num" # don't change this unless for special need
+paginate: 8 # 999 is not pagination
+paginate_path: /page:num # don't change this unless for special need
+
 
 ## => Scholar
 scholar:
@@ -128,7 +121,7 @@ scholar:
 
   source: ./_bibliography
   bibliography: main.bib
-  bibliography_template: bibtemplate
+  bibliography_template: bib
 
   bibtex_filters:
     - latex
@@ -140,41 +133,22 @@ scholar:
 
   details_dir:    ./_bibliography
   details_layout: bibtex.html
-  details_link:   Details
+  # details_link:   Details
 
-  repository: /publications
-  repository_file_delimiter: "."
+  # repository: /publications
+  # repository_file_delimiter: "."
 
   query: "@*"
 
-# scholar:
-#   # style: assets/bibliography/APS_Qi.csl
-#   style: apa
-#   locale: en
 
-#   sort_by: year, month
-#   order: descending
-#   bibliography_list_attributes:
-#     reversed: "reversed" # This reverses the numbering of publications in the sorted group.
+## => GitHub Stats
+##############################
+repo_theme: default # user 'default' or 'dark' https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md
+repo_trophies:
+  enabled: false
+  theme_light: flat # https://github.com/ryo-ma/github-profile-trophy
+  theme_dark: gitdimmed # https://github.com/ryo-ma/github-profile-trophy
 
-#   source: ./_bibliography
-#   bibliography: papers.bib
-#   bibliography_template: bibtemplate
-
-#   replace_strings: true
-#   join_strings: true
-
-#   use_raw_bibtex_entry: false
-#   bibtex_filters:
-#     #- superscript
-#     - latex
-#     #- markdown
-
-#   details_dir:    bibliography
-#   details_layout: noDetailsPage.html #bibtex.html # Use bibtex.html layout to generate details pages for bibtex entries. Use other non-existing names otherwise.
-#   details_link: Details
-
-#   query: "@*"
 
 ## => Sources
 ##############################
@@ -235,7 +209,7 @@ pageview:
 ## => Search
 ##############################
 search:
-  provider: default # "default" (default), false, "google", "custom"
+  provider: "default" # "default" (default), false, "google", "custom"
 
   ## Google Custom Search Engine
   google:
@@ -253,15 +227,6 @@ analytics:
     anonymize_ip: false # Anonymize IP tracking for Analytics
 
 
-## => GitHub Stats
-##############################
-repo_theme: dark # user 'default' or 'dark' https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md
-repo_trophies:
-  enabled: false
-  theme_light: flat # https://github.com/ryo-ma/github-profile-trophy
-  theme_dark: gitdimmed # https://github.com/ryo-ma/github-profile-trophy
-
-
 ## => Build
 ##############################
 markdown    : kramdown
@@ -275,7 +240,6 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - LICENSE
-  - README-*.md
   - README.md
   - gulpfile.js
   - jekyll-text-theme.gemspec
@@ -295,9 +259,52 @@ defaults:
       layout: article
       sharing: true
       license: false
-      show_edit_on_github: false
+      aside:
+        toc: true
+      show_edit_on_github: true
       show_subscribe: false
       pageview: true
+  - scope:
+      path: ""
+      type: lab
+    values:
+      layout: article
+      sharing: true
+      license: false
+      category: post
+      aside:
+        toc: true
+      show_edit_on_github: true
+      show_subscribe: false
+      pageview: true
+      lightbox: true
+  - scope:
+      path: ""
+      type: research
+    values:
+      layout: article
+      sharing: true
+      license: false
+      category: post
+      aside:
+        toc: true
+      show_edit_on_github: true
+      show_subscribe: false
+      pageview: true
+      lightbox: true
+
+
+collections:
+  lab:
+    output: true
+  research:
+    output: true
+  news:
+    output: true
+    permalink: /_pages/news/:path/
+    defaults:
+      layout: article
+news_limit: 9
 
 
 ## => Plugins
@@ -308,4 +315,3 @@ plugins:
   - jekyll-sitemap
   - jemoji
   - jekyll-scholar
-  - jekyll-twitter-plugin

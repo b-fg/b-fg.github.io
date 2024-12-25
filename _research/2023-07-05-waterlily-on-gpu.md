@@ -4,6 +4,8 @@ title: Porting WaterLily.jl into a backend-agnostic solver
 date: 2023-05-07 14:0:00+0100
 tags: julia gpu waterlily
 cover: /assets/images/2023-07-05-waterlily-on-gpu/julia_2D.png
+aside:
+  toc: true
 ---
 
 [WaterLily.jl](https://github.com/weymouth/WaterLily.jl) is a simple and fast fluid simulator written in pure Julia. It solves the unsteady incompressible 2D or 3D [Navier-Stokes equations](https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations) on a Cartesian grid.

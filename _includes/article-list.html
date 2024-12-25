@@ -5,7 +5,15 @@
 {%- include snippets/get-locale-string.html key='READMORE' -%}
 {%- assign _locale_readmore = __return -%}
 
-{%- assign _sorted_list = include.articles -%}
+{%- assign _sorted_list = include.articles-%}
+
+<!--
+{%- assign _concatA = include.concat_a-%}
+{% if include.concat_b.size > 0 %}
+  {% assign _sorted_list = arts | concat: concat_b %}
+{% endif %}
+-->
+
 {%- if include.group_by == 'year' -%}
   {%- assign _sorted_list = _sorted_list | sort: 'date' -%}
 {%- endif -%}
@@ -55,7 +63,7 @@
           </div>
         {%- endif -%}
         <div class="item__content">
-          <header><a href="{{ _article_url }}"><h2 itemprop="headline" class="item__header">{{ _article.title }}</h2></a></header>
+          <header><a href="{{ _article_url }}"><h2 itemprop="headline" class="item__header" style="text-align:center">{{ _article.title }}</h2></a></header>
           <div class="item__description">
             {%- if _article.excerpt and include.show_excerpt -%}
               <div class="article__content" itemprop="description articleBody">
@@ -81,15 +89,6 @@
 
 
     {%- elsif include.type == 'brief' -%}
-      {%- assign _tags = '' -%}
-      {%- for _tag in _article.tags -%}
-        {%- assign _tag_encode = _tag | strip | url_encode -%}
-        {%- if forloop.last -%}
-          {%- assign _tags = _tags | append: _tag_encode -%}
-        {%- else -%}
-          {%- assign _tags = _tags | append: _tag_encode | append: ',' -%}
-        {%- endif -%}
-      {%- endfor -%}
       {%- if include.group_by == 'year' -%}
         {%- assign _currentdate = _article.date | date: '%Y' -%}
         {%- if _currentdate != _date -%}
@@ -104,19 +103,30 @@
           {%- if include.show_info -%}
             <span class="item__meta">{{ _article.date | date: __return }}</span>
           {%- endif -%}
-          <a itemprop="headline" class="item__header" href="{{ _article_url }}"; style="text-align:left">{{ _article.title }}</a></div>
+          <a itemprop="headline" class="item__header" href="{{ _article_url }}" style="text-align:center">{{ _article.title }}</a></div>
+          {%- assign _tags = '' -%}
+          {%- for _tag in _article.tags -%}
+            {%- assign _tag_encode = _tag | strip | url_encode -%}
+            {%- if forloop.last -%}
+              {%- assign _tags = _tags | append: _tag_encode -%}
+            {%- else -%}
+              {%- assign _tags = _tags | append: _tag_encode | append: ',' -%}
+            {%- endif -%}
+            <a class="button button--primary button--rounded button--xs">{{_tag}}</a>&nbsp;
+          {%- endfor -%}
       </li>
 
     {%- elsif include.type == 'grid' -%}
       {%- if include.size == 'sm' -%}
         <div class="cell cell--12 cell--md-4 cell--lg-3">
-          <div class="card card--flat"; style="background-color: #ffffff00">
+          <div class="card card--flat">
             {%- if _article.cover -%}
               <div class="card__image">
                 <img class="image" src="{{ _article_cover }}" />
                 <div class="overlay overlay--bottom">
                   <header>
-                    <a href="{{ _article_url }}"><h2 class="card__header"; style="text-align:left">{{ _article.title }}</h2></a>
+                    <!-- <a href="{{ _article_url }}"><h2 class="card__header">{{ _article.title }}</h2></a> -->
+                    <a href="{{ _article_url }}"><h2 class="card__header"; style="text-align:center">{{ _article.title }}</h2></a>
                   </header>
                 </div>
               </div>
@@ -126,14 +136,13 @@
       {%- else -%}
 
         <div class="cell cell--12 cell--md-6 cell--lg-4">
-          <div class="card card--flat"; style="background-color: #ffffff00">
-            <!-- <div class="card card--flat"> -->
+          <div class="card card--flat">
             {%- if _article.cover -%}
               <div class="card__image"><img src="{{ _article_cover }}" /></div>
             {%- endif -%}
               <div class="card__content">
                 <header>
-                  <a href="{{ _article_url }}"><h2 class="card__header"; style="text-align:center">{{ _article.title }}</h2></a>
+                  <a href="{{ _article_url }}"><h2 class="card__header" style="text-align:center">{{ _article.title }}</h2></a>
                 </header>
               </div>
           </div>

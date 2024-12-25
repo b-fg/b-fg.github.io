@@ -40,7 +40,9 @@
   (facebook, $facebook-color),
   (twitter, $twitter-color),
   (bluesky, $bluesky-color),
+  (orcid-color, $orcid-color),
   (google-plus, $google-plus-color),
+  (googlescholar-color, $googlescholar-color),
   (linkedin, $linkedin-color);
 
   @each $buttoncolor, $color in $buttoncolors {

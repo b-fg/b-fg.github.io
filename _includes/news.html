@@ -1,19 +1,27 @@
-
-<div class="layout--archive js-all">
-  <div class="js-result layout--archive__result d-none">
-    <h4>News</h4>
-    {% if site.news  %}
-      {%- include news-list.html articles=site.news news_limit=include.news_limit type='brief' show_info=true reverse=true-%}
-      {%- if site.news.size > include.news_limit -%}
-        <p style="text-align:center"><a class="item__header" href="/news">[See more news]</a></p>
-      {%- endif -%}
-    {% else %}
-    <p>No news so far...</p>
-    {% endif %}
+<div class="mt-3"></div>
+<div class="card" style="max-width:100%">
+<div class="card__content">
+<div markdown="1">
+  <div class="layout--archive js-all">
+    <div class="js-result layout--archive__result d-none">
+      <h4>News</h4>
+      {% if site.news  %}
+        {%- include news-list.html articles=site.news news_limit=include.news_limit type='brief' show_info=true reverse=true-%}
+        {%- if site.news.size > include.news_limit -%}
+          <p style="text-align:center"><a class="item__header" href="/news">[See more news]</a></p>
+        {%- endif -%}
+      {% else %}
+      <p>No news so far...</p>
+      {% endif %}
+    </div>
   </div>
+
+</div>
+
+</div>
 </div>
 
 
-<script>
-  {%- include scripts/news.js -%}
-</script>
+  <script>
+    {%- include scripts/news.js -%}
+  </script>

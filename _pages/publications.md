@@ -1,11 +1,10 @@
 ---
 layout: article
-permalink: /publications/
-title: Publications
+key: page-publications
 show_title: false
 ---
-<div class="mt-3"></div>
 
+<div class="mt-4"></div>
 
 <div class="card" style="max-width:100%">
 <div class="card__content">
@@ -15,6 +14,8 @@ Citations = **{{ site.data.scholar.citations }}**,
 h-index = **{{ site.data.scholar.h_index }}**,
 i10-index = **{{ site.data.scholar.i10_index }}**
 </div></div></div>
+
+<div class="mt-4"></div>
 
 <h4 id="articles" class="pubyear">Journal Articles</h4>
 {% bibliography -f main -q @article %}
@@ -33,8 +34,12 @@ i10-index = **{{ site.data.scholar.i10_index }}**
 
 <p style="margin-top:1cm;"></p>
 
-
-<script>
+<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity=
+"sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer">
 $(document).ready(function(){
     var str =$(this).attr('id');
 

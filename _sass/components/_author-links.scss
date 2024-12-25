@@ -14,14 +14,17 @@
       .bluesky-button {
         @include clickable($text-color-1, $bluesky-color);
       }
-      .orcid-button {
-        @include clickable($text-color-1, $orcid-color);
-      }
       .weibo-button {
         @include clickable($text-color-1, $weibo-color);
       }
       .googlepluse-button {
         @include clickable($text-color-1, $google-plus-color);
+      }
+      .googlescholar-button {
+        @include clickable($text-color-1, $googlescholar-color);
+      }
+      .orcid-button {
+        @include clickable($text-color-1, $orcid-color);
       }
       .telegram-button {
         @include clickable($text-color-1, $telegram-color);
@@ -41,11 +44,11 @@
       .github-button {
         @include clickable($text-color-1, $github-color);
       }
-      .scholar-button {
-        @include clickable($text-color-1, $scholar-color);
-      }
       .npm-button {
         @include clickable($text-color-1, $npm-color);
+      }
+      .rg-button {
+        @include clickable($text-color-1, $douban-color);
       }
     }
   }

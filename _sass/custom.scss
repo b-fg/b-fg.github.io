@@ -1,7 +1,7 @@
 /* start custom scss snippet */
 
-$scholar-color:    #000;
-$orcid-color:      #a6ce39;
+$googlescholar-color:    #000;
+$orcid-color: #a6ce39;
 
 /* ==========================================================================
    Amir's
@@ -12,6 +12,17 @@ $BibTex-color                  : #b201a6 !default;
 $download-color                : #b51b00 !default;
 $doi-color                     : #f79400 !default;
 $link-color                    : #0084f7 !default;
+
+/* type scale */
+$type-size-1                  : 2.3em !default;  // ~39.056px
+$type-size-2                  : 1.7em !default;  // ~31.248px
+$type-size-3                  : 1.3em !default;  // ~25.008px
+$type-size-4                  : 1.10em !default;   // ~18px
+$type-size-5                  : .8em !default;      // ~16px
+$type-size-6                  : 0.7em !default;   // ~12px
+$type-size-7                  : 0.65em !default; // ~11px
+$type-size-8                  : 0.6em !default;  // ~10px
+$type-size-9                  : 0.5em !default;  // ~10px
 
 .center-image
 {
@@ -63,8 +74,8 @@ $link-color                    : #0084f7 !default;
   display: none;
   position: relative;
   padding-left: 10px;
-  margin-top: -10px;
-//   border-left: 1px solid $BibTex-color;
+  margin-top: 10px;
+  border-left: 1px solid $BibTex-color;
 }
 
 .katex { font-size: 1em !important; }
@@ -108,17 +119,17 @@ $link-color                    : #0084f7 !default;
 }
 
 
-.publications {
-    h2 {
-        color: black;
-        border-bottom: 1px solid black;
-        border-top: 1px solid black;
-        font-size: 32px;
-        margin-bottom: 30px;
-        padding: 20px 0;
-        text-align: center;
-    }
-}
+// .publications {
+//     h2 {
+//         color: black;
+//         border-bottom: 1px solid black;
+//         border-top: 1px solid black;
+//         font-size: 32px;
+//         margin-bottom: 30px;
+//         padding: 20px 0;
+//         text-align: center;
+//     }
+// }
 .year {
     border-top: 1px solid black;
     /*color: $light-gray;*/
@@ -213,11 +224,9 @@ img[src*='#center'] {
     margin: auto;
 }
 
-.repo-img {
-    display: block;
-  }
-// .repo-img-dark {
-//     display: none;
-// }
-
+.repo-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
 /* end custom scss snippet */
