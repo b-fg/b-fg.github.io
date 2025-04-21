@@ -11,5 +11,7 @@ end
 gem "nokogiri"
 gem "open-uri"
 gem "kramdown-parser-gfm"
+gem 'csv'
+gem 'observer'
 
 gemspec
