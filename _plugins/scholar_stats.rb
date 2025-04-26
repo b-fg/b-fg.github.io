@@ -33,7 +33,6 @@ module Jekyll
     def fetch_scholar_data_from_serpapi(site)
       response = URI.open(SERPAPI_URL).read
       data = JSON.parse(response)
-      Jekyll.logger.info data
       site.data['scholar'] = {
         'id' => SCHOLAR_ID,
         'citations' => data.dig('cited_by', 'table', 0, 'citations', 'all'),
