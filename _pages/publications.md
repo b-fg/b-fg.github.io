@@ -10,7 +10,7 @@ show_title: false
 <div class="card__content">
 <div markdown="1">
 [Google scholar:](https://scholar.google.com/citations?user={{ site.data.scholar.id }})
-Citations = **{{ site.data.scholar.citations }}**,
+Citations = **{{ site.data.scholar.total_citations }}**,
 h-index = **{{ site.data.scholar.h_index }}**,
 i10-index = **{{ site.data.scholar.i10_index }}**
 </div></div></div>

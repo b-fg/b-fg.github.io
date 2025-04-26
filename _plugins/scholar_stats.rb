@@ -31,6 +31,7 @@ module Jekyll
 
         site.data['scholar'] = scholar_data
         Jekyll.logger.info "ScholarStats:", "Successfully loaded scholar data via SerpAPI"
+        Jekyll.logger.info "ScholarStats:", "Successfully loaded scholar data via SerpAPI"
       rescue => e
         Jekyll.logger.warn "ScholarStats:", "Error fetching data: #{e.class} - #{e.message}"
       end
