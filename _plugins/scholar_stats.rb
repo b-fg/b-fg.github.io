@@ -1,5 +1,5 @@
 require 'open-uri'
-require 'nokogiri'
+require 'json'
 
 module Jekyll
   class ScholarStats < Generator
@@ -7,33 +7,33 @@ module Jekyll
     priority :low
 
     SCHOLAR_ID = 'FSwTh_gAAAAJ'.freeze
-    SCHOLAR_URL = 'http://scholar.google.com/citations?hl=en&user='.freeze
+    SERPAPI_API_KEY = ENV['SERPAPI_API_KEY'] # Use the GitHub Actions secret
+    SERPAPI_URL = "https://serpapi.com/search.json?engine=google_scholar_author&author_id=#{SCHOLAR_ID}&api_key=#{SERPAPI_API_KEY}"
 
     def generate(site)
+      if SERPAPI_API_KEY.nil? || SERPAPI_API_KEY.empty?
+        Jekyll.logger.warn "ScholarStats:", "Missing SerpAPI API Key!"
+        return
+      end
+
       begin
-        url = SCHOLAR_URL + SCHOLAR_ID
-        doc = Nokogiri::HTML(URI.open(url, "User-Agent" => "Mozilla/5.0"))
+        response = URI.open(SERPAPI_URL).read
+        data = JSON.parse(response)
 
-        tbl = doc.css('table').first
-        unless tbl
-          Jekyll.logger.warn "ScholarStats:", "No stats table found at #{url}"
-          return
-        end
+        scholar_data = {
+          'id' => SCHOLAR_ID,
+          'name' => data.dig('author', 'name'),
+          'affiliation' => data.dig('author', 'affiliations'),
+          'total_citations' => data.dig('cited_by', 'table', 0, 'citations', 'all'),
+          'h_index' => data.dig('cited_by', 'table', 1, 'h_index', 'all'),
+          'i10_index' => data.dig('cited_by', 'table', 2, 'i10_index', 'all')
+        }
 
-        tbl_data = { 'id' => SCHOLAR_ID }
-        tbl.css('tr')[1..].each do |tr|
-          cell_data = tr.css('td').map(&:text)
-          tbl_data[cell_data[0].downcase.sub('-', '_')] = cell_data[1].to_i
-        end
-
-        site.data['scholar'] = tbl_data
-        Jekyll.logger.info "ScholarStats:", "Loaded data for #{SCHOLAR_ID}"
-      rescue OpenURI::HTTPError => e
-        Jekyll.logger.warn "ScholarStats:", "HTTP error: #{e.message}"
+        site.data['scholar'] = scholar_data
+        Jekyll.logger.info "ScholarStats:", "Successfully loaded scholar data via SerpAPI"
       rescue => e
-        Jekyll.logger.warn "ScholarStats:", "Unexpected error: #{e.class} - #{e.message}"
+        Jekyll.logger.warn "ScholarStats:", "Error fetching data: #{e.class} - #{e.message}"
       end
     end
   end
 end
-
