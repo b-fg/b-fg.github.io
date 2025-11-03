@@ -1,29 +1,71 @@
+{%- comment -%}
+Collect all tags from all collections (posts, research, lab)
+{%- endcomment -%}
+{%- assign _all_tags = "" | split: "" -%}
+{%- assign _tag_counts = "" | split: "" -%}
+
+{%- comment -%} Collect tags from all collections {%- endcomment -%}
+{%- assign _all_posts = "" | split: "" -%}
+{%- assign _all_posts = _all_posts | concat: site.posts | concat: site.research | concat: site.lab -%}
+
+{%- comment -%} Build tag frequency map {%- endcomment -%}
+{%- assign _tag_map = "" | split: "" -%}
+{%- for _post in _all_posts -%}
+  {%- for _tag in _post.tags -%}
+    {%- assign _tag_name = _tag | strip -%}
+    {%- unless _all_tags contains _tag_name -%}
+      {%- assign _all_tags = _all_tags | push: _tag_name -%}
+    {%- endunless -%}
+  {%- endfor -%}
+{%- endfor -%}
+
+{%- comment -%} Count posts per tag {%- endcomment -%}
+{%- assign _tag_data = "" | split: "" -%}
+{%- for _tag_name in _all_tags -%}
+  {%- assign _count = 0 -%}
+  {%- for _post in _all_posts -%}
+    {%- if _post.tags contains _tag_name -%}
+      {%- assign _count = _count | plus: 1 -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign _tag_info = _tag_name | append: "||" | append: _count -%}
+  {%- assign _tag_data = _tag_data | push: _tag_info -%}
+{%- endfor -%}
+
+{%- comment -%} Sort tags alphabetically {%- endcomment -%}
+{%- assign _tag_data = _tag_data | sort -%}
+
+{%- comment -%} Find min and max sizes {%- endcomment -%}
 {%- assign _tag_max_size = 1 -%}
-{%- assign _tag_min_size = 1 -%}
-{%- assign _tag_cur_size = 1 -%}
-{%- assign _tags = site.tags | sort -%}
-{%- for _tag in _tags -%}
-  {%- assign _tag_cur_size = _tag[1].size -%}
-  {%- if _tag_cur_size > _tag_max_size -%}
-    {%- assign _tag_max_size =  _tag_cur_size -%}
+{%- assign _tag_min_size = 999999 -%}
+{%- for _tag_info in _tag_data -%}
+  {%- assign _parts = _tag_info | split: "||" -%}
+  {%- assign _count = _parts[1] | plus: 0 -%}
+  {%- if _count > _tag_max_size -%}
+    {%- assign _tag_max_size = _count -%}
   {%- endif -%}
-  {%- if _tag_cur_size < _tag_min_size -%}
-    {%- assign _tag_min_size = _tag_cur_size -%}
+  {%- if _count < _tag_min_size -%}
+    {%- assign _tag_min_size = _count -%}
   {%- endif -%}
 {%- endfor -%}
-{%- assign _tag_gap_size =  _tag_max_size | minus: _tag_min_size | plus: 1 | divided_by: 4 -%}
+
+{%- assign _tag_gap_size = _tag_max_size | minus: _tag_min_size | plus: 1 | divided_by: 4 -%}
 {%- if _tag_gap_size < 1 -%}
   {%- assign _tag_gap_size = 1 -%}
 {%- endif -%}
+
 <div class="site-tags js-tags">
-  <ul class="menu">
-    <li>
-      <button type="button" class="button button--secondary button--pill tag-button tag-button--all" data-encode="">
-        Show All<div class="tag-button__count">{{ site.tags | size }}</div>
-      </button>
-    </li>
-    {%- for _tag in _tags -%}
-      {%- assign _tag_cur_size = _tag[1].size -%}
+<ul class="menu">
+<li>
+<button type="button" class="button button--secondary button--pill tag-button tag-button--all" data-encode="">
+        Show All<div class="tag-button__count">{{ _all_tags | size }}</div>
+</button>
+</li>
+    {%- for _tag_info in _tag_data -%}
+      {%- assign _parts = _tag_info | split: "||" -%}
+      {%- assign _tag_name = _parts[0] -%}
+      {%- assign _tag_cur_size = _parts[1] | plus: 0 -%}
+
       {%- assign _tag_min_1 = _tag_min_size -%}
       {%- assign _tag_max_1 = _tag_min_1 | plus: _tag_gap_size -%}
       {%- assign _tag_min_2 = _tag_max_1 -%}
@@ -32,6 +74,7 @@
       {%- assign _tag_max_3 = _tag_min_3 | plus: _tag_gap_size -%}
       {%- assign _tag_min_4 = _tag_max_3 -%}
       {%- assign _tag_max_4 = _tag_min_4 | plus: _tag_gap_size -%}
+
       {%- if _tag_cur_size >= _tag_min_1 and _tag_cur_size < _tag_max_1 -%}
         {%- assign _c_index = 1 -%}
       {%- elsif _tag_cur_size >= _tag_min_2 and _tag_cur_size < _tag_max_2 -%}
@@ -43,10 +86,10 @@
       {%- else -%}
         {%- assign _c_index = 4 -%}
       {%- endif -%}
-      <li><button type="button" class="button button--pill tag-button tag-button-{{ _c_index }}" data-encode="{{ _tag[0] | strip | url_encode }}">
-          <span>{{ _tag[0] | strip }}</span><div class="tag-button__count">{{ _tag[1].size }}</div>
-        </button>
-      </li>
+<li><button type="button" class="button button--pill tag-button tag-button-{{ _c_index }}" data-encode="{{ _tag_name | url_encode }}">
+<span>{{ _tag_name }}</span><div class="tag-button__count">{{ _tag_cur_size }}</div>
+</button>
+</li>
     {%- endfor -%}
-  </ul>
+</ul>
 </div>

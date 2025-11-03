@@ -6,11 +6,11 @@ header:
       # @end locale config
     url: /_pages/research.html
 
-  # - titles:
-  #     # @start locale config
-  #     en      : &EN       Lab
-  #     # @end locale config
-  #   url: /_pages/lab.html
+  - titles:
+      # @start locale config
+      en      : &EN       Lab
+      # @end locale config
+    url: /_pages/lab.html
 
   - titles:
       # @start locale config

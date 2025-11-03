@@ -8,7 +8,7 @@
       {% if site.news  %}
         {%- include news-list.html articles=site.news news_limit=include.news_limit type='brief' show_info=true reverse=true-%}
         {%- if site.news.size > include.news_limit -%}
-          <p style="text-align:center"><a class="item__header" href="/news">[See more news]</a></p>
+          <p style="text-align:center"><a class="item__header" href="/news">[All news]</a></p>
         {%- endif -%}
       {% else %}
       <p>No news so far...</p>
