@@ -57,16 +57,18 @@
   {%- if _tag_count > 0 -%}
     {%- assign _tag_id = _current_tag | slugify -%}
     <div class="lab-group">
-      <h4 id="{{ _tag_id }}" class="pubyear">
-        <a href="#{{ _tag_id }}" class="anchor-link">#</a>
-        {{ _current_tag }}
-      </h4>
+      {%- unless _current_tag == "PI" -%}
+        <h4 id="{{ _tag_id }}" class="pubyear">
+          <a href="#{{ _tag_id }}" class="anchor-link">#</a>
+          {{ _current_tag }}
+        </h4>
+      {%- endunless -%}
 
       {%- if include.type == 'grid' -%}
         {%- if include.size == 'sm' -%}
-        <div class="article-list grid grid--sm grid--p-3">
+        <div class="article-list grid grid--sm grid--p-3 lab-grid-centered">
         {%- else -%}
-        <div class="article-list grid grid--p-3">
+        <div class="article-list grid grid--p-3 lab-grid-centered">
         {%- endif -%}
       {%- else -%}
         <div class="article-list items">
@@ -87,7 +89,7 @@
           {%- if include.type == 'grid' -%}
             {%- if include.size == 'sm' -%}
               <div class="cell cell--12 cell--md-4 cell--lg-3">
-                <div class="card card--flat">
+                <div class="card card--flat lab-member-card">
                   {%- if _article.cover -%}
                     <div class="card__image">
                       <img class="image" src="{{ _article_cover }}" style="width: 100%; height: auto; display: block;" />
@@ -97,13 +99,16 @@
               </div>
             {%- else -%}
               <div class="cell cell--12 cell--md-6 cell--lg-4">
-                <div class="card card--flat">
+                <div class="card card--flat lab-member-card">
                   {%- if _article.cover -%}
                     <div class="card__image"><img src="{{ _article_cover }}" style="width: 100%; height: auto; display: block;" /></div>
                   {%- endif -%}
                   <div class="card__content">
                     <header style="text-align: center;">
-                      <h2 class="card__header" style="text-align:center; margin-bottom: 0.111rem;">{{ _article.title }}</h2>
+                      <h2 class="card__header lab-member-name">{{ _article.title }}</h2>
+                      {%- if _article.note -%}
+                        <p class="lab-member-note">{{ _article.note }}</p>
+                      {%- endif -%}
                       {%- if _article.email or _article.github or _article.website or _article.linkedin or _article.twitter -%}
                         <div class="lab-member-links">
                           {%- if _article.email -%}
@@ -181,19 +186,29 @@
 
 <style>
 .lab-group {
-  margin-bottom: 0rem;
+  margin-bottom: 0.5rem;
 }
 
 .lab-group .grid {
-  row-gap: -3rem;
+  row-gap: 0.5rem;
 }
 
 .lab-group .cell {
   margin-bottom: 0;
 }
 
+/* Center grid when there are fewer items than columns */
+.lab-grid-centered {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .pubyear {
   position: relative;
+  text-align: left;
+  margin-bottom: 1rem;
+  padding-bottom: 0.3rem;
 }
 
 .pubyear .anchor-link {
@@ -201,7 +216,7 @@
   left: -1.2em;
   color: #ccc;
   text-decoration: none;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.2s ease;
   font-weight: normal;
   padding-right: 0.3em;
@@ -215,21 +230,71 @@
   color: #3498db;
 }
 
+/* Remove hyperlink styling from names */
+.lab-member-card .card__header.lab-member-name,
+.lab-member-card .card__header.lab-member-name:hover,
+.lab-member-name {
+  text-align: center;
+  margin-bottom: 0.0rem;
+  color: inherit !important;
+  cursor: default;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  font-size: 1rem !important;
+}
+
+.lab-member-name:hover {
+  color: inherit !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+.lab-member-note {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+  margin: -0.2rem 0 0.0rem 0;
+}
+
+.lab-member-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lab-member-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.lab-member-card .card__image {
+  max-width: 250px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.lab-member-card .card__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 .lab-member-links {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
 }
 
 .lab-icon {
   color: #666;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
   display: inline-flex;
   align-items: center;
 }
 
 .lab-icon:hover {
   color: #2196F3;
+  transform: scale(1.1);
 }
 
 .lab-icon svg {
