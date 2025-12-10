@@ -1,5 +1,4 @@
 {%- assign _excerpt_truncate = include.excerpt_truncate | default: 350 -%}
-
 {%- assign _excerpt_type = include.excerpt_type -%}
 
 {%- include snippets/get-locale-string.html key='READMORE' -%}
@@ -7,151 +6,233 @@
 
 {%- assign _sorted_list = include.articles-%}
 
-<!--
-{%- assign _concatA = include.concat_a-%}
-{% if include.concat_b.size > 0 %}
-  {% assign _sorted_list = arts | concat: concat_b %}
-{% endif %}
--->
-
-{%- if include.group_by == 'year' -%}
-  {%- assign _sorted_list = _sorted_list | sort: 'date' -%}
-{%- endif -%}
 {%- if include.reverse -%}
   {%- assign _sorted_list = _sorted_list | reverse -%}
 {%- endif -%}
 
-{%- if include.type == 'item' -%}
-<div class="article-list items items--divided">
-{%- elsif include.type == 'brief' -%}
-<div class="article-list items">
-{%- elsif include.type == 'grid' -%}
-  {%- if include.size == 'sm' -%}
-  <div class="article-list grid grid--sm grid--p-3">
-  {%- else -%}
-  <div class="article-list grid grid--p-3">
+{%- comment -%} Collect all unique tags and their order {%- endcomment -%}
+{%- assign _all_tags = "" | split: "" -%}
+{%- assign _tag_order = "PI,Postdoc,PhD,MSc,BSc,Intern" | split: "," -%}
+
+{%- comment -%} First pass: collect all tags that exist in the articles {%- endcomment -%}
+{%- for _article in _sorted_list -%}
+  {%- for _tag in _article.tags -%}
+    {%- assign _tag_stripped = _tag | strip -%}
+    {%- unless _all_tags contains _tag_stripped -%}
+      {%- assign _all_tags = _all_tags | push: _tag_stripped -%}
+    {%- endunless -%}
+  {%- endfor -%}
+{%- endfor -%}
+
+{%- comment -%} Sort tags according to predefined order, then alphabetically {%- endcomment -%}
+{%- assign _sorted_tags = "" | split: "" -%}
+{%- for _ordered_tag in _tag_order -%}
+  {%- if _all_tags contains _ordered_tag -%}
+    {%- assign _sorted_tags = _sorted_tags | push: _ordered_tag -%}
   {%- endif -%}
-{%- endif -%}
+{%- endfor -%}
 
+{%- comment -%} Add remaining tags alphabetically {%- endcomment -%}
+{%- assign _remaining_tags = "" | split: "" -%}
+{%- for _tag in _all_tags -%}
+  {%- unless _sorted_tags contains _tag -%}
+    {%- assign _remaining_tags = _remaining_tags | push: _tag -%}
+  {%- endunless -%}
+{%- endfor -%}
+{%- assign _remaining_tags = _remaining_tags | sort -%}
+{%- assign _sorted_tags = _sorted_tags | concat: _remaining_tags -%}
+
+{%- comment -%} Now render articles grouped by tags {%- endcomment -%}
+{%- for _current_tag in _sorted_tags -%}
+
+  {%- comment -%} Count articles with this tag {%- endcomment -%}
+  {%- assign _tag_count = 0 -%}
   {%- for _article in _sorted_list -%}
-
-    {%- include snippets/prepend-baseurl.html path=_article.url -%}
-    {%- assign _article_url = __return -%}
-
-    {%- if _article.cover -%}
-      {%- include snippets/get-nav-url.html path=_article.cover -%}
-      {%- assign _article_cover = __return -%}
-    {%- endif -%}
-
-    {%- if include.type == 'item' -%}
-      {%- if include.article_type == 'BlogPosting' -%}
-        <article class="item" itemscope itemtype="http://schema.org/BlogPosting">
-      {%- else -%}
-        <article class="item">
-      {%- endif -%}
-        {%- if _article.cover and include.show_cover-%}
-          {%- include snippets/get-nav-url.html path=_article.cover -%}
-          {%- assign _article_cover = __return -%}
-          <div class="item__image">
-            {%- if include.cover_size == 'lg' -%}
-              <a href="{{ _article_url }}"><img class="image image--lg" src="{{ _article_cover }}" style="width: 100%; height: auto; display: block;" /></a>
-            {%- elsif include.cover_size == 'sm' -%}
-              <a href="{{ _article_url }}"><img class="image image--sm" src="{{ _article_cover }}" style="width: 100%; height: auto; display: block;" /></a>
-            {%- else -%}
-              <a href="{{ _article_url }}"><img class="image" src="{{ _article_cover }}" style="width: 100%; height: auto; display: block;" /></a>
-            {%- endif -%}
-          </div>
-        {%- endif -%}
-        <div class="item__content">
-          <header><a href="{{ _article_url }}"><h2 itemprop="headline" class="item__header" style="text-align:center">{{ _article.title }}</h2></a></header>
-          <div class="item__description">
-            {%- if _article.excerpt and include.show_excerpt -%}
-              <div class="article__content" itemprop="description articleBody">
-                {%- if _excerpt_type == 'html' -%}
-                  {{ _article.excerpt }}
-                {%- else -%}
-                  {{ _article.excerpt | strip_html | strip | truncate: _excerpt_truncate }}
-                {%- endif -%}
-              </div>
-            {%- endif -%}
-            {%- if include.show_readmore -%}
-              <p><a href="{{ _article_url }}">{{ _locale_readmore }}</a></p>
-            {%- endif -%}
-          </div>
-          {%- if include.show_info -%}
-            {%- include snippets/assign.html target=site.data.variables.default.page.pageview
-              source0=_article.pageview -%}
-            {%- assign _show_pageview = __return -%}
-            {%- include article-info.html article=_article show_pageview=_show_pageview -%}
-          {%- endif -%}
-        </div>
-      </article>
-
-
-    {%- elsif include.type == 'brief' -%}
-      {%- if include.group_by == 'year' -%}
-        {%- assign _currentdate = _article.date | date: '%Y' -%}
-        {%- if _currentdate != _date -%}
-          {%- unless forloop.first -%}</ul></section>{%- endunless -%}
-          <section><h2 class="article-list__group-header">{{ _currentdate }}</h2><ul class="items">
-          {%- assign _date = _currentdate -%}
-        {%- endif -%}
-      {%- endif -%}
-      {%- include snippets/get-locale-string.html key='ARTICLE_LIST_DATE_FORMAT' -%}
-      {%- comment -%} Build the tags string BEFORE using it {%- endcomment -%}
-      {%- assign _tags = '' -%}
-      {%- for _tag in _article.tags -%}
-        {%- assign _tag_encode = _tag | strip | url_encode -%}
-        {%- if forloop.last -%}
-          {%- assign _tags = _tags | append: _tag_encode -%}
-        {%- else -%}
-          {%- assign _tags = _tags | append: _tag_encode | append: ',' -%}
-        {%- endif -%}
-      {%- endfor -%}
-      <li class="item" itemscope itemtype="http://schema.org/BlogPosting" data-tags="{{ _tags }}">
-        <div class="item__content">
-          {%- if include.show_info -%}
-            <span class="item__meta">{{ _article.date | date: __return }}</span>
-          {%- endif -%}
-          <a itemprop="headline" class="item__header" href="{{ _article_url }}" style="text-align:center">{{ _article.title }}</a></div>
-          {%- for _tag in _article.tags -%}
-            <a class="button button--primary button--rounded button--xs">{{_tag}}</a>&nbsp;
-          {%- endfor -%}
-      </li>
-
-    {%- elsif include.type == 'grid' -%}
-      {%- if include.size == 'sm' -%}
-        <div class="cell cell--12 cell--md-4 cell--lg-3">
-          <div class="card card--flat">
-            {%- if _article.cover -%}
-              <div class="card__image">
-                <a href="{{ _article_url }}"><img class="image" src="{{ _article_cover }}" style="width: 100%; height: auto; display: block;" /></a>
-                <div class="overlay overlay--bottom">
-                  <header>
-                    <!-- <a href="{{ _article_url }}"><h2 class="card__header">{{ _article.title }}</h2></a> -->
-                    <a href="{{ _article_url }}"><h2 class="card__header"; style="text-align:center">{{ _article.title }}</h2></a>
-                  </header>
-                </div>
-              </div>
-            {%- endif -%}
-            </div>
-        </div>
-      {%- else -%}
-
-        <div class="cell cell--12 cell--md-6 cell--lg-4">
-          <div class="card card--flat">
-            {%- if _article.cover -%}
-              <div class="card__image"><a href="{{ _article_url }}"><img src="{{ _article_cover }}" style="width: 100%; height: auto; display: block;" /></a></div>
-            {%- endif -%}
-              <div class="card__content">
-                <header>
-                  <a href="{{ _article_url }}"><h2 class="card__header" style="text-align:center">{{ _article.title }}</h2></a>
-                </header>
-              </div>
-          </div>
-        </div>
-      {%- endif -%}
+    {%- assign _article_tags = _article.tags | join: "," -%}
+    {%- if _article_tags contains _current_tag -%}
+      {%- assign _tag_count = _tag_count | plus: 1 -%}
     {%- endif -%}
   {%- endfor -%}
 
-</div>
+  {%- if _tag_count > 0 -%}
+    {%- assign _tag_id = _current_tag | slugify -%}
+    <div class="lab-group">
+      <h4 id="{{ _tag_id }}" class="pubyear">
+        <a href="#{{ _tag_id }}" class="anchor-link">#</a>
+        {{ _current_tag }}
+      </h4>
+
+      {%- if include.type == 'grid' -%}
+        {%- if include.size == 'sm' -%}
+        <div class="article-list grid grid--sm grid--p-3">
+        {%- else -%}
+        <div class="article-list grid grid--p-3">
+        {%- endif -%}
+      {%- else -%}
+        <div class="article-list items">
+      {%- endif -%}
+
+      {%- for _article in _sorted_list -%}
+        {%- assign _article_tags = _article.tags | join: "," -%}
+        {%- if _article_tags contains _current_tag -%}
+
+          {%- include snippets/prepend-baseurl.html path=_article.url -%}
+          {%- assign _article_url = __return -%}
+
+          {%- if _article.cover -%}
+            {%- include snippets/get-nav-url.html path=_article.cover -%}
+            {%- assign _article_cover = __return -%}
+          {%- endif -%}
+
+          {%- if include.type == 'grid' -%}
+            {%- if include.size == 'sm' -%}
+              <div class="cell cell--12 cell--md-4 cell--lg-3">
+                <div class="card card--flat">
+                  {%- if _article.cover -%}
+                    <div class="card__image">
+                      <img class="image" src="{{ _article_cover }}" style="width: 100%; height: auto; display: block;" />
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- else -%}
+              <div class="cell cell--12 cell--md-6 cell--lg-4">
+                <div class="card card--flat">
+                  {%- if _article.cover -%}
+                    <div class="card__image"><img src="{{ _article_cover }}" style="width: 100%; height: auto; display: block;" /></div>
+                  {%- endif -%}
+                  <div class="card__content">
+                    <header style="text-align: center;">
+                      <h2 class="card__header" style="text-align:center; margin-bottom: 0.111rem;">{{ _article.title }}</h2>
+                      {%- if _article.email or _article.github or _article.website or _article.linkedin or _article.twitter -%}
+                        <div class="lab-member-links">
+                          {%- if _article.email -%}
+                            <a href="mailto:{{ _article.email }}" title="Email" class="lab-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            </a>
+                          {%- endif -%}
+                          {%- if _article.github -%}
+                            <a href="https://github.com/{{ _article.github }}" target="_blank" title="GitHub" class="lab-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            </a>
+                          {%- endif -%}
+                          {%- if _article.linkedin -%}
+                            <a href="https://linkedin.com/in/{{ _article.linkedin }}" target="_blank" title="LinkedIn" class="lab-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                            </a>
+                          {%- endif -%}
+                          {%- if _article.twitter -%}
+                            <a href="https://twitter.com/{{ _article.twitter }}" target="_blank" title="Twitter" class="lab-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                            </a>
+                          {%- endif -%}
+                          {%- if _article.website -%}
+                            <a href="{{ _article.website }}" target="_blank" title="Website" class="lab-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                            </a>
+                          {%- endif -%}
+                        </div>
+                      {%- endif -%}
+                    </header>
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- else -%}
+            {%- comment -%} Item type rendering {%- endcomment -%}
+            <article class="item">
+              {%- if _article.cover and include.show_cover-%}
+                <div class="item__image">
+                  {%- if include.cover_size == 'lg' -%}
+                    <img class="image image--lg" src="{{ _article_cover }}" style="width: 100%; height: auto; display: block;" />
+                  {%- elsif include.cover_size == 'sm' -%}
+                    <img class="image image--sm" src="{{ _article_cover }}" style="width: 100%; height: auto; display: block;" />
+                  {%- else -%}
+                    <img class="image" src="{{ _article_cover }}" style="width: 100%; height: auto; display: block;" />
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+              <div class="item__content">
+                <header><h2 itemprop="headline" class="item__header" style="text-align:center">{{ _article.title }}</h2></header>
+                <div class="item__description">
+                  {%- if _article.excerpt and include.show_excerpt -%}
+                    <div class="article__content" itemprop="description articleBody">
+                      {%- if _excerpt_type == 'html' -%}
+                        {{ _article.excerpt }}
+                      {%- else -%}
+                        {{ _article.excerpt | strip_html | strip | truncate: _excerpt_truncate }}
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                  {%- if include.show_readmore -%}
+                    <p>{{ _locale_readmore }}</p>
+                  {%- endif -%}
+                </div>
+              </div>
+            </article>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      </div>
+    </div>
+  {%- endif -%}
+{%- endfor -%}
+
+<style>
+.lab-group {
+  margin-bottom: 0rem;
+}
+
+.lab-group .grid {
+  row-gap: -3rem;
+}
+
+.lab-group .cell {
+  margin-bottom: 0;
+}
+
+.pubyear {
+  position: relative;
+}
+
+.pubyear .anchor-link {
+  position: absolute;
+  left: -1.2em;
+  color: #ccc;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  font-weight: normal;
+  padding-right: 0.3em;
+}
+
+.pubyear:hover .anchor-link {
+  opacity: 1;
+}
+
+.pubyear .anchor-link:hover {
+  color: #3498db;
+}
+
+.lab-member-links {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.lab-icon {
+  color: #666;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.lab-icon:hover {
+  color: #2196F3;
+}
+
+.lab-icon svg {
+  display: block;
+}
+</style>
