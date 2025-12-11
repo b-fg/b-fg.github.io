@@ -1,14 +1,14 @@
 ---
 layout: page
-title: Lab
+title: Group
 show_title: false
 ---
 
-{%- assign _articles = site.lab | reverse -%}
+{%- assign _articles = site.group | reverse -%}
 
 <div class="mt-4"></div>
 
-{%- include lab-list.html
+{%- include group-list.html
     articles=_articles
     type='grid'
     size='md'

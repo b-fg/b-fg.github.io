@@ -8,9 +8,9 @@ header:
 
   - titles:
       # @start locale config
-      en      : &EN       Lab
+      en      : &EN       Group
       # @end locale config
-    url: /_pages/lab.html
+    url: /_pages/group.html
 
   - titles:
       # @start locale config

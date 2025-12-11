@@ -1,12 +1,12 @@
 {%- comment -%}
-Collect all tags from all collections (posts, research, lab)
+Collect all tags from all collections (posts, research, group)
 {%- endcomment -%}
 {%- assign _all_tags = "" | split: "" -%}
 {%- assign _tag_counts = "" | split: "" -%}
 
 {%- comment -%} Collect tags from all collections {%- endcomment -%}
 {%- assign _all_posts = "" | split: "" -%}
-{%- assign _all_posts = _all_posts | concat: site.posts | concat: site.research | concat: site.lab -%}
+{%- assign _all_posts = _all_posts | concat: site.posts | concat: site.research | concat: site.group -%}
 
 {%- comment -%} Build tag frequency map {%- endcomment -%}
 {%- assign _tag_map = "" | split: "" -%}

@@ -27,7 +27,7 @@ titles:
 <div class="layout--archive js-all">
   {%- include tags.html -%}
   {%- assign _sorted_list = "" | split: "" -%}
-  {%- assign _sorted_list = _sorted_list | concat: site.research | concat: site.lab | concat: site.posts -%}
+  {%- assign _sorted_list = _sorted_list | concat: site.research | concat: site.group | concat: site.posts -%}
 <div class="js-result layout--archive__result d-none">
     {%- include
       article-list.html
