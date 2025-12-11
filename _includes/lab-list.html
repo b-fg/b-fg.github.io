@@ -12,7 +12,7 @@
 
 {%- comment -%} Collect all unique tags and their order {%- endcomment -%}
 {%- assign _all_tags = "" | split: "" -%}
-{%- assign _tag_order = "PI,Postdoc,PhD,MSc,BSc,Intern" | split: "," -%}
+{%- assign _tag_order = "PI,Postdoc,PhD,MSc,BSc,Intern,Alumni" | split: "," -%}
 
 {%- comment -%} First pass: collect all tags that exist in the articles {%- endcomment -%}
 {%- for _article in _sorted_list -%}
@@ -56,6 +56,7 @@
 
   {%- if _tag_count > 0 -%}
     {%- assign _tag_id = _current_tag | slugify -%}
+    {%- assign _tagged_articles = "" | split: "" -%}
     <div class="lab-group">
       {%- unless _current_tag == "PI" -%}
         <h4 id="{{ _tag_id }}" class="pubyear">
@@ -77,6 +78,14 @@
       {%- for _article in _sorted_list -%}
         {%- assign _article_tags = _article.tags | join: "," -%}
         {%- if _article_tags contains _current_tag -%}
+          {%- assign _tagged_articles = _tagged_articles | push: _article -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- comment -%} Sort tagged articles alphabetically by title {%- endcomment -%}
+      {%- assign _tagged_articles = _tagged_articles | sort: 'title' -%}
+
+      {%- for _article in _tagged_articles -%}
 
           {%- include snippets/prepend-baseurl.html path=_article.url -%}
           {%- assign _article_url = __return -%}
@@ -176,7 +185,6 @@
               </div>
             </article>
           {%- endif -%}
-        {%- endif -%}
       {%- endfor -%}
 
       </div>
