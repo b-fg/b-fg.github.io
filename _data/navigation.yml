@@ -1,25 +1,50 @@
 header:
-
   - titles:
       # @start locale config
       en      : &EN       Research
+      en-GB   : *EN
+      en-US   : *EN
+      en-CA   : *EN
+      en-AU   : *EN
       # @end locale config
-    url: /_pages/research.html
+    url: /research.html
 
   - titles:
       # @start locale config
       en      : &EN       Group
+      en-GB   : *EN
+      en-US   : *EN
+      en-CA   : *EN
+      en-AU   : *EN
       # @end locale config
-    url: /_pages/group.html
+    url: /group.html
+
+  - titles:
+      # @start locale config
+      en      : &EN       Gallery
+      en-GB   : *EN
+      en-US   : *EN
+      en-CA   : *EN
+      en-AU   : *EN
+      # @end locale config
+    url: /gallery.html
 
   - titles:
       # @start locale config
       en      : &EN       Repositories
+      en-GB   : *EN
+      en-US   : *EN
+      en-CA   : *EN
+      en-AU   : *EN
       # @end locale config
-    url: /_pages/repositories.html
+    url: /repositories.html
 
   - titles:
       # @start locale config
       en      : &EN       Publications
+      en-GB   : *EN
+      en-US   : *EN
+      en-CA   : *EN
+      en-AU   : *EN
       # @end locale config
-    url: /_pages/publications.html
+    url: /publications.html

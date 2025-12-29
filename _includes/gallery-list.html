@@ -1,0 +1,102 @@
+{%- assign _sorted_list = include.articles-%}
+
+{%- if include.reverse -%}
+  {%- assign _sorted_list = _sorted_list | reverse -%}
+{%- endif -%}
+
+{%- if include.size == 'sm' -%}
+<div class="gallery-grid grid grid--sm grid--p-3">
+{%- elsif include.size == 'lg' -%}
+<div class="gallery-grid grid grid--lg grid--p-3">
+{%- else -%}
+<div class="gallery-grid grid grid--p-3">
+{%- endif -%}
+
+{%- for _item in _sorted_list -%}
+  {%- if _item.image -%}
+    {%- include snippets/get-nav-url.html path=_item.image -%}
+    {%- assign _item_image = __return -%}
+  {%- endif -%}
+
+  {%- if include.size == 'sm' -%}
+    <div class="cell cell--12 cell--md-4 cell--lg-3">
+  {%- elsif include.size == 'lg' -%}
+    <div class="cell cell--12 cell--md-8 cell--lg-6">
+  {%- else -%}
+    <div class="cell cell--12 cell--md-6 cell--lg-4">
+  {%- endif -%}
+    <div class="gallery-item">
+      {%- if _item.image -%}
+        <div class="gallery-item__image">
+          <img src="{{ _item_image }}" alt="{{ _item.title }}" style="width: 100%; height: auto; display: block;" />
+          {%- if _item.title or _item.description -%}
+            <div class="gallery-item__overlay">
+              {%- if _item.title -%}
+                <h3 class="gallery-item__title">{{ _item.title }}</h3>
+              {%- endif -%}
+              {%- if _item.description -%}
+                <p class="gallery-item__description">{{ _item.description }}</p>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endfor -%}
+
+</div>
+
+<style>
+.gallery-grid {
+  row-gap: 1rem;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #f5f5f5;
+}
+
+.gallery-item__image {
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-item__image img {
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-item__image img {
+  transform: scale(1.05);
+}
+
+.gallery-item__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: white;
+  padding: 1.5rem 1rem 1rem;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-item__overlay {
+  transform: translateY(0);
+}
+
+.gallery-item__title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.gallery-item__description {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+</style>
