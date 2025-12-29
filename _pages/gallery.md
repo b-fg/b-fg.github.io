@@ -1,5 +1,6 @@
 ---
 layout: page
+permalink: /gallery
 title: Gallery
 show_title: false
 ---

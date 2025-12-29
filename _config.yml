@@ -341,12 +341,6 @@ defaults:
       show_subscribe: false
       pageview: false
 
-  - scope:
-      path: "_pages"
-    values:
-      layout: page
-
-
 ## => News Settings
 ##############################
 news_limit: 9

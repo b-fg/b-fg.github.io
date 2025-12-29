@@ -1,5 +1,6 @@
 ---
 layout: page
+permalink: /group
 title: Group
 show_title: false
 ---

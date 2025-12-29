@@ -1,6 +1,8 @@
 ---
 layout: articles
-title:
+permalink: /research
+title: Research
+show_title: false
 articles:
   data_source: site.research
   show_excerpt: true
@@ -11,10 +13,3 @@ articles:
   type: grid
   size: md
 ---
-
-<!--
-<center>
-  <p style="text-align:center;"><i>:construction: Under Construction :construction:</i></p>
-  <p style="text-align:center;"><i>Some of the posts are stubs as I migrate my site from its former repo!</i></p>
-</center>
--->

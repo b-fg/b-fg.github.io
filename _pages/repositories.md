@@ -1,13 +1,7 @@
 ---
 layout: article
-titles:
-  # @start locale config
-  en      : &EN       Repositories
-  en-GB   : *EN
-  en-US   : *EN
-  en-CA   : *EN
-  en-AU   : *EN
-  # @end locale config
+permalink: /repositories
+title: Repositories
 show_title: false
 ---
 
