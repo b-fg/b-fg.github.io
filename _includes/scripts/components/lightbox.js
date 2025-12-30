@@ -14,17 +14,21 @@
         for (i = 0; i < $images.length; i++) {
           image = $images.eq(i);
           if (image.get(0).naturalWidth > 800) {
-            items.push({ src: image.attr('src'), w: image.get(0).naturalWidth, h: image.get(0).naturalHeight, $el: image});
+            items.push({
+              src: image.attr('src'),
+              w: image.get(0).naturalWidth,
+              h: image.get(0).naturalHeight,
+              title: image.attr('title') || '',
+              $el: image
+            });
           }
         }
       }
-
       if(items.length > 0) {
         // use the modal container instead of .gallery
         gallery = new Gallery($pageGalleryModal.find('.gallery'), items);
         gallery.setOptions({ disabled: !modalVisible });
         gallery.init();
-
         for (i = 0; i < items.length; i++) {
           item = items[i];
           item.$el && (item.$el.addClass('popup-image'), item.$el.on('click', (function() {
@@ -37,12 +41,10 @@
           })()));
         }
       }
-
       function handleModalChange(visible) {
         modalVisible = visible;
         gallery && gallery.setOptions({ disabled: !modalVisible });
       }
-
       $pageGalleryModal.on('click', function() {
         pageGalleryModal.hide();
       });

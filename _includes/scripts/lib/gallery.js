@@ -44,12 +44,14 @@
       for (i = 0; i < items.length; i++) {
         item = items[i];
         size = this._calculateImageSize(item.w, item.h);
+        var captionHtml = item.title ? '<div class="gallery-item__caption">' + item.title + '</div>' : '';
         this.$items.push($(
           '<div class="swiper__slide">' +
             '<div class="gallery-item">' +
               '<div class="gallery-item__content">' +
                 '<img src="' + item.src + '" style="width:' + size.w + 'px;height:' + size.h +  'px"/>' +
               '</div>' +
+              captionHtml +
             '</div>' +
           '</div>'
         ));

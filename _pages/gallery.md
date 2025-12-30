@@ -59,6 +59,20 @@ lightbox: true
   transform: none !important;
   transition: none !important;
 }
+
+/* Caption styling in overlay */
+.gallery-item__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.4;
+}
 </style>
 
 {%- assign _articles = site.gallery | reverse -%}
@@ -69,7 +83,8 @@ lightbox: true
       <div class="gallery-item">
         <img
           src="{{ _item.image }}"
-          alt="{{ _item.title | escape }}"
+          alt="{{ _item.title | default: '' | escape }}"
+          title="{{ _item.title | default: '' | escape }}"
           class="img-responsive popup-image"
         >
       </div>
@@ -78,9 +93,11 @@ lightbox: true
 </div>
 
 <script>
-  lightbox.option({
-    'resizeDuration': 200,
-    'wrapAround': true,
-    'showImageNumberLabel': true
-  });
+  if (typeof lightbox !== 'undefined') {
+    lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true,
+      'showImageNumberLabel': true
+    });
+  }
 </script>
