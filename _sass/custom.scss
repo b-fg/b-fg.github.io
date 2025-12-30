@@ -230,25 +230,155 @@ img[src*='#center'] {
     align-content: space-between;
 }
 
+/* Header with logo */
 .header__brand .site-title-with-logo {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
 }
-
 .site-title-text {
   white-space: nowrap;
 }
-
 .site-logo {
   height: 27px;
   width: auto;
     /* optical centering tweak */
   transform: translateY(-9px);
 }
-
 .site-title-at {
   color: #0000003a;   /* TU Delft cyan */
 }
+
+/* Research page */
+.research-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+@media (max-width: 768px) {
+    .research-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.research-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none !important;
+}
+.research-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    text-decoration: none !important;
+}
+.research-item__image-wrapper {
+    position: relative;
+    overflow: hidden;
+    background: #ffffff;
+    max-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.research-item__image-wrapper img {
+    max-height: 100%;   /* <-- fit inside wrapper */
+    max-width: 100%;    /* <-- don't stretch horizontally */
+    width: auto;        /* <-- maintain aspect ratio */
+    height: auto;       /* <-- maintain aspect ratio */
+    object-fit: contain; /* <-- scale image to fit without cropping */
+    display: block;
+    margin-top: 30px;          /* <-- add margin around the image */
+    margin-left: 30px;          /* <-- add margin around the image */
+    margin-right: 30px;          /* <-- add margin around the image */
+}
+.research-item__content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.research-item__title {
+    font-size: 1rem;
+    margin: 0 0 0.5rem 0;
+    text-decoration: none !important;
+}
+.research-item:hover .research-item__title {
+    color: #2196F3;
+    text-decoration: none !important;
+}
+.research-item__meta {
+    font-size: 0.875rem;
+    color: #666;
+    margin-bottom: 0.75rem;
+    text-decoration: none !important;
+}
+
+/* Gallery page */
+/* Hide titles from grid */
+.gallery-grid .item__header,
+.gallery-grid .item__content,
+.gallery-grid .article__header {
+  display: none !important;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+}
+.gallery-item:hover img {
+  transform: none;
+}
+/* Remove hover in modal */
+.js-page-gallery-modal .gallery-item,
+.js-page-gallery-modal .gallery-item img {
+  transform: none !important;
+  transition: none !important;
+}
+/* Caption styling in overlay */
+.gallery-item__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+
 
 /* end custom scss snippet */
