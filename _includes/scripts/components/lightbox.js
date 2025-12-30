@@ -24,7 +24,7 @@
       if($images && $images.length > 0) {
         for (i = 0; i < $images.length; i++) {
           image = $images.eq(i);
-          if (image.get(0).naturalWidth > 800) {
+          if (image.get(0).naturalWidth > 200) {
             // Get HTML title from parent div's data-title attribute
             var htmlTitle = image.closest('.gallery-item').attr('data-title') || image.attr('title') || '';
             items.push({

@@ -9,13 +9,14 @@
 *.log
 *.log.*
 
-/.vscode/
+.vscode/
+_research_wip/
 
 node_modules/
 .sass-cache/
 
-/.bundle/
-/vendor/bundle
+.bundle/
+vendor/bundle
 *.gem
 
 yarn.lock

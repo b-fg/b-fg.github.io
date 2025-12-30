@@ -2,14 +2,14 @@
 layout: article
 title: From 3D to 2D turbulence in the wake of a circular cylinder
 date: 2023-02-27 14:0:00+0100
-tags: turbulence cylinder jfm
-cover: /assets/images/2023-27-02-span-effect-turbulence-nature/vorticity_cover.svg
+tags: turbulence cylinder JFM Bernat
+cover: /assets/images/research/span-effect-turbulence-nature/vorticity_cover.svg
 aside:
   toc: false
 ---
 
+*by Bernat Font*
 
-<!--more-->
 In this post, I will briefly cover the work we published with my former PhD supervisors about the span effect of a circular cylinder on the turbulence nature of its wake.
 The paper containing all the details is available [here](https://arxiv.org/pdf/2008.08933).
 
@@ -19,7 +19,7 @@ And, if that was the case, why was that.
 To do so, we conducted a series of simulations of incompressible flow past a circular cylinder at $Re=10^4$ with different span lengths, ranging from $L_z=10$ (span length non-dimensionalised with the cylinder diameter $D$) to pure 2-D simulations.
 Below, an instantaneous snapshot of the vorticity field for each case is displayed.
 
-![image-title-here](/assets/images/2023-27-02-span-effect-turbulence-nature/vorticity.svg){:class="img-responsive"}
+![](/assets/images/research/span-effect-turbulence-nature/vorticity.svg){:class="img-responsive"}
 
 Figure 1. Instantaneous vorticity $\omega_z$ (red is positive, blue is negative) at the $z=L_z/2$ plane for: $(a)$ $L_z=0$, $(b)$ $L_z=0.1$, $(c)$ $L_z=0.25$, $(d)$ $L_z=0.5$, $(e)$ $L_z=1$, $(f)$ $L_z=\pi$.
 {: style="color:gray; font-size: 80%; text-align: center;"}
@@ -34,7 +34,7 @@ In this case, a local correlation maxima is found near $d/D=1$ which indicates t
 At this wavelength, the Mode-B structures of the circular cylinder wake, naturally present at $Re=10^4$, have enough room to develop in the spanwise direction, differently from the other cases.
 At the same time, the spectra of the $L_z=\pi$ case is the only one displaying a purely -5/3 decaying TKE far from the cylinder (c), further assuring the presence of a 3D large-scale structure which is able to feed the inertial and viscous scales of the energy cascade.
 
-![image-title-here](/assets/images/2023-27-02-span-effect-turbulence-nature/energy_spectas_and_two-points_correlations.svg){:class="img-responsive"}
+![](/assets/images/research/span-effect-turbulence-nature/energy_spectas_and_two-points_correlations.svg){:class="img-responsive"}
 
 Figure 2.
 Left: vertical velocity component temporal power spectra (PS) at different $(x, y)$ locations on the wake. (a): (2, 0.8), (b): (4, 0.8), (c): (8, 0.8).
@@ -47,7 +47,7 @@ To further assess this observation, the vertically-averaged TKE along the wake w
 It can be observed that increasing the span from $L_z=\pi$ to $L_z=10$ did not yield significant differences in the TKE nor in the $C_L$.
 On the other hand, the rest of the tested spans showed different results with increasing significance as the span was constricted.
 
-![image-title-here](/assets/images/2023-27-02-span-effect-turbulence-nature/TKE_and_CL.svg){:class="img-responsive"}
+![](/assets/images/research/span-effect-turbulence-nature/TKE_and_CL.svg){:class="img-responsive"}
 
 Figure 3.
 Left: Total TKE along the wake, where the TKE is computed from the normal Reynolds stresses and averaged on the vertical direction.

@@ -12,35 +12,7 @@
 
 {%- comment -%} Collect all unique tags and their order {%- endcomment -%}
 {%- assign _all_tags = "" | split: "" -%}
-{%- assign _tag_order = "PI,Postdoc,PhD,MSc,BSc,Intern,Alumni" | split: "," -%}
-
-{%- comment -%} First pass: collect all tags that exist in the articles {%- endcomment -%}
-{%- for _article in _sorted_list -%}
-  {%- for _tag in _article.tags -%}
-    {%- assign _tag_stripped = _tag | strip -%}
-    {%- unless _all_tags contains _tag_stripped -%}
-      {%- assign _all_tags = _all_tags | push: _tag_stripped -%}
-    {%- endunless -%}
-  {%- endfor -%}
-{%- endfor -%}
-
-{%- comment -%} Sort tags according to predefined order, then alphabetically {%- endcomment -%}
-{%- assign _sorted_tags = "" | split: "" -%}
-{%- for _ordered_tag in _tag_order -%}
-  {%- if _all_tags contains _ordered_tag -%}
-    {%- assign _sorted_tags = _sorted_tags | push: _ordered_tag -%}
-  {%- endif -%}
-{%- endfor -%}
-
-{%- comment -%} Add remaining tags alphabetically {%- endcomment -%}
-{%- assign _remaining_tags = "" | split: "" -%}
-{%- for _tag in _all_tags -%}
-  {%- unless _sorted_tags contains _tag -%}
-    {%- assign _remaining_tags = _remaining_tags | push: _tag -%}
-  {%- endunless -%}
-{%- endfor -%}
-{%- assign _remaining_tags = _remaining_tags | sort -%}
-{%- assign _sorted_tags = _sorted_tags | concat: _remaining_tags -%}
+{%- assign _sorted_tags = "PI,Postdoc,PhD,MSc,BSc,Intern,Alumni" | split: "," -%}
 
 {%- comment -%} Now render articles grouped by tags {%- endcomment -%}
 {%- for _current_tag in _sorted_tags -%}

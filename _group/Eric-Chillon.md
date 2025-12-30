@@ -1,6 +1,6 @@
 ---
 title: Eric Chillón
-tags: MSc
+tags: MSc Eric
 cover: /assets/images/group/eric_chillon.png
 email: chillon@student.tudelft.nl
 github: ericchillon

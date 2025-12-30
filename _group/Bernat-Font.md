@@ -1,6 +1,6 @@
 ---
 title: Bernat Font
-tags: PI
+tags: PI Bernat
 cover: /assets/images/group/bernat_font.png
 email: b.font@tudelft.nl
 github: b-fg

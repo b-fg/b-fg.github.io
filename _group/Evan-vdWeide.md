@@ -1,6 +1,6 @@
 ---
 title: Evan van der Weide
-tags: MSc
+tags: MSc Evan
 cover: /assets/images/group/evan_vdWeide.png
 email: e.vanderweide@student.tudelft.nl
 github: evanvanderweide

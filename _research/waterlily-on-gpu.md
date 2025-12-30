@@ -2,11 +2,13 @@
 layout: article
 title: Porting WaterLily.jl into a backend-agnostic solver
 date: 2023-05-07 14:0:00+0100
-tags: julia gpu waterlily
-cover: /assets/images/2023-07-05-waterlily-on-gpu/julia_2D.png
+tags: Julia GPU WaterLily Bernat
+cover: /assets/images/research/waterlily-on-gpu/julia_2D.png
 aside:
   toc: true
 ---
+
+*by Bernat Font*
 
 [WaterLily.jl](https://github.com/weymouth/WaterLily.jl) is a simple and fast fluid simulator written in pure Julia. It solves the unsteady incompressible 2D or 3D [Navier-Stokes equations](https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations) on a Cartesian grid.
 The pressure Poisson equation is solved with a [geometric multigrid](https://en.wikipedia.org/wiki/Multigrid_method) method.
@@ -33,7 +35,7 @@ $$
 where $i$ and $j$ are the indices of the discretised staggered grid:
 
 {:.text-align-center}
-![staggered grid](/assets/images/2023-07-05-waterlily-on-gpu/divergence.svg#center){:width="40%" class="img-responsive"}
+![](/assets/images/research/waterlily-on-gpu/divergence.svg#center){:width="40%" class="lightbox-ignore"}
 
 In WaterLily, we define loops based on the `CartesianIndex` such that `I=(i,j,...)`, thus writing an n-dimensional solver in a very straight-forward way.
 With this, to compute the divergence of a 2D vector field we can use
