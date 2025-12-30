@@ -230,8 +230,25 @@ img[src*='#center'] {
     align-content: space-between;
 }
 
+.header__brand .site-title-with-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 
+.site-title-text {
+  white-space: nowrap;
+}
 
+.site-logo {
+  height: 27px;
+  width: auto;
+    /* optical centering tweak */
+  transform: translateY(-9px);
+}
 
+.site-title-at {
+  color: #0000003a;   /* TU Delft cyan */
+}
 
 /* end custom scss snippet */
