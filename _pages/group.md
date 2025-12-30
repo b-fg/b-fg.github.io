@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: articles
 permalink: /group
 title: Group
 show_title: false

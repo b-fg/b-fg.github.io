@@ -301,19 +301,6 @@ defaults:
       pageview: true
       lightbox: true
 
-  # - scope:
-  #     path: ""
-  #     type: lab
-  #   values:
-  #     layout: article
-  #     sharing: false
-  #     license: false
-  #     aside:
-  #       toc: false
-  #     show_edit_on_github: false
-  #     show_subscribe: false
-  #     pageview: false
-
   - scope:
       path: ""
       type: research
@@ -333,6 +320,7 @@ defaults:
       type: gallery
     values:
       layout: article
+      lightbox: true
       sharing: false
       license: false
       aside:

@@ -3,7 +3,7 @@
   var SOURCES = window.TEXT_VARIABLES.sources;
   window.Lazyload.js(SOURCES.jquery, function() {
     var $pageGalleryModal = $('.js-page-gallery-modal');
-    var $images = $('.page__content').find('img:not(.lightbox-ignore)');
+    var $images = $('.page__content, .gallery-grid').find('img:not(.lightbox-ignore)');
     window.imagesLoad($images).then(function() {
       /* global Gallery */
       var pageGalleryModal = $pageGalleryModal.modal({ onChange: handleModalChange });
@@ -20,9 +20,11 @@
       }
 
       if(items.length > 0) {
-        gallery = new Gallery('.gallery', items);
+        // use the modal container instead of .gallery
+        gallery = new Gallery($pageGalleryModal.find('.gallery'), items);
         gallery.setOptions({ disabled: !modalVisible });
         gallery.init();
+
         for (i = 0; i < items.length; i++) {
           item = items[i];
           item.$el && (item.$el.addClass('popup-image'), item.$el.on('click', (function() {
