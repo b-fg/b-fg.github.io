@@ -1,15 +1,13 @@
 ---
-layout: articles
+layout: page
 permalink: /research
 title: Research
 show_title: false
-articles:
-  data_source: site.research
-  show_excerpt: true
-  show_readmore: true
-  show_info: true
-  reverse: true
-  show_title: false
-  type: grid
-  size: md
 ---
+
+{%- assign _articles = site.research | reverse -%}
+
+{%- include research-list.html
+    articles=_articles
+    show_excerpt=true
+-%}
