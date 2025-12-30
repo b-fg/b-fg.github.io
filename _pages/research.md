@@ -33,10 +33,10 @@ show_title: false
                 {%- if _article.date -%}
                 {{ _article.date | date: "%B %Y" }}
                 {%- endif -%}
-                {%- if _article.author and _article.date -%} • {%- endif -%}
+                <!-- {%- if _article.author and _article.date -%} • {%- endif -%}
                 {%- if _article.author -%}
                 {{ _article.author }}
-                {%- endif -%}
+                {%- endif -%} -->
             </div>
             {%- endif -%}
         </div>

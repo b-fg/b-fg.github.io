@@ -4,11 +4,10 @@ title: From 3D to 2D turbulence in the wake of a circular cylinder
 date: 2023-02-27 14:0:00+0100
 tags: turbulence cylinder JFM Bernat
 cover: /assets/images/research/span-effect-turbulence-nature/vorticity_cover.svg
+author: Bernat
 aside:
   toc: false
 ---
-
-*by Bernat Font*
 
 In this post, I will briefly cover the work we published with my former PhD supervisors about the span effect of a circular cylinder on the turbulence nature of its wake.
 The paper containing all the details is available [here](https://arxiv.org/pdf/2008.08933).
