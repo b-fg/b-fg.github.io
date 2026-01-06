@@ -7,7 +7,7 @@ header:
       en-CA   : *EN
       en-AU   : *EN
       # @end locale config
-    url: /research.html
+    url: /research
 
   - titles:
       # @start locale config
@@ -17,7 +17,7 @@ header:
       en-CA   : *EN
       en-AU   : *EN
       # @end locale config
-    url: /group.html
+    url: /group
 
   - titles:
       # @start locale config
@@ -27,7 +27,7 @@ header:
       en-CA   : *EN
       en-AU   : *EN
       # @end locale config
-    url: /gallery.html
+    url: /gallery
 
   - titles:
       # @start locale config
@@ -37,7 +37,7 @@ header:
       en-CA   : *EN
       en-AU   : *EN
       # @end locale config
-    url: /repositories.html
+    url: /repositories
 
   - titles:
       # @start locale config
@@ -47,4 +47,4 @@ header:
       en-CA   : *EN
       en-AU   : *EN
       # @end locale config
-    url: /publications.html
+    url: /publications
