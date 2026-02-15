@@ -3,10 +3,6 @@
 $googlescholar-color:    #000;
 $orcid-color: #a6ce39;
 
-/* ==========================================================================
-   Amir's
-   ========================================================================== */
-
 $abstract-color                : #009628 !default;
 $BibTex-color                  : #b201a6 !default;
 $download-color                : #b51b00 !default;
@@ -80,13 +76,9 @@ $type-size-9                  : 0.5em !default;  // ~10px
 
 .katex { font-size: 1em !important; }
 
-/* ==========================================================================
-   BUTTONS
-   ========================================================================== */
-
-/*
-   Default button
-   ========================================================================== */
+/* ======
+    Buttons
+   ====== */
 
 .btn {
   /* default */
@@ -379,6 +371,25 @@ img[src*='#center'] {
   line-height: 1.4;
 }
 
+
+/* ===== News list: lock date column width ===== */
+.article-list .grid {
+  display: grid !important;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.75rem;
+  align-items: baseline;
+}
+.article-list .cell--2 {
+  width: max-content;   /* date never shrinks */
+}
+.article-list .cell--auto,
+.article-list .item__header {
+  min-width: 0;         /* allow wrapping */
+}
+.article-list .item__header {
+  display: block;
+  word-break: break-word;
+}
 
 
 /* end custom scss snippet */
