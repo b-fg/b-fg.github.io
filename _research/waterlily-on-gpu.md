@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Porting WaterLily.jl into a backend-agnostic solver
-date: 2023-05-07 14:0:00+0100
+date: 2023-05-07
 tags: Julia GPU WaterLily Bernat
 cover: /assets/images/research/waterlily-on-gpu/julia_2D.png
 author: Bernat
