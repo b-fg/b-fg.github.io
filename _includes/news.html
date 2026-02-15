@@ -4,11 +4,11 @@
 <div markdown="1">
   <div class="layout--archive js-all">
     <div class="js-result layout--archive__result d-none">
-      <h4>News</h4>
+      <!-- <h4><p style="text-align:center"><a class="item__header" href="/news">News</a></p></h4> -->
       {% if site.news  %}
         {%- include news-list.html articles=site.news news_limit=include.news_limit type='brief' show_info=true reverse=true-%}
         {%- if site.news.size > include.news_limit -%}
-          <p style="text-align:center"><a class="item__header" href="/news">[See more news]</a></p>
+          <p style="text-align:center"><a class="item__header" href="/news" style="color: rgb(145, 145, 145);">[all news]</a></p>
         {%- endif -%}
       {% else %}
       <p>No news so far...</p>
@@ -21,7 +21,6 @@
 </div>
 </div>
 
-
-  <script>
-    {%- include scripts/news.js -%}
-  </script>
+<script>
+  {%- include scripts/news.js -%}
+</script>

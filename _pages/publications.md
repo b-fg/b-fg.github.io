@@ -1,5 +1,7 @@
 ---
 layout: article
+permalink: /publications
+title: Publications
 key: page-publications
 show_title: false
 ---
