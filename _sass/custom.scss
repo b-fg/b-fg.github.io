@@ -259,7 +259,10 @@ img[src*='#center'] {
     overflow: hidden;
     border-radius: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: #fff;
+    // background: $background-color;  /* uses skin variable */
+    // background: $card-background-color;
+    background: mix(#fff, $background-color, 8%);
+    color: $text-color;             /* uses skin variable */
     display: flex;
     flex-direction: column;
     text-decoration: none !important;
@@ -272,22 +275,23 @@ img[src*='#center'] {
 .research-item__image-wrapper {
     position: relative;
     overflow: hidden;
-    background: #ffffff;
+    // background: $background-color;  /* uses skin variable */
+    background: mix(#fff, $background-color, 8%);
+    // background: $card-background-color;
     max-height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1rem 1rem 0 1rem;  /* add this */
 }
 .research-item__image-wrapper img {
-    max-height: 100%;   /* <-- fit inside wrapper */
-    max-width: 100%;    /* <-- don't stretch horizontally */
-    width: auto;        /* <-- maintain aspect ratio */
-    height: auto;       /* <-- maintain aspect ratio */
-    object-fit: contain; /* <-- scale image to fit without cropping */
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
     display: block;
-    margin-top: 30px;          /* <-- add margin around the image */
-    margin-left: 30px;          /* <-- add margin around the image */
-    margin-right: 30px;          /* <-- add margin around the image */
+    margin: 30px;
 }
 .research-item__content {
     padding: 1.5rem;
@@ -299,18 +303,18 @@ img[src*='#center'] {
     font-size: 1rem;
     margin: 0 0 0.5rem 0;
     text-decoration: none !important;
+    color: $text-color;             /* uses skin variable */
 }
 .research-item:hover .research-item__title {
-    color: #2196F3;
+    color: $main-color-1;             /* uses skin variable — TeXt's accent color */
     text-decoration: none !important;
 }
 .research-item__meta {
     font-size: 0.875rem;
-    color: #666;
+    color: $text-color-l;           /* uses skin variable — TeXt's lighter text */
     margin-bottom: 0.75rem;
     text-decoration: none !important;
 }
-
 /* Gallery page */
 /* Hide titles from grid */
 .gallery-grid .item__header,

@@ -23,9 +23,6 @@
     {%- if site.search.provider -%}
       <button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button>
     {%- endif -%}
-    <button id="theme-toggle" class="theme-toggle" title="Toggle dark/light mode">
-      <i id="theme-icon" class="fas fa-moon"></i>
-    </button>
   </div>
   {%- if site.data.navigation.header -%}
     <nav class="navigation">
@@ -46,8 +43,8 @@
           <li><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></li>
         {%- endif -%}
         <li>
-          <button id="theme-toggle-mobile" class="theme-toggle" title="Toggle dark/light mode">
-            <i id="theme-icon-mobile" class="fas fa-moon"></i>
+          <button id="theme-toggle" class="theme-toggle" title="Toggle dark/light mode">
+            <i id="theme-icon" class="fas fa-moon"></i>
           </button>
         </li>
       </ul>
