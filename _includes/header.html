@@ -48,9 +48,10 @@
           <li><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></li>
         {%- endif -%}
         <li>
-        <button id="theme-toggle" type="button" class="theme-toggle" title="Toggle dark/light mode">
-          <i id="theme-icon" class="fas fa-moon"></i>
-        </button>
+          <label class="theme-toggle" title="Toggle dark/light mode">
+            <input id="theme-toggle" type="checkbox">
+            <span class="theme-toggle__slider"></span>
+          </label>
         </li>
       </ul>
     </nav>

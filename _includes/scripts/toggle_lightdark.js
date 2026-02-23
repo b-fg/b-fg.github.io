@@ -2,30 +2,33 @@ document.addEventListener('DOMContentLoaded', function () {
   var base = window.location.origin;
   var LIGHT_HREF = base + '/assets/css/main.css';
   var DARK_HREF  = base + '/assets/css/dark.css';
-  var btn  = document.getElementById('theme-toggle');
-  var icon = document.getElementById('theme-icon');
-  var link = document.getElementById('theme-stylesheet');
+  var toggle = document.getElementById('theme-toggle');
+  var link   = document.getElementById('theme-stylesheet');
 
   var current = localStorage.getItem('theme') ||
     (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-  syncIcon(current);
+  applyTheme(current);
 
-  if (btn) {
-    btn.addEventListener('click', function () {
-      var next = localStorage.getItem('theme') === 'dark' ? 'light' : 'dark';
+  if (toggle) {
+    toggle.addEventListener('change', function () {
+      var next = toggle.checked ? 'dark' : 'light';
       localStorage.setItem('theme', next);
       if (link) link.href = next === 'dark' ? DARK_HREF : LIGHT_HREF;
-      syncIcon(next);
+      applyTheme(next);
     });
   }
 
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+  var darkMQ = window.matchMedia('(prefers-color-scheme: dark)');
+  function handleMQChange(e) {
     if (!localStorage.getItem('theme')) {
-      var next = e.matches ? 'dark' : 'light';
-      if (link) link.href = next === 'dark' ? DARK_HREF : LIGHT_HREF;
-      syncIcon(next);
+      applyTheme(e.matches ? 'dark' : 'light');
     }
-  });
+  }
+  if (darkMQ.addEventListener) {
+    darkMQ.addEventListener('change', handleMQChange);
+  } else if (darkMQ.addListener) {
+    darkMQ.addListener(handleMQChange);
+  }
 
   function syncRepoCards(theme) {
     var cardTheme = theme === 'dark' ? 'dark' : 'default';
@@ -34,8 +37,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  function syncIcon(theme) {
-    if (icon) icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+  function applyTheme(theme) {
+    if (toggle) toggle.checked = theme === 'dark';
+    if (link) link.href = theme === 'dark' ? DARK_HREF : LIGHT_HREF;
     var logo = document.getElementById('site-logo');
     if (logo) logo.src = theme === 'dark'
       ? '/assets/images/logo/tudelft-dark.svg'
