@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
   var base = window.location.origin;
   var LIGHT_HREF = base + '/assets/css/main.css';
   var DARK_HREF  = base + '/assets/css/dark.css';
-
   var btn  = document.getElementById('theme-toggle');
   var icon = document.getElementById('theme-icon');
   var link = document.getElementById('theme-stylesheet');
@@ -20,9 +19,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+    if (!localStorage.getItem('theme')) {
+      var next = e.matches ? 'dark' : 'light';
+      if (link) link.href = next === 'dark' ? DARK_HREF : LIGHT_HREF;
+      syncIcon(next);
+    }
+  });
+
   function syncRepoCards(theme) {
     var cardTheme = theme === 'dark' ? 'dark' : 'default';
-    document.querySelectorAll('img.repo-card').forEach(function(img) {
+    document.querySelectorAll('img.repo-card').forEach(function (img) {
       img.src = img.src.replace(/&theme=\w+/, '&theme=' + cardTheme);
     });
   }
