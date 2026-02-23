@@ -238,7 +238,7 @@ img[src*='#center'] {
   transform: translateY(-9px);
 }
 .site-title-at {
-  color: #0000003a;   /* TU Delft cyan */
+  color: mix($background-color, $text-color, 60%);
 }
 
 /* Research page */

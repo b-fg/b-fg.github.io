@@ -14,7 +14,12 @@
       {%- if _author.forename and _author.surename -%}
         <a title="{%- if site.description -%}{{ site.description }}{%- endif -%}" href="{{ __return }}" class="site-title-with-logo">
           <span class="site-title-text">B <b>{{ _author.surename }}</b> Group <span class="site-title-at">@</span></span>
-          <img src="{{ '/assets/images/logo/tudelft.svg' | relative_url }}" alt="TU Delft" class="site-logo">
+          <img
+            id="site-logo"
+            src="{{ '/assets/images/logo/tudelft.svg' | relative_url }}"
+            alt="TU Delft"
+            class="site-logo"
+          >
         </a>
       {%- elsif site.title -%}
         <a title="{%- if site.description -%}{{ site.description }}{%- endif -%}" href="{{ __return }}">{{ site.title }}</a>

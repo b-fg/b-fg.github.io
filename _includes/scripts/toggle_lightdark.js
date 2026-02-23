@@ -20,7 +20,19 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  function syncRepoCards(theme) {
+    var cardTheme = theme === 'dark' ? 'dark' : 'default';
+    document.querySelectorAll('img.repo-card').forEach(function(img) {
+      img.src = img.src.replace(/&theme=\w+/, '&theme=' + cardTheme);
+    });
+  }
+
   function syncIcon(theme) {
     if (icon) icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    var logo = document.getElementById('site-logo');
+    if (logo) logo.src = theme === 'dark'
+      ? '/assets/images/logo/tudelft-dark.svg'
+      : '/assets/images/logo/tudelft.svg';
+    syncRepoCards(theme);
   }
 });
