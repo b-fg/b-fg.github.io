@@ -419,41 +419,40 @@ img[src*='#center'] {
   vertical-align: middle;
   cursor: pointer;
   margin: 0 0.25rem;
-
-  input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-    position: absolute;
-  }
-
-  &__slider {
-    position: absolute;
-    inset: 0;
-    background-color: mix(#fff, $background-color, 30%);
-    border-radius: 20px;
-    transition: background-color 0.3s ease;
-
-    &::before {
-      content: '';
-      position: absolute;
-      height: 14px;
-      width: 14px;
-      left: 3px;
-      top: 3px;
-      background-color: #393939;
-      border-radius: 50%;
-      transition: transform 0.3s ease;
-    }
-  }
-
-  input:checked + &__slider {
-    background-color: mix(#fff, $background-color, 60%);
-  }
-
-  input:checked + &__slider::before {
-    transform: translateX(16px);
-  }
 }
 
+.theme-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.theme-toggle__slider {
+  position: absolute;
+  inset: 0;
+  background-color: mix(#fff, $background-color, 30%);
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.theme-toggle__slider::before {
+  content: '';
+  position: absolute;
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  top: 3px;
+  background-color: #393939;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle input:checked + .theme-toggle__slider {
+  background-color: mix(#fff, $background-color, 70%)
+}
+
+.theme-toggle input:checked + .theme-toggle__slider::before {
+  transform: translateX(16px);
+}
 /* end custom scss snippet */
