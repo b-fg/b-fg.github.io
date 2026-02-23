@@ -14,8 +14,23 @@
 
 {%- include head/favicon.html -%}
 
-{%- include snippets/prepend-baseurl.html path='/assets/css/main.css' -%}
-<link rel="stylesheet" href="{{ __return }}">
+<script>
+  (function() {
+    var base = '{{ site.baseurl | default: "" }}';
+    var lightHref = base + '/assets/css/main.css';
+    var darkHref  = base + '/assets/css/dark.css';
+    var theme = localStorage.getItem('theme') ||
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+    // Inject the active stylesheet
+    document.write('<link rel="stylesheet" id="theme-stylesheet" href="' +
+      (theme === 'dark' ? darkHref : lightHref) + '">');
+
+    // Preload the inactive one so it's cached and ready
+    document.write('<link rel="preload" as="style" href="' +
+      (theme === 'dark' ? lightHref : darkHref) + '">');
+  })();
+</script>
 
 {%- include snippets/get-sources.html -%}
 {%- assign _sources = __return -%}
