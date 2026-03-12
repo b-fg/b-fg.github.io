@@ -1,11 +1,16 @@
-
-{{ reference }}
+{% if entry.type == "bill" %}
+    <strong>{{ entry.title }}</strong>
+    ({{ entry.year }}{% if entry.month %}, {{ entry.month }}{% endif %})
+{% else %}
+  {{ reference }}
+{% endif %}
 
 {% if entry.abstract %}
 <button class="btn btnId btnPub--abstract" id="b_{{key}}-abstract" style="outline:none;">Abstract</button>
 {% endif %}
-
+{% unless entry.type == "bill" %}
 <button class="btn btnId btnPub--BibTex" id="b_{{key}}-bibtex" style="outline:none;">BibTeX</button>
+{% endunless %}
 
 {% if link %}
 <a href="{{ link }}"><button class="btn btnId btnPub--download" style="outline:none; position:relative;white-space: normal;">PDF</button></a>
@@ -34,7 +39,6 @@
 {% if entry.repo %}
     <a href="{{ entry.repo }}" target="_blank">Repo</a>
 {% endif %}
-
 
 <div class="dropDownAbstract" id="{{key}}-abstract">
     {{entry.abstract}}

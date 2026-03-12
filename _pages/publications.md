@@ -32,7 +32,7 @@ i10-index = **{{ site.data.scholar.i10_index }}**
 {% bibliography -f main -q @thesis %}
 
 <h4 id="talks" class="pubyear">Invited Talks</h4>
-{% bibliography -f main -T {{reference}} -q @bill%}
+{% bibliography -f main -q @bill %}
 
 <p style="margin-top:1cm;"></p>
 
