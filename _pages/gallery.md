@@ -6,6 +6,8 @@ show_title: false
 lightbox: true
 ---
 
+<div class="mt-2"></div>
+
 {%- assign _articles = site.gallery | reverse -%}
 <div class="gallery-grid">
   {%- for _item in _articles -%}

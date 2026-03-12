@@ -455,5 +455,40 @@ img[src*='#center'] {
 .theme-toggle input:checked + .theme-toggle__slider::before {
   transform: translateX(16px);
 }
+$header-height-custom: 4rem;
+$header-height-custom-sm: 2.5rem;
 
+header.header {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+.header__title {
+  height: $header-height-custom !important;
+  @include media-breakpoint-down(md) {
+    height: $header-height-custom-sm !important;
+  }
+}
+
+.navigation > ul {
+  height: $header-height-custom !important;
+  @include media-breakpoint-down(md) {
+    height: auto !important;
+  }
+}
+
+.layout--article,
+.layout--articles,
+.layout--landing,
+.layout--page,
+.layout--home {
+  padding-top: $header-height-custom * 0.75;
+  @include media-breakpoint-down(md) {
+    padding-top: $header-height-custom-sm * 2;
+  }
+}
 /* end custom scss snippet */

@@ -5,9 +5,6 @@ title: Publications
 key: page-publications
 show_title: false
 ---
-
-<div class="mt-4"></div>
-
 <div class="card" style="max-width:100%">
 <div class="card__content">
 <div markdown="1">

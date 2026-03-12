@@ -5,6 +5,8 @@ title: Research
 show_title: false
 ---
 
+<div class="mt-2"></div>
+
 {%- assign _sorted_list = site.research | reverse -%}
 {%- if include.reverse -%}
 {%- assign _sorted_list = _sorted_list | reverse -%}

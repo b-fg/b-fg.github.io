@@ -14,7 +14,7 @@ show_title: false
 {% endif %} -->
 
 {% if site.data.repositories.github_repos %}
-<div class="repo-card" style="margin-top:1rem">
+<div class="repo-card">
   {% for repo in site.data.repositories.github_repos %}
     {% include repository/repo.liquid repository=repo %}
   {% endfor %}
