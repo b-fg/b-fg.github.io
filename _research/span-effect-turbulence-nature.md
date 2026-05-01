@@ -7,6 +7,8 @@ cover: /assets/images/research/span-effect-turbulence-nature/vorticity_cover.svg
 author: Bernat
 aside:
   toc: false
+redirect_from:
+  - /2023/02/27/span-effect-turbulence-nature.html
 ---
 
 In this post, I will briefly cover the work we published with my former PhD supervisors about the span effect of a circular cylinder on the turbulence nature of its wake.

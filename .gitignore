@@ -10,6 +10,7 @@
 *.log.*
 
 .vscode/
+.claude/
 _research_wip/
 
 node_modules/
