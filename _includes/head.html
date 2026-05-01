@@ -14,6 +14,9 @@
 
 {%- include head/favicon.html -%}
 
+<link rel="preload" as="image" href="{{ '/assets/images/logo/tudelft.svg' | relative_url }}" fetchpriority="high">
+<link rel="preload" as="image" href="{{ '/assets/images/logo/tudelft-dark.svg' | relative_url }}" fetchpriority="high">
+
 <script>
   (function() {
     var base = '{{ site.baseurl | default: "" }}';
@@ -21,6 +24,9 @@
     var darkHref  = base + '/assets/css/dark.css';
     var theme = localStorage.getItem('theme') ||
       (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+    // Set theme attribute before first paint so CSS rules (e.g. logo filter) apply on initial render.
+    document.documentElement.dataset.theme = theme;
 
     // Inject the active stylesheet
     document.write('<link rel="stylesheet" id="theme-stylesheet" href="' +

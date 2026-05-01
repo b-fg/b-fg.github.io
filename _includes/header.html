@@ -15,10 +15,23 @@
         <a title="{%- if site.description -%}{{ site.description }}{%- endif -%}" href="{{ __return }}" class="site-title-with-logo">
           <span class="site-title-text">B <b>{{ _author.surename }}</b> Group <span class="site-title-at">@</span></span>
           <img
-            id="site-logo"
             src="{{ '/assets/images/logo/tudelft.svg' | relative_url }}"
             alt="TU Delft"
-            class="site-logo"
+            class="site-logo site-logo--light"
+            width="69"
+            height="27"
+            decoding="sync"
+            fetchpriority="high"
+          >
+          <img
+            src="{{ '/assets/images/logo/tudelft-dark.svg' | relative_url }}"
+            alt=""
+            aria-hidden="true"
+            class="site-logo site-logo--dark"
+            width="69"
+            height="27"
+            decoding="sync"
+            fetchpriority="high"
           >
         </a>
       {%- elsif site.title -%}
@@ -50,6 +63,13 @@
         <li>
           <label class="theme-toggle" title="Toggle dark/light mode">
             <input id="theme-toggle" type="checkbox">
+            <script>
+              (function () {
+                var t = localStorage.getItem('theme') ||
+                  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                if (t === 'dark') document.getElementById('theme-toggle').checked = true;
+              })();
+            </script>
             <span class="theme-toggle__slider"></span>
           </label>
         </li>

@@ -237,6 +237,10 @@ img[src*='#center'] {
     /* optical centering tweak */
   transform: translateY(-9px);
 }
+/* Render both logos; CSS chooses which is visible per theme so there's no JS-driven src swap. */
+.site-logo--dark { display: none; }
+[data-theme="dark"] .site-logo--light { display: none; }
+[data-theme="dark"] .site-logo--dark { display: inline-block; }
 .site-title-at {
   color: mix($background-color, $text-color, 60%);
 }
@@ -448,11 +452,11 @@ img[src*='#center'] {
   transition: transform 0.3s ease;
 }
 
-.theme-toggle input:checked + .theme-toggle__slider {
+.theme-toggle input:checked ~ .theme-toggle__slider {
   background-color: mix(#fff, $background-color, 70%)
 }
 
-.theme-toggle input:checked + .theme-toggle__slider::before {
+.theme-toggle input:checked ~ .theme-toggle__slider::before {
   transform: translateX(16px);
 }
 $header-height-custom: 4rem;

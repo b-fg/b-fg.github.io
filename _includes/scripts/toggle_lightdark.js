@@ -38,12 +38,9 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function applyTheme(theme) {
+    document.documentElement.dataset.theme = theme;
     if (toggle) toggle.checked = theme === 'dark';
     if (link) link.href = theme === 'dark' ? DARK_HREF : LIGHT_HREF;
-    var logo = document.getElementById('site-logo');
-    if (logo) logo.src = theme === 'dark'
-      ? '/assets/images/logo/tudelft-dark.svg'
-      : '/assets/images/logo/tudelft.svg';
     syncRepoCards(theme);
   }
 });
