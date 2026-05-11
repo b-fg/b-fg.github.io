@@ -110,13 +110,24 @@
       {%- endfor -%}
       <li class="item" itemscope itemtype="http://schema.org/BlogPosting" data-tags="{{ _tags }}">
         <div class="item__content">
-          {%- if include.show_info -%}
-            <span class="item__meta">{{ _article.date | date: __return }}</span>
-          {%- endif -%}
-          <a itemprop="headline" class="item__header" href="{{ _article_url }}" style="text-align:center">{{ _article.title }}</a></div>
-          {%- for _tag in _article.tags -%}
-            <a class="button button--primary button--rounded button--xs">{{_tag}}</a>&nbsp;
-          {%- endfor -%}
+          <div class="grid">
+            {%- if include.show_info -%}
+              <div class="cell cell--2">
+                <span class="item__meta item__meta__nowrap">{{ _article.date | date: __return }}</span>
+              </div>
+            {%- endif -%}
+            <div class="cell cell--auto archive-item__title-tags">
+              <a itemprop="headline" class="item__header" href="{{ _article_url }}">{{ _article.title }}</a>
+              {%- if _article.tags.size > 0 -%}
+                <span class="archive-item__tags">
+                  {%- for _tag in _article.tags -%}
+                    <span class="archive-tag">{{ _tag }}</span>
+                  {%- endfor -%}
+                </span>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
       </li>
 
     {%- elsif include.type == 'grid' -%}

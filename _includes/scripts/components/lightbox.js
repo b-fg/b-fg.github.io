@@ -28,7 +28,7 @@
             // Get HTML title from parent div's data-title attribute
             var htmlTitle = image.closest('.gallery-item').attr('data-title') || image.attr('title') || '';
             items.push({
-              src: image.attr('src'),
+              src: image.attr('data-full-src') || image.attr('src'),
               w: image.get(0).naturalWidth,
               h: image.get(0).naturalHeight,
               title: htmlTitle,
