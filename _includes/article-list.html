@@ -121,7 +121,7 @@
               {%- if _article.tags.size > 0 -%}
                 <span class="archive-item__tags">
                   {%- for _tag in _article.tags -%}
-                    <span class="archive-tag">{{ _tag }}</span>
+                    <button type="button" class="archive-tag" data-encode="{{ _tag | strip | url_encode }}">{{ _tag }}</button>
                   {%- endfor -%}
                 </span>
               {%- endif -%}

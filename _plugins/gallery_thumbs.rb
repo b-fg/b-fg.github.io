@@ -7,7 +7,10 @@ require 'open3'
 # data-full-src in preference to src).
 #
 # Output: <dir>/thumbs/<basename>.webp next to each source image.
-# Skips regeneration when the thumb is newer than the source.
+# Skips regeneration when the thumb is newer than both the source image and
+# the gallery doc (the doc counts because thumb_frame lives in its frontmatter).
+# Animated sources (GIF) yield a static thumb from a single frame — frame 0 by
+# default, or the frame given by `thumb_frame:` in the item's frontmatter.
 # Falls back to the original image if ImageMagick is unavailable.
 module Jekyll
   module GalleryThumbs
@@ -36,9 +39,10 @@ module Jekyll
 
           thumb_rel  = thumb_rel_for(src_rel)
           thumb_path = File.join(site.source, thumb_rel.sub(%r{^/}, ''))
+          frame      = doc.data['thumb_frame'].to_i
 
-          if needs_generation?(src_path, thumb_path)
-            unless @magick && generate_thumb(src_path, thumb_path)
+          if needs_generation?([src_path, doc.path], thumb_path)
+            unless @magick && generate_thumb(src_path, thumb_path, frame)
               Jekyll.logger.warn 'GalleryThumbs:', "no thumb for #{src_rel}, using original"
               doc.data['thumb'] = src_rel
               next
@@ -63,14 +67,15 @@ module Jekyll
         path.empty? ? nil : path
       end
 
-      def needs_generation?(src, dst)
+      def needs_generation?(srcs, dst)
         return true unless File.exist?(dst)
-        File.mtime(src) > File.mtime(dst)
+        srcs.any? { |src| File.exist?(src) && File.mtime(src) > File.mtime(dst) }
       end
 
-      def generate_thumb(src, dst)
+      def generate_thumb(src, dst, frame = 0)
         FileUtils.mkdir_p(File.dirname(dst))
-        cmd = [@magick, src, '-resize', "#{THUMB_WIDTH}x>", '-strip',
+        # [frame] keeps the thumb static for animated sources; no-op otherwise.
+        cmd = [@magick, "#{src}[#{frame}]", '-resize', "#{THUMB_WIDTH}x>", '-strip',
                '-quality', THUMB_QUALITY.to_s, dst]
         _, stderr, status = Open3.capture3(*cmd)
         unless status.success?

@@ -423,8 +423,15 @@ img[src*='#center'] {
   line-height: 1.5;
   color: $text-color-l;
   background: mix($background-color, $text-color, 88%);
+  border: none;
   border-radius: 999px;
   white-space: nowrap;
+  font-family: inherit;
+  cursor: pointer;
+}
+.archive-tag:hover {
+  color: $text-color;
+  background: mix($background-color, $text-color, 78%);
 }
 
 

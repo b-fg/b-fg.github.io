@@ -130,6 +130,12 @@
     $tags.on('click', 'button', function() {
       tagSelect($(this).data('encode'), $(this));
     });
+    // Tag pills next to each item filter like the buttons above.
+    $result.on('click', '.archive-tag', function() {
+      var _pillTag = $(this).attr('data-encode');
+      tagSelect(_pillTag, searchButtonsByTag(_pillTag));
+      window.scrollTo({ top: 0 });
+    });
 
   });
 })();
