@@ -4,6 +4,47 @@
    skin instead of default white; matches the header/footer background. */
 html {
   background: $main-color-3;
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* ======
+    Typography: Inter on top of the system stack (loaded in head/custom.html)
+   ====== */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+h1, h2, h3, h4 {
+  letter-spacing: -.015em;
+}
+a {
+  transition: color .15s ease;
+}
+::selection {
+  background: rgba($main-color-1, .22);
+}
+
+/* ======
+    Card system: one soft surface language everywhere
+   ====== */
+.card {
+  border-radius: 12px;
+  border: 1px solid $border-color-l;
+  box-shadow: 0 1px 2px rgba(#000, .04), 0 6px 20px rgba(#000, .05);
+}
+/* Home-page sections (bio, news, contact, funding) get more breathing room */
+.layout--home .card__content {
+  padding: 1.5rem 1.9rem;
+}
+@include media-breakpoint-down(md) {
+  .layout--home .card__content {
+    padding: 1.1rem 1.2rem;
+  }
 }
 
 /* Pages with a TOC aside (research posts): keep the total width at the site's
@@ -12,6 +53,17 @@ html {
    the aside width (page__content is flex: 1). */
 .has-aside .main {
   max-width: map-get($layout, content-max-width);
+}
+
+/* TOC entries were clipped mid-word by the theme's nowrap+ellipsis; let them
+   wrap inside the 220px aside instead (left-aligned, not justified). */
+.page__aside {
+  text-align: left;
+}
+.page__aside ul.toc--ellipsis a {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
 }
 
 $googlescholar-color:    #000;
@@ -44,8 +96,19 @@ $type-size-9                  : 0.5em !default;  // ~10px
 	display: inline-block;
 }
 
+/* Tinted pill: quiet at rest, fills with its color on hover.
+   mix() with $text-color keeps the label legible on both skins
+   (darkens the hue on light, lightens it on dark). */
 @mixin btnPub($btnPub-color) {
-	border: 3px solid mix(#252a34, $btnPub-color, 10%);
+	border: 1px solid rgba($btnPub-color, .4);
+	background: rgba($btnPub-color, .07);
+	color: mix($btnPub-color, $text-color, 70%);
+	transition: background .15s ease, color .15s ease, border-color .15s ease;
+	&:hover {
+		background: $btnPub-color;
+		border-color: $btnPub-color;
+		color: #fff;
+	}
 }
 
 .btnPub--abstract{
@@ -56,7 +119,8 @@ $type-size-9                  : 0.5em !default;  // ~10px
 	@include btnPub($BibTex-color);
 }
 
-.btnPub--download{
+.btnPub--download,
+.btnPub--supplement{
 	@include btnPub($download-color);
 }
 
@@ -98,13 +162,14 @@ $type-size-9                  : 0.5em !default;  // ~10px
   /* default */
   display: inline-block;
   margin-bottom: 0.1em;
-  padding: 0.1em 0.5em;
+  padding: 0.15em 0.8em;
   font-size: $type-size-7;
-  font-weight: bold;
+  font-weight: 600;
+  font-family: inherit;
   text-align: center;
   text-decoration: none;
-  border-width: 2px;
-  border-radius: 6px;
+  border-width: 1px;
+  border-radius: 999px;
   cursor: pointer;
 
   .icon {
@@ -119,9 +184,25 @@ $type-size-9                  : 0.5em !default;  // ~10px
    For publication page.
    ========================================================================== */
 
-.pubyear{
-	color: $text-color-d;
-	border-bottom: 1px solid $text-color-l;
+/* Section headings (publications sections, group roles): hairline rule with a
+   short accent underline as the site-wide heading signature. */
+.pubyear {
+  position: relative;
+  color: $text-color-d;
+  font-weight: 800;
+  border-bottom: 1px solid $border-color-l;
+  padding-bottom: .45rem;
+  margin-bottom: 1rem;
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 2.2rem;
+    height: 2px;
+    border-radius: 2px;
+    background: $main-color-1;
+  }
 }
 
 
@@ -148,7 +229,7 @@ $type-size-9                  : 0.5em !default;  // ~10px
     margin-top: 20px;
 
     li {
-        margin: 10px 0;
+        margin: 18px 0;
         position: relative;
 
         span { display: block; }
@@ -218,6 +299,8 @@ ol.bibliography{list-style-type:decimal; padding-left:15px; margin-left:15px;}
 
 .page__content {
     text-align: justify;
+    hyphens: auto;  /* avoid rivers of whitespace in justified paragraphs */
+    -webkit-hyphens: auto;
 }
 
 img.centered {
@@ -230,12 +313,30 @@ img[src*='#center'] {
     margin: auto;
 }
 
-.repo-card {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: space-between;
-    justify-content: center;
+/* The wrapper div and the stat-card <img> unfortunately share the class;
+   scope by element. */
+div.repo-card {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem 1.5rem;
+    align-items: center;
 }
+@media (max-width: 1024px) {
+    div.repo-card { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+    div.repo-card { grid-template-columns: 1fr; }
+}
+div.repo-card .repo a {
+    display: block;
+    border-radius: 12px;
+    transition: transform .25s ease;
+}
+div.repo-card .repo a:hover {
+    transform: translateY(-3px);
+}
+/* Dark mode for the GitHub stat cards is handled in toggle_lightdark.js,
+   which swaps the &theme= URL parameter — no CSS filter needed here. */
 
 /* Header with logo */
 .header__brand .site-title-with-logo {
@@ -276,10 +377,10 @@ img[src*='#center'] {
 .research-item {
     position: relative;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 12px;
+    border: 1px solid $border-color-l;
+    box-shadow: 0 1px 2px rgba(#000, .04), 0 6px 20px rgba(#000, .05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    // background: $background-color;  /* uses skin variable */
-    // background: $card-background-color;
     background: mix(#fff, $background-color, 8%);
     color: $text-color;             /* uses skin variable */
     display: flex;
@@ -288,7 +389,7 @@ img[src*='#center'] {
 }
 .research-item:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 4px rgba(#000, .05), 0 14px 32px rgba(#000, .12);
     text-decoration: none !important;
 }
 .research-item__image-wrapper {
@@ -320,21 +421,49 @@ img[src*='#center'] {
     text-align: left;   /* override the justified .page__content default */
 }
 .research-item__title {
-    font-size: 1rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.45;
     margin: 0 0 0.5rem 0;
     text-decoration: none !important;
     color: $text-color;             /* uses skin variable */
+    transition: color .15s ease;
 }
 .research-item:hover .research-item__title {
     color: $main-color-1;             /* uses skin variable — TeXt's accent color */
     text-decoration: none !important;
 }
 .research-item__meta {
-    font-size: 0.875rem;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    font-weight: 600;
     color: $text-color-l;           /* uses skin variable — TeXt's lighter text */
     margin-bottom: 0.75rem;
     text-decoration: none !important;
 }
+/* Group page: theme-aware colors for the member cards (layout rules live in
+   the inline style block of _includes/group-list.html). */
+.lab-member-note {
+  color: $text-color-l;
+}
+.lab-icon {
+  color: $text-color-l;
+  &:hover {
+    color: $main-color-1;
+  }
+}
+.lab-member-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 2px 4px rgba(#000, .05), 0 14px 32px rgba(#000, .12);
+}
+.lab-member-card .card__image img {
+  transition: transform .3s ease;
+}
+.lab-member-card:hover .card__image img {
+  transform: scale(1.04);
+}
+
 /* Gallery page */
 /* Hide titles from grid */
 .gallery-grid .item__header,
@@ -362,9 +491,13 @@ img[src*='#center'] {
 .gallery-item {
   position: relative;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.gallery-grid .gallery-item {
+  border: 1px solid $border-color-l;
+  box-shadow: 0 1px 2px rgba(#000, .04), 0 6px 20px rgba(#000, .05);
 }
 /* The theme's modal gallery styles set .gallery-item to height:100% with
    centered content; grid cells are uniform 3:2 cards instead (the height
@@ -386,12 +519,12 @@ img[src*='#center'] {
   bottom: 0.75rem;
   font-size: 1.5rem;
   color: #fff;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
   pointer-events: none;
 }
 .gallery-item:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 4px rgba(#000, .05), 0 14px 32px rgba(#000, .12);
 }
 .gallery-item img {
   width: 100%;
@@ -426,6 +559,29 @@ img[src*='#center'] {
   line-height: 1.4;
 }
 
+
+/* Footer: hairline separation and quieter meta text */
+footer.footer {
+  border-top: 1px solid $border-color-l;
+  .site-info {
+    font-size: .85rem;
+    color: $text-color-l;
+  }
+}
+
+/* "All news" link under the home news list */
+.news-all {
+  display: inline-block;
+  font-size: .8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: $text-color-l !important;
+  text-decoration: none !important;
+  &:hover {
+    color: $main-color-1 !important;
+  }
+}
 
 /* ===== News list: lock date column width ===== */
 .article-list .grid {
@@ -546,6 +702,11 @@ header.header {
   right: 0;
   z-index: 1000;
   width: 100%;
+  /* Frosted glass: content scrolls underneath the fixed header */
+  background: rgba($main-color-3, .8);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  backdrop-filter: blur(12px) saturate(160%);
+  border-bottom: 1px solid $border-color-l;
 }
 
 .header__title {

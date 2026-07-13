@@ -31,10 +31,9 @@
     {%- assign _tagged_articles = "" | split: "" -%}
     <div class="lab-group">
       {%- unless _current_tag == "PI" -%}
-        <h4 id="{{ _tag_id }}" class="pubyear">
-          <a href="#{{ _tag_id }}" class="anchor-link">#</a>
-          {{ _current_tag }}
-        </h4>
+        {%- comment -%} id keeps the heading linkable (/group#phd) like the
+            publications sections, without a visible anchor {%- endcomment -%}
+        <h4 id="{{ _tag_id }}" class="pubyear">{{ _current_tag }}</h4>
       {%- endunless -%}
 
       {%- if include.type == 'grid' -%}
@@ -194,30 +193,11 @@
   padding-right: 0;
 }
 
+/* .pubyear heading style lives in _sass/custom.scss so it follows the
+   light/dark skin variables. */
 .pubyear {
-  position: relative;
   text-align: left;
   margin-bottom: 1rem;
-  padding-bottom: 0.3rem;
-}
-
-.pubyear .anchor-link {
-  position: absolute;
-  left: -1.2em;
-  color: #ccc;
-  text-decoration: none;
-  opacity: 1;
-  transition: opacity 0.2s ease;
-  font-weight: normal;
-  padding-right: 0.3em;
-}
-
-.pubyear:hover .anchor-link {
-  opacity: 1;
-}
-
-.pubyear .anchor-link:hover {
-  color: #3498db;
 }
 
 /* Remove hyperlink styling from names */
@@ -242,9 +222,9 @@
 .lab-member-note {
   text-align: center;
   font-size: 0.85rem;
-  color: #666;
   font-style: italic;
   margin: -0.2rem 0 0.0rem 0;
+  /* color set in _sass/custom.scss (theme-aware) */
 }
 
 /* .cell > prefix outranks the theme's `.cell > .card { max-width: unset }` */
@@ -255,11 +235,7 @@
 
 .lab-member-card {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.lab-member-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  /* hover treatment in _sass/custom.scss, shared with the other card grids */
 }
 
 .lab-member-card .card__image {
@@ -286,14 +262,13 @@
 }
 
 .lab-icon {
-  color: #666;
   transition: color 0.2s ease, transform 0.2s ease;
   display: inline-flex;
   align-items: center;
+  /* colors in _sass/custom.scss (theme-aware) */
 }
 
 .lab-icon:hover {
-  color: #2196F3;
   transform: scale(1.1);
 }
 

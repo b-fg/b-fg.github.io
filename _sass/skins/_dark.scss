@@ -5,7 +5,7 @@
 ///
 
 // main colors
-$main-color-1:     #ff9500;
+$main-color-1:     #38c0e8;  // TU Delft cyan, lightened for contrast on dark
 $text-color-1:     rgba(#fff, 1);
 
 $main-color-2:     #ff006a;
@@ -27,8 +27,8 @@ $text-color-theme-light:   #222;
 $text-color-theme-light-l: #888;
 
 $text-color-theme-dark-d:  rgba(#fff, 1);
-$text-color-theme-dark:    rgba(#fff, 1);
-$text-color-theme-dark-l:  rgba(#fff, 1);
+$text-color-theme-dark:    rgba(#fff, .92);
+$text-color-theme-dark-l:  rgba(#fff, .62);  // secondary text should recede, not glare
 
 $text-color-d:     $text-color-theme-dark-d;
 $text-color:       $text-color-theme-dark;
