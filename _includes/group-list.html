@@ -182,6 +182,16 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  column-gap: 1.5rem; /* horizontal gap between member cards — adjust here */
+}
+
+/* Shrink cells to their card so column-gap above is the only horizontal spacing
+   (theme's cell--lg-3 etc. would otherwise force percentage widths) */
+.lab-grid-centered > .cell {
+  width: auto;
+  flex: none;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .pubyear {
@@ -237,6 +247,12 @@
   margin: -0.2rem 0 0.0rem 0;
 }
 
+/* .cell > prefix outranks the theme's `.cell > .card { max-width: unset }` */
+.cell > .lab-member-card {
+  max-width: 180px;
+  margin: 0 auto;
+}
+
 .lab-member-card {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -247,9 +263,13 @@
 }
 
 .lab-member-card .card__image {
-  max-width: 180px;
-  margin: 0 auto;
   overflow: hidden;
+}
+
+/* card--flat only zeroes top/left padding; zero right too so text centers on the photo */
+.lab-member-card .card__content {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .lab-member-card .card__image img {
