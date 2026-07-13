@@ -75,7 +75,14 @@ module Jekyll
       def generate_thumb(src, dst, frame = 0)
         FileUtils.mkdir_p(File.dirname(dst))
         # [frame] keeps the thumb static for animated sources; no-op otherwise.
-        cmd = [@magick, "#{src}[#{frame}]", '-resize', "#{THUMB_WIDTH}x>", '-strip',
+        # Optimized GIFs store frames as delta regions, so compose the frame
+        # from all frames up to it (-coalesce) instead of reading it raw.
+        input = if frame.zero?
+                  ["#{src}[0]"]
+                else
+                  ["#{src}[0-#{frame}]", '-coalesce', '-delete', "0-#{frame - 1}"]
+                end
+        cmd = [@magick, *input, '-resize', "#{THUMB_WIDTH}x>", '-strip',
                '-quality', THUMB_QUALITY.to_s, dst]
         _, stderr, status = Open3.capture3(*cmd)
         unless status.success?

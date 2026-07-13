@@ -358,10 +358,17 @@ img[src*='#center'] {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 /* The theme's modal gallery styles set .gallery-item to height:100% with
-   centered content; grid items must hug their image instead so the play
-   icon overlays it. */
+   centered content; grid cells are uniform 3:2 cards instead (the height
+   override also keeps the play icon anchored to the cell). */
 .gallery-grid .gallery-item {
   height: auto;
+  aspect-ratio: 3 / 2;
+  background: #fff;  /* letterboxing blends into the white-background figures */
+}
+.gallery-grid .gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 /* Play icon over grid thumbs of video items */
 .gallery-grid .gallery-item__play {
