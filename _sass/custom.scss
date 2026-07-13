@@ -14,20 +14,6 @@ html {
   max-width: map-get($layout, content-max-width);
 }
 
-/* Wide canvas, measured text: cap prose in post bodies at a readable line
-   length, centered in the column, while figures, tables and code keep the
-   full width. Scoped to the direct child so index-page excerpts (which also
-   use .article__content) are untouched. Markdown wraps images/videos in <p>,
-   hence the :has() exclusions (pre-:has() browsers skip the cap entirely). */
-.layout--article > .article__content {
-  > p:not(:has(img)):not(:has(video)):not(:has(iframe)),
-  > ul, > ol, > dl, > blockquote,
-  > h2, > h3, > h4, > h5, > h6 {
-    max-width: 75ch;
-    margin-inline: auto;
-  }
-}
-
 $googlescholar-color:    #000;
 $orcid-color: #a6ce39;
 
@@ -331,6 +317,7 @@ img[src*='#center'] {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    text-align: left;   /* override the justified .page__content default */
 }
 .research-item__title {
     font-size: 1rem;
