@@ -11,6 +11,10 @@ module Jekyll
     SCHOLAR_URL = 'http://scholar.google.com/citations?hl=en&user='.freeze
     CACHE_DIR = './.scholar_cache'.freeze
     CACHE_FILE = "#{CACHE_DIR}/scholar_data.json".freeze
+    # Local builds reuse a cache younger than this instead of re-scraping.
+    # Without it, `jekyll serve` loops: the cache write retriggers the build,
+    # which re-scrapes and rewrites the cache. CI always fetches fresh data.
+    CACHE_MAX_AGE = 24 * 60 * 60
 
     def generate(site)
       @scholar_id = site.config.dig('author', 'scholar') || site.config.dig('author', 'googlescholar')
@@ -53,6 +57,12 @@ module Jekyll
     end
 
     def fetch_scholar_data_locally(site)
+      if (cached = fresh_cache)
+        site.data['scholar'] = cached
+        Jekyll.logger.info "ScholarStats:", "Using cache (< #{CACHE_MAX_AGE / 3600}h old); skipping fetch"
+        return
+      end
+
       url = SCHOLAR_URL + @scholar_id
       Jekyll.logger.info "ScholarStats:", "Fetching data from Google Scholar..."
       doc = Nokogiri::HTML(URI.open(url, "User-Agent" => "Mozilla/5.0"))
@@ -96,6 +106,12 @@ module Jekyll
         f.write(JSON.pretty_generate(data))
       end
       Jekyll.logger.info "ScholarStats:", "Data saved to cache."
+    end
+
+    def fresh_cache
+      return nil unless File.exist?(CACHE_FILE)
+      return nil if Time.now - File.mtime(CACHE_FILE) > CACHE_MAX_AGE
+      load_from_cache
     end
 
     def load_from_cache

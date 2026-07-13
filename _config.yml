@@ -185,6 +185,7 @@ exclude:
   - LICENSE
   - README.md
   - CLAUDE.md
+  - .scholar_cache   # watcher must ignore it: scholar_stats.rb writes here during builds
 
 
 ## => Collections
