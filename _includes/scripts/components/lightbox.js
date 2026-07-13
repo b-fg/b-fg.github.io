@@ -30,7 +30,8 @@
             items.push({
               src: image.attr('data-full-src') || image.attr('src'),
               video: image.attr('data-video') || null,
-              poster: image.attr('src'),
+              // full-res watermarked copy, not the 1200px grid thumb
+              poster: image.attr('data-full-src') || image.attr('src'),
               w: image.get(0).naturalWidth,
               h: image.get(0).naturalHeight,
               title: htmlTitle,
