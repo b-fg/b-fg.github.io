@@ -6,6 +6,28 @@ html {
   background: $main-color-3;
 }
 
+/* Pages with a TOC aside (research posts): keep the total width at the site's
+   content-max-width instead of the theme's +aside-width bonus, so they align
+   with the header/footer like every other page. The text column shrinks by
+   the aside width (page__content is flex: 1). */
+.has-aside .main {
+  max-width: map-get($layout, content-max-width);
+}
+
+/* Wide canvas, measured text: cap prose in post bodies at a readable line
+   length, centered in the column, while figures, tables and code keep the
+   full width. Scoped to the direct child so index-page excerpts (which also
+   use .article__content) are untouched. Markdown wraps images/videos in <p>,
+   hence the :has() exclusions (pre-:has() browsers skip the cap entirely). */
+.layout--article > .article__content {
+  > p:not(:has(img)):not(:has(video)):not(:has(iframe)),
+  > ul, > ol, > dl, > blockquote,
+  > h2, > h3, > h4, > h5, > h6 {
+    max-width: 75ch;
+    margin-inline: auto;
+  }
+}
+
 $googlescholar-color:    #000;
 $orcid-color: #a6ce39;
 
