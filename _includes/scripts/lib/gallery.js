@@ -45,11 +45,18 @@
         item = items[i];
         size = this._calculateImageSize(item.w, item.h);
         var captionHtml = item.title ? '<div class="gallery-item__caption">' + item.title + '</div>' : '';
+        var sizeStyle = 'width:' + size.w + 'px;height:' + size.h + 'px';
+        // Videos stream via HTTP range requests (preload="none" defers any
+        // fetch until play); the grid thumb doubles as the poster.
+        var mediaHtml = item.video
+          ? '<video src="' + item.video + '" poster="' + (item.poster || item.src) + '"' +
+            ' controls playsinline preload="none" style="' + sizeStyle + '"></video>'
+          : '<img src="' + item.src + '" style="' + sizeStyle + '"/>';
         this.$items.push($(
           '<div class="swiper__slide">' +
             '<div class="gallery-item">' +
               '<div class="gallery-item__content">' +
-                '<img src="' + item.src + '" style="width:' + size.w + 'px;height:' + size.h +  'px"/>' +
+                mediaHtml +
               '</div>' +
               captionHtml +
             '</div>' +
@@ -136,6 +143,10 @@
         if (self.disabled) { return; }
         e.preventDefault();
       });
+      // The modal closes on any click; keep video controls usable.
+      this.$swiperWrapper.on('click', 'video', function(e) {
+        e.stopPropagation();
+      });
     };
 
     Gallery.prototype._translate = function() {
@@ -169,10 +180,11 @@
         item = this.items[i], $item = $items[i];
         size = this._calculateImageSize(item.w, item.h);
         item.width = size.w; item.height = size.h;
-        $item && $item.find('img').css({ width: size.w, height: size.h });
+        $item && $item.find('img, video').css({ width: size.w, height: size.h });
       }
     };
     Gallery.prototype._handleChangeEnd = function(index, $dom, preIndex, $preDom) {
+      $preDom && $preDom.find('video').each(function() { this.pause(); });
       this.curIndex = index;
       this.lastZoomRect = null; this.lastZoomRect = null;
       this.lastTranslate = this.translate = { x: 0, y:0 };
@@ -187,6 +199,9 @@
     };
     Gallery.prototype.setOptions = function(options) {
       this.disabled = options.disabled;
+      if (this.disabled) {
+        this.$root.find('video').each(function() { this.pause(); });
+      }
       this.swiper && this.swiper.setOptions(options);
     };
     window.Gallery = Gallery;

@@ -338,6 +338,7 @@ img[src*='#center'] {
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   padding: 2rem 0;
+  align-items: start;  /* items hug their image so the play icon overlays it */
 }
 @media (max-width: 1024px) {
   .gallery-grid {
@@ -355,6 +356,22 @@ img[src*='#center'] {
   border-radius: 8px;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+/* The theme's modal gallery styles set .gallery-item to height:100% with
+   centered content; grid items must hug their image instead so the play
+   icon overlays it. */
+.gallery-grid .gallery-item {
+  height: auto;
+}
+/* Play icon over grid thumbs of video items */
+.gallery-grid .gallery-item__play {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  font-size: 1.5rem;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
 }
 .gallery-item:hover {
   transform: translateY(-4px);
@@ -375,10 +392,14 @@ img[src*='#center'] {
   transform: none !important;
   transition: none !important;
 }
-/* Caption styling in overlay */
+/* Fullscreen lightbox must cover the fixed header (z-index 1000 above) */
+.js-page-gallery-modal {
+  z-index: 1001;
+}
+/* Caption styling in overlay; sits at the top so it never overlaps video controls */
 .gallery-item__caption {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.7);

@@ -8,6 +8,7 @@
 *.swo
 *.log
 *.log.*
+*.mp4
 
 .vscode/
 .claude/

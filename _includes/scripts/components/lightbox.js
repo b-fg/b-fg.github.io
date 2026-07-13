@@ -29,6 +29,8 @@
             var htmlTitle = image.closest('.gallery-item').attr('data-title') || image.attr('title') || '';
             items.push({
               src: image.attr('data-full-src') || image.attr('src'),
+              video: image.attr('data-video') || null,
+              poster: image.attr('src'),
               w: image.get(0).naturalWidth,
               h: image.get(0).naturalHeight,
               title: htmlTitle,

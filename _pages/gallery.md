@@ -18,12 +18,15 @@ lightbox: true
 <img
 src="{{ _thumb | relative_url }}"
 data-full-src="{{ _item.image | relative_url }}"
+{% if _item.video %}data-video="{{ _item.video }}"{% endif %}
 alt="{{ _item.title | default: '' | escape }}"
 title="{{ _item.title | default: '' | escape }}"
 class="img-responsive popup-image"
 loading="lazy"
 decoding="async"
 >
+{%- assign _ext = _item.image | split: '.' | last | downcase -%}
+{%- if _item.video or _ext == 'gif' %}<div class="gallery-item__play fas fa-play"></div>{% endif -%}
 </div>
     {%- endif -%}
   {%- endfor -%}
