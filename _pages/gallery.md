@@ -4,7 +4,6 @@ permalink: /gallery
 title: Gallery
 show_title: false
 lightbox: true
-full_width: true
 ---
 
 <div class="mt-2"></div>

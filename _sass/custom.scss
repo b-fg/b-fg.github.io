@@ -1,5 +1,11 @@
 /* start custom scss snippet */
 
+/* Paint the canvas so overscroll (rubber-band past header/footer) matches the
+   skin instead of default white; matches the header/footer background. */
+html {
+  background: $main-color-3;
+}
+
 $googlescholar-color:    #000;
 $orcid-color: #a6ce39;
 
@@ -220,6 +226,7 @@ img[src*='#center'] {
     display: flex;
     flex-wrap: wrap;
     align-content: space-between;
+    justify-content: center;
 }
 
 /* Header with logo */
@@ -330,9 +337,7 @@ img[src*='#center'] {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 2rem 0;
 }
 @media (max-width: 1024px) {
   .gallery-grid {
