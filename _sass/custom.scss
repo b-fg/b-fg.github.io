@@ -599,6 +599,7 @@ div.repo-card .repo a:hover {
   gap: 1.5rem 3rem;
   flex-wrap: wrap;
   text-align: left;  /* override the justified .page__content default */
+  padding: 1.4rem 1.8rem;  /* roomier than the theme's default card padding */
 }
 .contact-card__info {
   display: flex;
