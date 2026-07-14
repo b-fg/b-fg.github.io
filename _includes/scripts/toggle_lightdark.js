@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-  var base = window.location.origin;
-  var LIGHT_HREF = base + '/assets/css/main.css';
-  var DARK_HREF  = base + '/assets/css/dark.css';
   var toggle = document.getElementById('theme-toggle');
-  var link   = document.getElementById('theme-stylesheet');
+  var lightLink = document.getElementById('theme-light');
+  var darkLink  = document.getElementById('theme-dark');
 
   var current = localStorage.getItem('theme') ||
     (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -13,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
     toggle.addEventListener('change', function () {
       var next = toggle.checked ? 'dark' : 'light';
       localStorage.setItem('theme', next);
-      if (link) link.href = next === 'dark' ? DARK_HREF : LIGHT_HREF;
       applyTheme(next);
     });
   }
@@ -37,10 +34,31 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  function swapStylesheets(theme) {
+    var on  = theme === 'dark' ? darkLink : lightLink;
+    var off = theme === 'dark' ? lightLink : darkLink;
+    if (!on || !off) { return; }
+    var disableOld = function () {
+      // Re-check before disabling: a quick toggle back while the incoming
+      // sheet was downloading would otherwise turn off the active sheet.
+      var active = document.documentElement.dataset.theme === 'dark' ? darkLink : lightLink;
+      if (off !== active) { off.media = 'not all'; }
+    };
+    on.media = 'all';
+    if (on.sheet) {
+      // Already loaded (normal case): the swap is atomic.
+      disableOld();
+    } else {
+      // Still downloading: keep the old theme applied until the new sheet
+      // is ready — a delayed switch, never an unstyled page.
+      on.addEventListener('load', disableOld, { once: true });
+    }
+  }
+
   function applyTheme(theme) {
     document.documentElement.dataset.theme = theme;
     if (toggle) toggle.checked = theme === 'dark';
-    if (link) link.href = theme === 'dark' ? DARK_HREF : LIGHT_HREF;
+    swapStylesheets(theme);
     syncRepoCards(theme);
   }
 });

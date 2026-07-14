@@ -28,13 +28,14 @@
     // Set theme attribute before first paint so CSS rules (e.g. logo filter) apply on initial render.
     document.documentElement.dataset.theme = theme;
 
-    // Inject the active stylesheet
-    document.write('<link rel="stylesheet" id="theme-stylesheet" href="' +
-      (theme === 'dark' ? darkHref : lightHref) + '">');
-
-    // Preload the inactive one so it's cached and ready
-    document.write('<link rel="preload" as="style" href="' +
-      (theme === 'dark' ? lightHref : darkHref) + '">');
+    // Both stylesheets stay in the DOM: the active one render-blocking, the
+    // inactive one fetched up front with media="not all" (non-blocking, rules
+    // don't apply). Switching themes just flips the media attributes, so it
+    // never waits on the network — a preload alone gets evicted before use.
+    document.write('<link rel="stylesheet" id="theme-light" href="' + lightHref +
+      '"' + (theme === 'dark' ? ' media="not all"' : '') + '>');
+    document.write('<link rel="stylesheet" id="theme-dark" href="' + darkHref +
+      '"' + (theme === 'dark' ? '' : ' media="not all"') + '>');
   })();
 </script>
 
