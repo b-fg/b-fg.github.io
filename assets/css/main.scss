@@ -6,19 +6,10 @@
 @import
 
     "skins/{{ site.text_skin | default: site.data.variables.default.text_skin }}",
-    // "skins/chocolate",
-    // "skins/dark",
-    // "skins/default",
-    // "skins/forest",
-    // "skins/ocean",
-    // "skins/orange",
+    // available: "skins/default", "skins/dark"
 
     "skins/highlight/{{ site.highlight_theme | default: site.data.variables.default.highlight_theme }}",
-    // "skins/highlight/tomorrow",
-    // "skins/highlight/tomorrow-night",
-    // "skins/highlight/tomorrow-night-eighties",
-    // "skins/highlight/tomorrow-night-blue",
-    // "skins/highlight/tomorrow-night-bright",
+    // available: "skins/highlight/default", "skins/highlight/tomorrow", "skins/highlight/tomorrow-night"
 
 
     "common/variables",
@@ -67,8 +58,6 @@
     "layout/article",
     "layout/articles",
     "layout/archive",
-    "layout/home",
-    "layout/landing",
     "layout/404",
 
     "custom"

@@ -816,9 +816,7 @@ header.header {
 
 .layout--article,
 .layout--articles,
-.layout--landing,
-.layout--page,
-.layout--home {
+.layout--page {
   padding-top: $header-height-custom * 0.75;
   @include media-breakpoint-down(md) {
     padding-top: $header-height-custom-sm * 2;
