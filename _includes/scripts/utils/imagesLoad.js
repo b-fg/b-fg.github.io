@@ -6,7 +6,13 @@
     imagesCount < 1 && (loaded = true);
     for (i = 0; i < imagesCount; i++) {
       image = images[i];
-      image.complete ? handleImageLoad() : image.addEventListener('load', handleImageLoad);
+      if (image.complete) {
+        handleImageLoad();
+      } else {
+        // Count failures too, or one broken image stalls the whole batch.
+        image.addEventListener('load', handleImageLoad);
+        image.addEventListener('error', handleImageLoad);
+      }
     }
     function handleImageLoad() {
       loadedCount++;
