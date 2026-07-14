@@ -37,15 +37,6 @@ a {
   border: 1px solid $border-color-l;
   box-shadow: 0 1px 2px rgba(#000, .04), 0 6px 20px rgba(#000, .05);
 }
-/* Home-page sections (bio, news, contact, funding) get more breathing room */
-.layout--home .card__content {
-  padding: 1.5rem 1.9rem;
-}
-@include media-breakpoint-down(md) {
-  .layout--home .card__content {
-    padding: 1.1rem 1.2rem;
-  }
-}
 
 /* Pages with a TOC aside (research posts): keep the total width at the site's
    content-max-width instead of the theme's +aside-width bonus, so they align
@@ -203,6 +194,27 @@ $type-size-9                  : 0.5em !default;  // ~10px
     border-radius: 2px;
     background: $main-color-1;
   }
+  /* Hover anchor injected by scripts/article.js. Pages using the article
+     layout get this from the .article__content rules; the group page
+     (articles layout) needs it here. */
+  & > .anchor {
+    margin-left: .4rem;
+    text-decoration: none !important;
+    color: $border-color;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .15s ease;
+    & > i {
+      font-size: .8em;
+    }
+    &:hover {
+      color: $main-color-1;
+    }
+  }
+  &:hover > .anchor {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 
 
@@ -318,8 +330,13 @@ img[src*='#center'] {
 div.repo-card {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem 1.5rem;
+    gap: 1rem 1.5rem;
     align-items: center;
+}
+/* The grid gap handles spacing; the cells' p-2 padding would push the first
+   row 8px below the news/publications baseline. */
+div.repo-card .repo {
+    padding: 0;
 }
 @media (max-width: 1024px) {
     div.repo-card { grid-template-columns: repeat(2, 1fr); }
@@ -367,7 +384,9 @@ div.repo-card .repo a:hover {
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    /* 2.5rem top lands the first card at the same 96px offset as the
+       news/publications cards (those pages get 48+48px of layout padding) */
+    padding: 2.5rem 1rem 2rem;
 }
 @media (max-width: 768px) {
     .research-grid {
@@ -444,6 +463,13 @@ div.repo-card .repo a:hover {
 }
 /* Group page: theme-aware colors for the member cards (layout rules live in
    the inline style block of _includes/group-list.html). */
+/* The group page renders bare inside the page layout (48px top padding),
+   while article-layout pages get 48+48px; pad the first section by the
+   missing 48px so the PI card lands on the same 96px baseline (the grid's
+   -16px margin and the cell's +16px padding cancel out). */
+.lab-group:first-child {
+  padding-top: 3rem;
+}
 .lab-member-note {
   color: $text-color-l;
 }
@@ -475,7 +501,8 @@ div.repo-card .repo a:hover {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  padding: 2rem 0;
+  /* 2.5rem top aligns the first row with the news/publications baseline */
+  padding: 2.5rem 0 2rem;
   align-items: start;  /* items hug their image so the play icon overlays it */
 }
 @media (max-width: 1024px) {
