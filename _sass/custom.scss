@@ -594,7 +594,7 @@ div.repo-card .repo a:hover {
 /* ===== Home: CV & contact card ===== */
 .contact-card {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 1.5rem 3rem;
   flex-wrap: wrap;
@@ -628,6 +628,7 @@ div.repo-card .repo a:hover {
 .contact-card__links {
   display: grid;  /* items stretch to the widest chip for a tidy column */
   gap: .6rem;
+  margin-left: 2rem;  /* indent past the icon column, aligned with the text */
 }
 .contact-chip {
   display: inline-flex;
