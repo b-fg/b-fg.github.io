@@ -591,6 +591,64 @@ div.repo-card .repo a:hover {
 }
 
 
+/* ===== Home: CV & contact card ===== */
+.contact-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem 3rem;
+  flex-wrap: wrap;
+  text-align: left;  /* override the justified .page__content default */
+}
+.contact-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.contact-card__item {
+  display: flex;
+  gap: .8rem;
+  line-height: 1.55;
+  > i {
+    color: $main-color-1;
+    width: 1.2rem;
+    text-align: center;
+    font-size: .95rem;
+    margin-top: .35rem;
+  }
+}
+.contact-card__label {
+  display: block;
+  font-size: .72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: $text-color-l;
+}
+.contact-card__links {
+  display: grid;  /* items stretch to the widest chip for a tidy column */
+  gap: .6rem;
+}
+.contact-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5em;
+  padding: .4em 1.1em;
+  border-radius: 999px;
+  border: 1px solid rgba($main-color-1, .4);
+  background: rgba($main-color-1, .07);
+  color: mix($main-color-1, $text-color, 70%) !important;
+  font-size: .85rem;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+  &:hover {
+    background: $main-color-1;
+    border-color: $main-color-1;
+    color: #fff !important;
+  }
+}
 /* Footer: hairline separation and quieter meta text */
 footer.footer {
   border-top: 1px solid $border-color-l;
