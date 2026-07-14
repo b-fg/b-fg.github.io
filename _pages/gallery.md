@@ -13,14 +13,15 @@ lightbox: true
   {%- for _item in _articles -%}
     {%- if _item.image -%}
       {%- capture _title_html -%}{{ _item.title | markdownify | remove: '<p>' | remove: '</p>' | strip }}{%- endcapture -%}
+      {%- capture _title_text -%}{{ _item.title | default: '' | markdownify | strip_html | normalize_whitespace }}{%- endcapture -%}
       {%- assign _thumb = _item.thumb | default: _item.image -%}
 <div class="gallery-item" data-title="{{ _title_html | escape }}">
 <img
 src="{{ _thumb | relative_url }}"
 data-full-src="{{ _item.full | default: _item.image | relative_url }}"
 {% if _item.video %}data-video="{{ _item.video }}"{% endif %}
-alt="{{ _item.title | default: '' | escape }}"
-title="{{ _item.title | default: '' | escape }}"
+alt="{{ _title_text | escape }}"
+title="{{ _title_text | escape }}"
 class="img-responsive popup-image"
 loading="lazy"
 decoding="async"
