@@ -367,8 +367,8 @@ div.repo-card .repo a:hover {
 .site-logo {
   height: 27px;
   width: auto;
-    /* optical centering tweak */
-  transform: translateY(-9px);
+  /* optical tweak: bottom-aligns the TUDelft wordmark with the title text */
+  transform: translateY(-7px);
 }
 /* Render both logos; CSS chooses which is visible per theme so there's no JS-driven src swap. */
 .site-logo--dark { display: none; }
