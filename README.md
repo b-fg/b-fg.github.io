@@ -7,17 +7,17 @@ Static site for Bernat Font's Group at TU Delft, hosted at <https://b-fg.github.
 ## Local development
 
 ```sh
-git clone --recurse-submodules https://github.com/b-fg/b-fg.github.io.git
+git clone https://github.com/b-fg/b-fg.github.io.git
 cd b-fg.github.io
 bundle install
-bundle exec jekyll serve
+make serve            # fetches the publication data, then `jekyll serve --livereload`
 ```
 
-If you cloned without `--recurse-submodules`, run `git submodule update --init --recursive` once. The publications page is generated from [`CV.tex/main.bib`](https://github.com/b-fg/CV.tex/blob/main/main.bib), included as a git submodule under `CV.tex/` and symlinked into `_bibliography/main.bib`. Pushing to `main` in [b-fg/CV.tex](https://github.com/b-fg/CV.tex) triggers a rebuild here on the next deploy.
+The publications page is generated from the `main.bib` of the CV repo, [b-fg/CV.typ](https://github.com/b-fg/CV.typ). `scripts/fetch_cv_data.sh` (`make fetch`) downloads `main.bib` into `_bibliography/` and the Google Scholar metrics (`scholar_data.json`, published by that repo's CI on its `latest` release) into `_data/scholar.json`; both are git-ignored. The CV repo's CI triggers a rebuild here on every push, so publication updates flow into this site automatically.
 
 ## Deployment
 
-`.github/workflows/jekyll.yml` builds and deploys to GitHub Pages on push to `main` and on a weekly cron (Mondays). The weekly run refreshes Google Scholar metrics via [SerpAPI](https://serpapi.com/) (using the `SERPAPI_API_KEY` repo secret) and commits the result to `.scholar_cache/scholar_data.json`.
+`.github/workflows/jekyll.yml` fetches the publication data, builds, and deploys to GitHub Pages on push to `main`, on a weekly cron (Mondays, picking up the refreshed Scholar metrics), and on dispatch from the CV repo. CI does not commit anything back to this repo.
 
 ## Adding content
 

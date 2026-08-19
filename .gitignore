@@ -28,3 +28,6 @@ Gemfile.lock
 _site/
 .jekyll-metadata
 .jekyll-cache/
+# Publication data fetched from b-fg/CV.typ by scripts/fetch_cv_data.sh (make fetch)
+_bibliography/main.bib
+_data/scholar.json

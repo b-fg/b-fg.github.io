@@ -7,10 +7,6 @@ gem "csv"
 gem "observer"
 gem "kramdown-parser-gfm"
 
-# Used by _plugins/scholar_stats.rb to fetch Google Scholar metrics.
-gem "nokogiri"
-gem "open-uri"
-
 group :jekyll_plugins do
   gem "jekyll-feed"
   gem "jekyll-sitemap"
